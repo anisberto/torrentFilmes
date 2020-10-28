@@ -25,11 +25,11 @@ public class Conexao {
         if (conect == null) {
             try {
                 String driver = "org.postgresql.Driver";
-                String url = "jdbc:postgresql://localhost:5432/miniatura";
-                String user = "postgres";
-                String password = "123";
+                String url = "jdbc:postgresql://192.168.15.25:5432/tfilmes";
+                String usuario = "postgres"; 
+                String password = "maria123";
                 Class.forName(driver);
-                conect = DriverManager.getConnection(url, user, password);
+                conect = DriverManager.getConnection(url, usuario, password);
             } catch (Exception e) {
                 throw new Exception("Erro ao conectar no Banco de dados! ");
             }
