@@ -26,7 +26,7 @@ public class Conexao {
             try {
                 String driver = "org.postgresql.Driver";
                 String url = "jdbc:postgresql://192.168.15.25:5432/tfilmes";
-                // teste
+                // teste  teste
                 String usuario = "postgres"; 
                 String password = "maria123";
                 Class.forName(driver);
