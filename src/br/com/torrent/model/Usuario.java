@@ -1,12 +1,15 @@
 package br.com.torrent.model;
 
-
 public class Usuario {
+
     private int iden;
     private String nome;
     private String cpf;
     private String email;
     private String senha;
+
+    public Usuario() {
+    }
 
     public Usuario(int iden, String nome, String cpf, String email, String senha) {
         this.iden = iden;
@@ -55,7 +58,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
-    
+
 }
