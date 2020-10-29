@@ -1,15 +1,15 @@
 package br.com.torrent.bll;
 
-import br.com.torrent.dal.UsuarioDao;
+import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.model.Usuario;
 import java.util.List;
 
 public class UsuarioBll {
 
-    private UsuarioDao usuarioDao;
+    private UsuarioDal usuarioDao;
 
     public UsuarioBll() throws Exception {
-        usuarioDao = new UsuarioDao();
+        usuarioDao = new UsuarioDal();
     }
 
     // 1°

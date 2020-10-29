@@ -68,9 +68,10 @@ public class Conexao {
     }
 
     private static Properties loadProperties() throws IOException {
-        try (FileInputStream fs = new FileInputStream("db.properties")) {
+        try (FileInputStream fs = new FileInputStream("./src/br/com/torrent/util/db.properties")) {
             Properties fileProperties = new Properties();
             fileProperties.load(fs);
+            System.out.println("Conectado");
             return fileProperties;
         } catch (IOException error) {
             throw new IOException("Erro ao Carregar Propriedades: " + error.getMessage());

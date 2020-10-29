@@ -2,19 +2,26 @@ package br.com.torrent.model;
 
 /**
  *
- * @author CCE
+ * @author AnthonnyMax
  */
-public class Filmes {
+public class FilmeModel {
+
     private int iden;
     private String sinopse;
     private String titulo;
     private int ano;
+    private CategoriaFilmesModel categoria;
 
-    public Filmes(int iden, String sinopse, String titulo, int ano) {
+    public FilmeModel() {
+
+    }
+
+    public FilmeModel(int iden, String sinopse, String titulo, int ano, CategoriaFilmesModel categoria) {
         this.iden = iden;
         this.sinopse = sinopse;
         this.titulo = titulo;
         this.ano = ano;
+        this.categoria = categoria;
     }
 
     public int getIden() {
@@ -48,8 +55,24 @@ public class Filmes {
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
-    
-    
-    
+
+    /**
+     * @return the categoria
+     */
+    public CategoriaFilmesModel getCategoria() {
+        return categoria;
+    }
+
+    /**
+     * @param categoria the categoria to set
+     */
+    public void setCategoria(CategoriaFilmesModel categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Id Filme: " + iden + ", Titulo: " + titulo + ", Ano: " + ano + ", Sinope: " + sinopse + ", Categoria: " + getCategoria();
+    }
+
 }

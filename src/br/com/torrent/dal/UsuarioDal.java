@@ -10,16 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioDao {
+public class UsuarioDal {
 
     private Connection conexao;
 
-    public UsuarioDao() throws Exception {
-        conexao = (Connection) Conexao.getInstance();
+    public UsuarioDal() throws Exception {
+        conexao = Conexao.getInstance().getConnection();
     }
 
     public void adicionarUsuario(Usuario usuario) throws Exception {
-        String sql = "INSERT INTO usuario (usu_nome, usu_cpf, usu_email, usu_senha, usu_cup_iden) VALUES (?, ?,?, ?, ?, default )";
+        String sql = "INSERT INTO usuario (usu_nome, usu_cpf, usu_email, usu_senha) VALUES (?, ?,?, ?, ? )";
 
         try { // preparando a conexao;
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
