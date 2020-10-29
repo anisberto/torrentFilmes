@@ -13,9 +13,8 @@ import java.sql.ResultSet;
 public class CuponDao {
 
     private Connection conexao;
-    Cupon cupom = new Cupon();
-
-    public CuponDao() {
+    
+    public CuponDao() throws Exception{
         conexao = (Connection) Conexao.getInstance();
     }
 
