@@ -15,6 +15,7 @@ public class UsuarioDal {
     private Connection conexao;
 
     public UsuarioDal() throws Exception {
+    public UsuarioDao() throws Exception {
         conexao = Conexao.getInstance().getConnection();
     }
 
