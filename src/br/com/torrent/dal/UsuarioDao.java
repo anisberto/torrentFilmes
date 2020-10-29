@@ -15,7 +15,7 @@ public class UsuarioDao {
     private Connection conexao;
 
     public UsuarioDao() throws Exception {
-        conexao = (Connection) Conexao.getInstance();
+        conexao = Conexao.getInstance().getConnection();
     }
 
     public void adicionarUsuario(Usuario usuario) throws Exception {
