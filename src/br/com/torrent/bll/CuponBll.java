@@ -10,7 +10,7 @@ import br.com.torrent.model.Cupon;
 public class CuponBll {
     private CuponDao cuponDao;
 
-    public CuponBll() {
+    public CuponBll() throws Exception {
     cuponDao = new CuponDao();
     }
     
