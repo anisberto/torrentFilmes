@@ -15,7 +15,7 @@ public class CuponDao {
     private Connection conexao;
     
     public CuponDao() throws Exception{
-        conexao = (Connection) Conexao.getInstance();
+        conexao = Conexao.getInstance().getConnection();
     }
 
     public Cupon gerarRadon(int idRandon) throws Exception {
