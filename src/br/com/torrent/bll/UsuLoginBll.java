@@ -24,7 +24,7 @@ public class UsuLoginBll {
         usuarioConect.updateUsuario(usu);
     }
 
-    public List<UsuLoginModel> consultarFilmes() throws Exception {
+    public Iterable<UsuLoginModel> consultarFilmes() throws Exception {
         return usuarioConect.getAllUsuario();
     }
 

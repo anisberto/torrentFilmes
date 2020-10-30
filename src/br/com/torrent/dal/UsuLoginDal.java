@@ -46,7 +46,6 @@ public class UsuLoginDal {
 
     public void updateUsuario(UsuLoginModel usuario) throws Exception {
         String sql = "UPDATE usuario set  usu_nome=?, usu_senha=?, where usu_iden=?";
-
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, usuario.getNome());
@@ -60,7 +59,7 @@ public class UsuLoginDal {
         }
     }
 
-    public List<UsuLoginModel> getAllUsuario() throws Exception {
+    public Iterable<UsuLoginModel> getAllUsuario() throws Exception {
         List<UsuLoginModel> listUsuario = new ArrayList<UsuLoginModel>();
         String sql = "SELECT * FROM usuario";
         try {
