@@ -98,11 +98,9 @@ public class MenuView extends javax.swing.JFrame {
 
         jLabel2.setText("Data:");
 
-        lblUser.setForeground(new java.awt.Color(255, 0, 0));
         lblUser.setText("jLabel3");
 
         lblDateAcess.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        lblDateAcess.setForeground(new java.awt.Color(255, 0, 0));
         lblDateAcess.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -434,7 +432,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -454,6 +451,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDateAcess;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtUsuCpf;
     private javax.swing.JTextField txtUsuEmail;
     private javax.swing.JTextField txtUsuNome;
