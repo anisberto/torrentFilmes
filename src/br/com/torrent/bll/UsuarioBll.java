@@ -36,4 +36,5 @@ public class UsuarioBll {
     public Usuario consultarUsuarioPorId(int id) throws Exception {
         return usuarioDao.getUsuarioById(id);
     }
+        
 }
