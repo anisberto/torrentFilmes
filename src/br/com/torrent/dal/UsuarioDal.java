@@ -1,5 +1,6 @@
 package br.com.torrent.dal;
 
+import br.com.torrent.model.UsuLoginModel;
 import br.com.torrent.model.Usuario;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -66,15 +67,10 @@ public class UsuarioDal {
 
     public List<Usuario> getAllUsuario() throws Exception {
         List<Usuario> listUsuario = new ArrayList<Usuario>();
-        // buscar por ordenação por ID;
-        //String sql = "SELECT * from aluno ORDER by aluno.alu_id";
-        String sql = "SELECT * FROM usuario";
         try {
             Statement statement = conexao.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            //        ↓ enquato estive proximo faça;
+            ResultSet rs = statement.executeQuery("SELECT * FROM usuario");
             while (rs.next()) {
-                //     ↓ fazendo um estaciação com o [new]
                 Usuario usuario = new Usuario();
                 usuario.setIden(rs.getInt("usu_iden"));
                 usuario.setNome(rs.getString("usu_nome"));
@@ -97,10 +93,9 @@ public class UsuarioDal {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                usuario.setIden(rs.getInt("alu_id"));
-                usuario.setNome(rs.getString("alu_nome"));
-                usuario.setEmail(rs.getString("alu_nome"));
-                usuario.setSenha(rs.getString("alu_nome"));
+                usuario.setIden(rs.getInt("usu_id"));
+                usuario.setNome(rs.getString("usu_nome"));
+                usuario.setSenha(rs.getString("usu_senha"));
             }
         } catch (Exception erro) {
             throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
