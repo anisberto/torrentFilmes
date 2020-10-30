@@ -1,4 +1,3 @@
-
 package br.com.torrent.app;
 
 import br.com.torrent.bll.UsuarioBll;
@@ -26,7 +25,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         lblDateAcess = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -99,9 +98,11 @@ public class MenuView extends javax.swing.JFrame {
 
         jLabel2.setText("Data:");
 
-        jLabel3.setText("jLabel3");
+        lblUser.setForeground(new java.awt.Color(255, 0, 0));
+        lblUser.setText("jLabel3");
 
         lblDateAcess.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        lblDateAcess.setForeground(new java.awt.Color(255, 0, 0));
         lblDateAcess.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -112,7 +113,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -128,7 +129,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(lblDateAcess))
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jLabel3)))
+                        .addComponent(lblUser)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -361,6 +362,12 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowActivated
+    public void userTransfer(String user) {
+        try {
+            lblUser.setText(user);
+        } catch (Exception e) {
+        }
+    }
 
     private void btnUsuSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuSalvarActionPerformed
         try {

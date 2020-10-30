@@ -1,8 +1,11 @@
 package br.com.torrent.app;
 
 import br.com.torrent.bll.UsuLoginBll;
+import br.com.torrent.bll.ValidacoesBll;
+import br.com.torrent.model.UsuLoginModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class LoginView extends javax.swing.JFrame {
 
@@ -39,9 +42,19 @@ public class LoginView extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/excluir.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Senha ");
 
@@ -112,15 +125,36 @@ public class LoginView extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         try {
             String nomeEntrar = txtUsuario.getText();
-            String senhaEntrar = txtSenha.getText();
-            
-            
-            MenuView menu = new MenuView();
-            menu.setVisible(true);
-            dispose();
+            String senhaEntrar = new String(txtSenha.getPassword());
+            UsuLoginModel usuAuth = new UsuLoginModel(nomeEntrar, senhaEntrar);
+
+            if (txtSenha.getPassword().length == 0 || txtUsuario.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Todos os Campos precisam ser preenchidos");
+            }
+
+            if (ValidacoesBll.validaUsuario(usuAuth)) {
+                MenuView menu = new MenuView();
+                menu.setVisible(true);
+                dispose();
+                menu.userTransfer(nomeEntrar.toUpperCase());
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario não existe!");
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+
+
+    }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            System.exit(0);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -157,6 +191,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

@@ -31,4 +31,8 @@ public class UsuLoginBll {
     public UsuLoginModel consultarFilmesPorId(int id) throws Exception {
         return usuarioConect.getUsuarioById(id);
     }
+
+    public UsuLoginModel findName(String nome) {
+        return usuarioConect.findName(nome);
+    }
 }

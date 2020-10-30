@@ -12,6 +12,11 @@ public class UsuLoginModel {
         this.senha = senha;
     }
 
+    public UsuLoginModel(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
+    }
+
     public UsuLoginModel(UsuLoginModel usuario) {
         this.id = usuario.getId();
         this.nome = usuario.getNome();
@@ -45,4 +50,10 @@ public class UsuLoginModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    @Override
+    public String toString() {
+        return "UsuLoginModel{" + "id=" + id + ", nome=" + nome + ", senha=" + senha + '}';
+    }
+
 }

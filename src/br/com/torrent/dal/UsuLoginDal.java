@@ -106,6 +106,7 @@ public class UsuLoginDal {
             while (result.next()) {
                 usu.setId(result.getInt("usu_iden"));
                 usu.setNome(result.getString("usu_nome"));
+                usu.setSenha(result.getString("usu_senha"));
             }
         } catch (Exception e) {
         }
