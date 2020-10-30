@@ -3,13 +3,19 @@ package br.com.torrent.bll;
 import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.model.Usuario;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UsuarioBll {
 
     private UsuarioDal usuarioDao;
 
-    public UsuarioBll() throws Exception {
-        usuarioDao = new UsuarioDal();
+    public UsuarioBll(){
+        try {
+            usuarioDao = new UsuarioDal();
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // 1°
