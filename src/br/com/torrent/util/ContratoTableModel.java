@@ -1,13 +1,12 @@
 package br.com.torrent.util;
 
-import br.com.anisberto.model.Fabricante;
-import br.com.anisberto.model.TipoMiniatura;
+import br.com.torrent.model.ContratoModel;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class ContratoTableModel extends AbstractTableModel {
 
-    ArrayList<TipoMiniatura> dados = null;
+    ArrayList<ContratoModel> dados = null;
     String[] colunas = null;
 
     public ContratoTableModel(String[] colunas) {
@@ -39,19 +38,25 @@ public class ContratoTableModel extends AbstractTableModel {
     public String getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return dados.get(rowIndex).getTipo();
+                return dados.get(rowIndex).getId_plano().getNome();
             case 1:
-                return dados.get(rowIndex).getId() + "";
+                return dados.get(rowIndex).getId() + " - CTP";
+            case 2:
+                return dados.get(rowIndex).getInicio();
+            case 3:
+                return dados.get(rowIndex).getFim();
+            case 4:
+                return dados.get(rowIndex).getStatus().name();
             default:
                 throw new AssertionError();
         }
     }
 
-    public void addRow(TipoMiniatura tipo) {
+    public void addRow(ContratoModel tipo) {
         this.dados.add(tipo);
     }
 
-    public void update(ArrayList<TipoMiniatura> lista) {
+    public void update(ArrayList<ContratoModel> lista) {
         try {
             dados.removeAll(dados);
             lista.forEach((tipo) -> {
@@ -64,10 +69,10 @@ public class ContratoTableModel extends AbstractTableModel {
 
     public void update(String[] dadosSV) {
         try {
-            ArrayList<TipoMiniatura> lista = new ArrayList<>();
+            ArrayList<ContratoModel> lista = new ArrayList<>();
             for (int i = 0; i < dados.size(); i++) {
                 for (int j = 0; j < dadosSV.length; j++) {
-                    if (dados.get(i).getTipo().equals(dadosSV[j])) {
+                    if (dados.get(i).getInicio().equals(dadosSV[j])) {
                         lista.add(dados.get(i));
                     }
                 }

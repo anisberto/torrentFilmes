@@ -1,17 +1,21 @@
 package br.com.torrent.model;
 
+import br.com.torrent.enumerations.Status;
+
 public class ContratoModel {
 
     private int id;
     private String fim;
     private String inicio;
+    private Status status;
     private PlanoModel id_plano;
 
-    public ContratoModel(int id, String fim, String inicio, PlanoModel plano) {
+    public ContratoModel(int id, String fim, String inicio, Status status, PlanoModel id_plano) {
         this.id = id;
         this.fim = fim;
         this.inicio = inicio;
-        this.id_plano = plano;
+        this.status = status;
+        this.id_plano = id_plano;
     }
 
     public ContratoModel() {
@@ -50,9 +54,17 @@ public class ContratoModel {
         this.id_plano = id_plano;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "ContratoModel{" + "id=" + id + ", fim=" + fim + ", inicio=" + inicio + ", id_plano=" + id_plano.getNome()+ '}';
+        return "ContratoModel{" + "id=" + id + ", fim=" + fim + ", inicio=" + inicio + ", status=" + status + ", id_plano=" + id_plano + '}';
     }
 
 }

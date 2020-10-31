@@ -40,7 +40,11 @@ public class PlanoTableModel extends AbstractTableModel {
             case 0:
                 return dados.get(rowIndex).getNome();
             case 1:
-                return dados.get(rowIndex).getId() + "";
+                return dados.get(rowIndex).getPreco() + "";
+            case 2:
+                return dados.get(rowIndex).getId() + " - 00";
+            case 3:
+                return dados.get(rowIndex).isAcessoSimultaneo() ? "SIM" : "NÃO";
             default:
                 throw new AssertionError();
         }
@@ -66,7 +70,7 @@ public class PlanoTableModel extends AbstractTableModel {
             ArrayList<PlanoModel> lista = new ArrayList<>();
             for (int i = 0; i < dados.size(); i++) {
                 for (int j = 0; j < dadosSV.length; j++) {
-                    if (dados.get(i).getTipo().equals(dadosSV[j])) {
+                    if (dados.get(i).getNome().equals(dadosSV[j])) {
                         lista.add(dados.get(i));
                     }
                 }
