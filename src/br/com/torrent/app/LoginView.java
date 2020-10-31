@@ -5,6 +5,7 @@ import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.model.UsuLoginModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class LoginView extends javax.swing.JFrame {
@@ -12,7 +13,10 @@ public class LoginView extends javax.swing.JFrame {
     UsuLoginBll usuarioLog;
 
     public LoginView() throws Exception {
+        super("Sistema Torrent Filmes");
         initComponents();
+        ImageIcon icone = new ImageIcon("src/icons/filmes.png");
+        this.setIconImage(icone.getImage());
         usuarioLog = new UsuLoginBll();
     }
 
@@ -20,6 +24,8 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
@@ -28,6 +34,13 @@ public class LoginView extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -37,6 +50,7 @@ public class LoginView extends javax.swing.JFrame {
 
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/entrar.png"))); // NOI18N
         btnEntrar.setText("Entrar");
+        btnEntrar.setEnabled(false);
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -48,8 +62,28 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                txtSenhaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                txtSenhaAncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyReleased(evt);
+            }
+        });
+
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/excluir.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setEnabled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -79,7 +113,7 @@ public class LoginView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,12 +128,27 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
+
+        jMenu2.setText("Gerir Usuarios");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        jMenuItem2.setText("Cadastrar Novo Usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,7 +187,10 @@ public class LoginView extends javax.swing.JFrame {
                 dispose();
                 menu.userTransfer(nomeEntrar.toUpperCase());
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario não existe!");
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inváĺido!");
+                txtSenha.setText("");
+                txtUsuario.setText("");
+                txtUsuario.setRequestFocusEnabled(true);
             }
         } catch (Exception e) {
         }
@@ -155,6 +207,39 @@ public class LoginView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            LoginViewCrud telaUser = new LoginViewCrud();
+            telaUser.setVisible(true);
+            dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+
+    }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void txtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyReleased
+
+    }//GEN-LAST:event_txtSenhaKeyReleased
+
+    private void txtSenhaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_txtSenhaAncestorAdded
+    }//GEN-LAST:event_txtSenhaAncestorAdded
+
+    private void txtSenhaAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_txtSenhaAncestorMoved
+        try {
+            if (txtSenha.getPassword().equals(" ")) {
+                btnCancelar.setEnabled(false);
+                btnEntrar.setEnabled(false);
+            } else {
+                btnCancelar.setEnabled(true);
+                btnEntrar.setEnabled(true);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtSenhaAncestorMoved
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -191,7 +276,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -199,6 +284,11 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
