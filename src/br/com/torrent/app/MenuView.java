@@ -2,16 +2,20 @@ package br.com.torrent.app;
 
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.model.Usuario;
+import br.com.torrent.util.PlanoTableModel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MenuView extends javax.swing.JFrame {
     
     Usuario usuario = new Usuario();
+    PlanoTableModel tabelaPlano;
     UsuarioBll usuarioBll = new UsuarioBll();
     
      public MenuView() {
         initComponents();
+        tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano","Preço","Identificador","Possui Acesso Simultaneo"});
+        tabViewPlano.setModel(tabelaPlano);
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +50,7 @@ public class MenuView extends javax.swing.JFrame {
         txtPlanoPreco = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabViewPlano = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -162,7 +166,7 @@ public class MenuView extends javax.swing.JFrame {
         jButton2.setText("CANCELAR");
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        jButton3.setText("ALTERAR");
+        jButton3.setText("SALVAR");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
         jButton4.setText("DELETAR");
@@ -236,7 +240,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Planos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabViewPlano.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -244,7 +248,7 @@ public class MenuView extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabViewPlano);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -477,10 +481,10 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> jcPlanoAcesso;
     private javax.swing.JLabel lblDateAcess;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTable tabViewPlano;
     private javax.swing.JTextField txtPlanoNome;
     private javax.swing.JTextField txtPlanoPreco;
     // End of variables declaration//GEN-END:variables
