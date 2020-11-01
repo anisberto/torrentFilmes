@@ -3,6 +3,7 @@ package br.com.torrent.app;
 import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
+import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.Usuario;
@@ -14,7 +15,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class MenuView extends javax.swing.JFrame {
-
+    
     Usuario usuario = new Usuario();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
@@ -23,17 +24,17 @@ public class MenuView extends javax.swing.JFrame {
     boolean incluirPlano = true;
     boolean incluirContrato = true;
     int idDelete;
-
+    
     public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
-        tabelaContrato = new ContratoTableModel(new String[]{"Plano","Identificador","Data Inicio","Data Fim","Status","Usuario"});
+        tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Identificador", "Data Inicio", "Data Fim", "Status", "Usuario"});
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
         novoPlano = new PlanoBll();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -430,9 +431,27 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
+        jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jcContratoPlanosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
+        jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jcContratoUsuariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jcContratoStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "INATIVO" }));
 
@@ -704,7 +723,7 @@ public class MenuView extends javax.swing.JFrame {
             plano.setNome(nomePlano);
             plano.setPreco(precoPlano);
             plano.setAcessoSimultaneo(tipoDeAcesso);
-
+            
             if (ValidacoesBll.validarEntradaDeDadosPlano(plano)) {
                 if (incluirPlano) {
                     novoPlano.adicionarPlano(plano);
@@ -781,9 +800,9 @@ public class MenuView extends javax.swing.JFrame {
     private void btnContratoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoSalvarActionPerformed
         try {
             if (incluirContrato) {
-
+                
             } else {
-
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Incluir: " + e.getMessage());
@@ -811,6 +830,27 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabViewContratoMouseClicked
 
+    private void jcContratoPlanosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoPlanosAncestorAdded
+        try {
+            ArrayList<PlanoModel> planos = novoPlano.getAllPlano();
+            for (PlanoModel plan : planos) {
+                jcContratoPlanos.addItem(plan.getNome());
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jcContratoPlanosAncestorAdded
+
+    private void jcContratoUsuariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoUsuariosAncestorAdded
+        try {
+            UsuarioDal usua = new UsuarioDal();
+            ArrayList<Usuario> usuariosNaLiata = (ArrayList<Usuario>) usua.getAllUsuario();
+            for (Usuario usuarios : usuariosNaLiata) {
+                jcContratoUsuarios.addItem(usuarios.getNome());
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jcContratoUsuariosAncestorAdded
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -917,7 +957,7 @@ public class MenuView extends javax.swing.JFrame {
             btnPlanoAlterar.setEnabled(true);
             btnPlanoCancelar.setEnabled(true);
             btnPlanoDeletar.setEnabled(true);
-
+            
             btnPlanoSalvar.setEnabled(false);
             txtPlanoNome.setEnabled(false);
             txtPlanoPreco.setEnabled(false);
@@ -927,7 +967,7 @@ public class MenuView extends javax.swing.JFrame {
             jcPlanoAcesso.setSelectedItem("Nao");
         }
     }
-
+    
     private void ContratoEnableButtons(boolean butt) {
         if (butt) {
             btnContratoIncluir.setEnabled(false);
@@ -940,11 +980,11 @@ public class MenuView extends javax.swing.JFrame {
             btnContratoAlterar.setEnabled(true);
             btnContratoCancelar.setEnabled(true);
             btnContratoDeletar.setEnabled(true);
-
+            
             btnContratoSalvar.setEnabled(false);
         }
     }
-
+    
     private void transferirDadosPlano(int id) {
         try {
             PlanoModel delete = novoPlano.getPlanoById(id);
@@ -956,7 +996,7 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+    
     public void clearFields() {
         txtPlanoNome.setText("");
         txtPlanoPreco.setText("");

@@ -2,6 +2,7 @@ package br.com.torrent.bll;
 
 import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.UsuLoginModel;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,27 +14,27 @@ public class UsuLoginBll {
         usuarioConect = new UsuLoginDal();
     }
 
-    public void adicionarFilmes(UsuLoginModel usuario) throws Exception {
+    public void adicionarUsuLogin(UsuLoginModel usuario) throws Exception {
         usuarioConect.adicionarUsuario(usuario);
     }
 
-    public void removerFilmes(UsuLoginModel usuario) throws Exception {
+    public void removerUsuLogin(UsuLoginModel usuario) throws Exception {
         usuarioConect.deleteUsuario(usuario.getId());
     }
 
-    public void alterarFilmes(UsuLoginModel usu) throws Exception {
+    public void alterarUsuLogin(UsuLoginModel usu) throws Exception {
         usuarioConect.updateUsuario(usu);
     }
 
-    public Iterator<UsuLoginModel> consultarFilmes() throws Exception {
-        return usuarioConect.getAllUsuario();
+    public ArrayList<UsuLoginModel> consultarUsuLogin() throws Exception {
+        return (ArrayList<UsuLoginModel>) usuarioConect.getAllUsuario();
     }
 
-    public UsuLoginModel consultarFilmesPorId(int id) throws Exception {
+    public UsuLoginModel consultarUsuLoginPorId(int id) throws Exception {
         return usuarioConect.getUsuarioById(id);
     }
 
-    public UsuLoginModel findName(String nome) {
+    public UsuLoginModel findUsuLoginName(String nome) {
         return usuarioConect.findName(nome);
     }
 }

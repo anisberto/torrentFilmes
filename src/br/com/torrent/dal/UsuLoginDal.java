@@ -20,14 +20,14 @@ public class UsuLoginDal {
     }
 
     public void adicionarUsuario(UsuLoginModel usuario) throws Exception {
-        String sql = "INSERT INTO usuario (usu_nome, usu_senha) VALUES (?, ? )";
+        String sql = "INSERT INTO usuario (usu_nome, usu_senha,'usu_nomeCompleto') VALUES (?, ?,?)";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setObject(1, usuario.getNome());
-            preparedStatement.setObject(4, usuario.getSenha());
-
-            preparedStatement.executeUpdate(); // executa o comando da String sql;
+            preparedStatement.setString(1, usuario.getLogin());
+            preparedStatement.setString(2, usuario.getSenha());
+            preparedStatement.setString(3, usuario.getNome());
+            preparedStatement.executeUpdate();
         } catch (SQLException erro) {
             throw new Exception("Error ao inserir registro" + erro.getMessage());
         }
@@ -60,7 +60,7 @@ public class UsuLoginDal {
         }
     }
 
-    public Iterator<UsuLoginModel> getAllUsuario() throws Exception {
+    public ArrayList<UsuLoginModel> getAllUsuario() throws Exception {
         List<UsuLoginModel> listUsuario = new ArrayList<UsuLoginModel>();
         String sql = "SELECT * FROM usuario";
         try {
@@ -76,7 +76,7 @@ public class UsuLoginDal {
         } catch (SQLException erro) {
             throw new Exception("Ocorreu um erro ao consultar os registros de fabricantes\n" + erro.getMessage());
         }
-        return (Iterator<UsuLoginModel>) listUsuario;
+        return (ArrayList<UsuLoginModel>) listUsuario;
     }
 
     public UsuLoginModel getUsuarioById(int id) throws Exception {
@@ -105,7 +105,8 @@ public class UsuLoginDal {
             ResultSet result = prepa.executeQuery();
             while (result.next()) {
                 usu.setId(result.getInt("usu_iden"));
-                usu.setNome(result.getString("usu_nome"));
+                usu.setLogin(result.getString("usu_nome"));
+                usu.setNome(result.getString("usu_nomeCompleto"));
                 usu.setSenha(result.getString("usu_senha"));
             }
         } catch (Exception e) {

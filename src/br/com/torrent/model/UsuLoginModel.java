@@ -3,23 +3,20 @@ package br.com.torrent.model;
 public class UsuLoginModel {
 
     private int id;
+    private String login;
     private String nome;
     private String senha;
 
-    public UsuLoginModel(int id, String nome, String senha) {
+    public UsuLoginModel(String login, String nome, String senha) {
         this.id = id;
-        this.nome = nome;
-        this.senha = senha;
-    }
-
-    public UsuLoginModel(String nome, String senha) {
+        this.login = login;
         this.nome = nome;
         this.senha = senha;
     }
 
     public UsuLoginModel(UsuLoginModel usuario) {
         this.id = usuario.getId();
-        this.nome = usuario.getNome();
+        this.login = usuario.getNome();
         this.senha = usuario.getSenha();
     }
 
@@ -33,6 +30,14 @@ public class UsuLoginModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getNome() {
@@ -53,7 +58,7 @@ public class UsuLoginModel {
 
     @Override
     public String toString() {
-        return "UsuLoginModel{" + "id=" + id + ", nome=" + nome + ", senha=" + senha + '}';
+        return "UsuLoginModel{" + "id=" + id + ", nome=" + login + ", senha=" + senha + '}';
     }
 
 }

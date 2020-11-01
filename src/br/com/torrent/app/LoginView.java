@@ -247,7 +247,7 @@ public class LoginView extends javax.swing.JFrame {
         try {
             String nomeEntrar = txtUsuario.getText();
             String senhaEntrar = new String(txtSenha.getPassword());
-            UsuLoginModel usuAuth = new UsuLoginModel(nomeEntrar, senhaEntrar);
+            UsuLoginModel usuAuth = new UsuLoginModel("Anisberto", nomeEntrar, senhaEntrar);
             if (txtSenha.getPassword().length == 0 || txtUsuario.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos os Campos precisam ser preenchidos");
             }

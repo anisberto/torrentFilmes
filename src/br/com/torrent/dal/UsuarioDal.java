@@ -1,6 +1,5 @@
 package br.com.torrent.dal;
 
-import br.com.torrent.model.UsuLoginModel;
 import br.com.torrent.model.Usuario;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -69,15 +68,15 @@ public class UsuarioDal {
         List<Usuario> listUsuario = new ArrayList<Usuario>();
         try {
             Statement statement = conexao.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM usuario");
+            ResultSet rs = statement.executeQuery("SELECT * FROM cup_usuarios");
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setIden(rs.getInt("usu_iden"));
-                usuario.setNome(rs.getString("usu_nome"));
-                usuario.setNome(rs.getString("usu_email"));
-                usuario.setNome(rs.getString("usu_senha"));
+                usuario.setIden(rs.getInt("cup_iden"));
+                usuario.setNome(rs.getString("cup_nome"));
+                usuario.setEmail(rs.getString("cup_email"));
+                usuario.setSenha(rs.getString("cup_senha"));
+                usuario.setCpf(rs.getString("cup_cpf"));
                 listUsuario.add(usuario);
-                System.out.println("teste 1");
             }
         } catch (SQLException erro) {
             throw new Exception("Ocorreu um erro ao consultar os registros de fabricantes\n" + erro.getMessage());
