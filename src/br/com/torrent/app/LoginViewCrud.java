@@ -19,10 +19,8 @@ public class LoginViewCrud extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonIncluir = new javax.swing.JButton();
-        jButtonSair = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
-        jButtonListar = new javax.swing.JButton();
         jButtonDeletar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -42,9 +40,11 @@ public class LoginViewCrud extends javax.swing.JFrame {
         jTableUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Criar Usuarios");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
 
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve-24.png"))); // NOI18N
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -56,6 +56,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
+        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
         jButtonIncluir.setText("Incluir");
         jButtonIncluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonIncluir.setFocusPainted(false);
@@ -68,16 +69,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
-        jButtonSair.setText("Sair");
-        jButtonSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonSair.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
-            }
-        });
-
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonCancelar.setVerifyInputWhenFocusTarget(false);
@@ -89,6 +81,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/1491254395-returnbackredoarrow_82934.png"))); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonVoltar.setIconTextGap(12);
@@ -99,11 +92,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
-        jButtonListar.setText("Listar");
-        jButtonListar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonListar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonListar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
+        jButtonDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
         jButtonDeletar.setText("Deletar");
         jButtonDeletar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonDeletar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -114,6 +103,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonAlterar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -135,17 +125,13 @@ public class LoginViewCrud extends javax.swing.JFrame {
                 .addComponent(jButtonDeletar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonListar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,15 +140,13 @@ public class LoginViewCrud extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -215,7 +199,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
                                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButtonShowSenha)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPasswordFieldConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +274,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -321,6 +305,7 @@ public class LoginViewCrud extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -330,10 +315,6 @@ public class LoginViewCrud extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
     
     }//GEN-LAST:event_jButtonIncluirActionPerformed
-
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-    
-    }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
@@ -425,8 +406,6 @@ public class LoginViewCrud extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonStatus;
     private javax.swing.JButton jButtonVoltar;

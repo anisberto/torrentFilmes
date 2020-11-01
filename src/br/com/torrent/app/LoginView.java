@@ -3,6 +3,7 @@ package br.com.torrent.app;
 import br.com.torrent.bll.UsuLoginBll;
 import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.model.UsuLoginModel;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -11,13 +12,25 @@ import javax.swing.JOptionPane;
 public class LoginView extends javax.swing.JFrame {
 
     UsuLoginBll usuarioLog;
+    boolean isConnected = true;
 
     public LoginView() throws Exception {
         super("Sistema Torrent Filmes");
         initComponents();
-        ImageIcon icone = new ImageIcon("src/icons/filmes.png");
+        ImageIcon icone = new ImageIcon("src/icons/entrar.png");
         this.setIconImage(icone.getImage());
-        usuarioLog = new UsuLoginBll();
+        try {
+            usuarioLog = new UsuLoginBll();
+            lblDescriptionStatus.setForeground(Color.green);
+            lblStatus.setIcon(new ImageIcon("./src/br/com/torrent/icons/bd_OK.png"));
+            isConnected = true;
+            btnSair.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Arre ao Conectar-se ao Banco de Dados");
+            lblDescriptionStatus.setForeground(Color.red);
+            lblStatus.setIcon(new ImageIcon("./src/br/com/torrent/icons/Bd_Off.png"));
+            isConnected = false;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -34,9 +47,13 @@ public class LoginView extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblDescriptionStatus = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        btnSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        UserMenu = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -44,13 +61,17 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Torrent Filmes");
 
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/entrar.png"))); // NOI18N
         btnEntrar.setText("Entrar");
-        btnEntrar.setEnabled(false);
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -83,7 +104,6 @@ public class LoginView extends javax.swing.JFrame {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/excluir.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setEnabled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -94,57 +114,110 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel3.setText("Usuario");
 
+        lblDescriptionStatus.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDescriptionStatus.setText("Conexão: ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDescriptionStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescriptionStatus)
+                    .addComponent(lblStatus))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/excluir.png"))); // NOI18N
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(113, 113, 113))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(132, 132, 132)))
+                        .addGap(43, 43, 43))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu2.setText("Gerir Usuarios");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        jMenuItem2.setText("Cadastrar Novo Usuario");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        UserMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        UserMenu.setText("Cadastrar Novo Usuario");
+        UserMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                UserMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(UserMenu);
 
         jMenuBar1.add(jMenu2);
 
@@ -163,8 +236,7 @@ public class LoginView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,11 +248,9 @@ public class LoginView extends javax.swing.JFrame {
             String nomeEntrar = txtUsuario.getText();
             String senhaEntrar = new String(txtSenha.getPassword());
             UsuLoginModel usuAuth = new UsuLoginModel(nomeEntrar, senhaEntrar);
-
             if (txtSenha.getPassword().length == 0 || txtUsuario.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos os Campos precisam ser preenchidos");
             }
-
             if (ValidacoesBll.validaUsuario(usuAuth)) {
                 MenuView menu = new MenuView();
                 menu.setVisible(true);
@@ -197,8 +267,6 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
-
-
     }//GEN-LAST:event_btnEntrarKeyPressed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -208,14 +276,14 @@ public class LoginView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void UserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserMenuActionPerformed
         try {
             LoginViewCrud telaUser = new LoginViewCrud();
             telaUser.setVisible(true);
             dispose();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_UserMenuActionPerformed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
@@ -229,17 +297,42 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaAncestorAdded
 
     private void txtSenhaAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_txtSenhaAncestorMoved
+//        try {
+//            if (txtSenha.getPassword().equals(" ")) {
+//                btnCancelar.setEnabled(false);
+//                btnEntrar.setEnabled(false);
+//            } else {
+//                btnCancelar.setEnabled(true);
+//                btnEntrar.setEnabled(true);
+//            }
+//        } catch (Exception e) {
+//        }
+    }//GEN-LAST:event_txtSenhaAncestorMoved
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (isConnected) {
+            txtSenha.setEnabled(true);
+            txtUsuario.setEnabled(true);
+            btnCancelar.setEnabled(true);
+            btnEntrar.setEnabled(true);
+        } else {
+            txtSenha.setEnabled(false);
+            txtUsuario.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnEntrar.setEnabled(false);
+            btnSair.setVisible(true);
+            btnCancelar.setVisible(false);
+            btnEntrar.setVisible(false);
+            UserMenu.setEnabled(false);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         try {
-            if (txtSenha.getPassword().equals(" ")) {
-                btnCancelar.setEnabled(false);
-                btnEntrar.setEnabled(false);
-            } else {
-                btnCancelar.setEnabled(true);
-                btnEntrar.setEnabled(true);
-            }
+            System.exit(0);
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_txtSenhaAncestorMoved
+    }//GEN-LAST:event_btnSairActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -276,11 +369,11 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem UserMenu;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -288,8 +381,10 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblDescriptionStatus;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
