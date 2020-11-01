@@ -19,6 +19,7 @@ public class MenuView extends javax.swing.JFrame {
     PlanoTableModel tabelaPlano;
     UsuarioBll usuarioBll = new UsuarioBll();
     boolean incluirPlano = true;
+    int idDelete;
 
     public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
@@ -491,9 +492,11 @@ public class MenuView extends javax.swing.JFrame {
                     novoPlano.adicionarPlano(plano);
                     JOptionPane.showMessageDialog(null, "Plano Incluido com Sucesso!");
                     tabelaPlano.update(novoPlano.getAllPlano());
-                    System.out.println(novoPlano.getAllPlano());
                 } else {
-
+                    plano.setId(novoPlano.getPlanoById(idDelete).getId());
+                    novoPlano.updatePlano(plano);
+                    tabelaPlano.update(novoPlano.getAllPlano());
+                    JOptionPane.showMessageDialog(null, "Plano: " + plano.getNome() + ", Foi atualizado com sucesso!");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Dados do Plano não consistentes!\nO nome precisa ter mais que 5 caracteres e o preço precisa ser maior que zero!");
@@ -516,13 +519,19 @@ public class MenuView extends javax.swing.JFrame {
         try {
             PlanoEnableButtons(true);
             incluirPlano = false;
+            jcPlanoAcesso.removeAllItems();
+            jcPlanoAcesso.addItem("SIM");
+            jcPlanoAcesso.addItem("NAO");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnPlanoAlterarActionPerformed
 
     private void btnPlanoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletarActionPerformed
         try {
-
+            novoPlano.deletePlano(novoPlano.getPlanoById(idDelete));
+            JOptionPane.showMessageDialog(null, "Plano: " + novoPlano.getPlanoById(idDelete).getNome() + "! Deletado");
+            clearFields();
+            tabelaPlano.update(novoPlano.getAllPlano());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnPlanoDeletarActionPerformed
@@ -530,14 +539,8 @@ public class MenuView extends javax.swing.JFrame {
     private void tabViewPlanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewPlanoMouseClicked
         try {
             int codigo = Integer.parseInt(tabViewPlano.getValueAt(tabViewPlano.getSelectedRow(), 2).toString());
-            System.out.println(codigo);
-
-            PlanoModel delete = novoPlano.getPlanoById(codigo);
-            txtPlanoNome.setText(delete.getNome());
-            txtPlanoPreco.setText(delete.getPreco() + "");
-            jcPlanoAcesso.setSelectedItem(delete.isAcessoSimultaneo());
-
-            System.out.println(delete);
+            transferirDadosPlano(codigo);
+            idDelete = codigo;
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tabViewPlanoMouseClicked
@@ -644,10 +647,17 @@ public class MenuView extends javax.swing.JFrame {
             PlanoModel delete = novoPlano.getPlanoById(id);
             txtPlanoNome.setText(delete.getNome());
             txtPlanoPreco.setText(delete.getPreco() + "");
-            jcPlanoAcesso.setSelectedItem(delete.isAcessoSimultaneo());
-
-            System.out.println(delete);
+            String acess = delete.isAcessoSimultaneo() ? "SIM" : "NÃO";
+            jcPlanoAcesso.removeAllItems();
+            jcPlanoAcesso.addItem(acess);
         } catch (Exception e) {
         }
+    }
+
+    public void clearFields() {
+        txtPlanoNome.setText("");
+        txtPlanoPreco.setText("");
+        jcPlanoAcesso.removeAllItems();
+        jcPlanoAcesso.addItem("SIM");
     }
 }

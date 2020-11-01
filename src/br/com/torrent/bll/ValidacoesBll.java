@@ -18,4 +18,8 @@ public class ValidacoesBll {
     public static boolean validarEntradaDeDadosPlano(PlanoModel plano) {
         return !plano.getNome().isEmpty() && plano.getPreco() > 0 && plano.getNome().length() >= 5 && plano.getNome().length() <= 20;
     }
+
+    public static boolean validarAlteracao(PlanoModel plano) {
+        return !plano.getNome().isEmpty() && plano.getPreco() > 0 && plano.getNome().length() >= 5 && plano.getNome().length() <= 20;
+    }
 }

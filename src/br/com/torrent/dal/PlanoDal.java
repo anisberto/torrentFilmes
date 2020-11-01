@@ -66,12 +66,26 @@ public class PlanoDal implements PlanoInterface {
 
     @Override
     public void deletePlano(PlanoModel plano) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement prep = conect.prepareStatement("DELETE FROM planos where pla_iden=?");
+            prep.setInt(1, plano.getId());
+            prep.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
     @Override
     public void updatePlano(PlanoModel plano) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement prep = conect.prepareStatement("UPDATE planos\n"
+                    + "SET pla_acesso_simultaneo=?, pla_nome=?, pla_preco=? WHERE pla_iden=?;");
+            prep.setBoolean(1, plano.isAcessoSimultaneo());
+            prep.setString(2, plano.getNome());
+            prep.setDouble(3, plano.getPreco());
+            prep.setInt(4, plano.getId());
+            prep.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
     @Override
@@ -79,7 +93,7 @@ public class PlanoDal implements PlanoInterface {
         PlanoModel retPlano = new PlanoModel();
         try {
             PreparedStatement prep = conect.prepareStatement("SELECT * FROM planos where pla_iden =?");
-            prep.setInt(0, id);
+            prep.setInt(1, id);
             ResultSet resul = prep.executeQuery();
             while (resul.next()) {
                 retPlano.setId(resul.getInt("pla_iden"));

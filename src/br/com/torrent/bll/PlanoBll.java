@@ -31,12 +31,28 @@ public class PlanoBll implements PlanoInterface {
 
     @Override
     public void deletePlano(PlanoModel plano) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            novoPlano.deletePlano(plano);
+        } catch (Exception e) {
+            try {
+                throw new Exception(e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public void updatePlano(PlanoModel plano) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            novoPlano.updatePlano(plano);
+        } catch (Exception e) {
+            try {
+                throw new Exception(e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
@@ -55,7 +71,16 @@ public class PlanoBll implements PlanoInterface {
 
     @Override
     public PlanoModel getPlanoById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return novoPlano.getPlanoById(id);
+        } catch (Exception e) {
+            try {
+                throw new Exception(e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 
     @Override
