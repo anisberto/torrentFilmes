@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UsuLoginDal {
@@ -59,7 +60,7 @@ public class UsuLoginDal {
         }
     }
 
-    public Iterable<UsuLoginModel> getAllUsuario() throws Exception {
+    public Iterator<UsuLoginModel> getAllUsuario() throws Exception {
         List<UsuLoginModel> listUsuario = new ArrayList<UsuLoginModel>();
         String sql = "SELECT * FROM usuario";
         try {
@@ -75,7 +76,7 @@ public class UsuLoginDal {
         } catch (SQLException erro) {
             throw new Exception("Ocorreu um erro ao consultar os registros de fabricantes\n" + erro.getMessage());
         }
-        return listUsuario;
+        return (Iterator<UsuLoginModel>) listUsuario;
     }
 
     public UsuLoginModel getUsuarioById(int id) throws Exception {

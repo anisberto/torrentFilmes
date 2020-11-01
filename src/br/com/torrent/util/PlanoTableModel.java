@@ -42,7 +42,7 @@ public class PlanoTableModel extends AbstractTableModel {
             case 1:
                 return dados.get(rowIndex).getPreco() + "";
             case 2:
-                return dados.get(rowIndex).getId() + " - 00";
+                return dados.get(rowIndex).getId() + "";
             case 3:
                 return dados.get(rowIndex).isAcessoSimultaneo() ? "SIM" : "NÃO";
             default:

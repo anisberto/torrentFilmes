@@ -1,22 +1,31 @@
 package br.com.torrent.app;
 
+import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
+import br.com.torrent.bll.ValidacoesBll;
+import br.com.torrent.interfaces.PlanoInterface;
+import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.Usuario;
 import br.com.torrent.util.PlanoTableModel;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class MenuView extends javax.swing.JFrame {
 
     Usuario usuario = new Usuario();
+    PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
     UsuarioBll usuarioBll = new UsuarioBll();
+    boolean incluirPlano = true;
 
-    public MenuView() {
+    public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
         tabViewPlano.setModel(tabelaPlano);
+        novoPlano = new PlanoBll();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,11 +47,11 @@ public class MenuView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnPlanoIncluir = new javax.swing.JButton();
+        btnPlanoCancelar = new javax.swing.JButton();
+        btnPlanoSalvar = new javax.swing.JButton();
+        btnPlanoDeletar = new javax.swing.JButton();
+        btnPlanoAlterar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -160,20 +169,46 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestão dos Planos"));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
-        jButton1.setText("INCLUIR");
+        btnPlanoIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
+        btnPlanoIncluir.setText("INCLUIR");
+        btnPlanoIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanoIncluirActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
-        jButton2.setText("CANCELAR");
+        btnPlanoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
+        btnPlanoCancelar.setText("CANCELAR");
+        btnPlanoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanoCancelarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        jButton3.setText("SALVAR");
+        btnPlanoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        btnPlanoSalvar.setText("SALVAR");
+        btnPlanoSalvar.setEnabled(false);
+        btnPlanoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanoSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
-        jButton4.setText("DELETAR");
+        btnPlanoDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
+        btnPlanoDeletar.setText("DELETAR");
+        btnPlanoDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanoDeletarActionPerformed(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
-        jButton5.setText("ALTERAR");
+        btnPlanoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
+        btnPlanoAlterar.setText("ALTERAR");
+        btnPlanoAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanoAlterarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("Nome");
@@ -185,6 +220,11 @@ public class MenuView extends javax.swing.JFrame {
         jLabel6.setText("Preço");
 
         jcPlanoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIM", "NAO" }));
+        jcPlanoAcesso.setEnabled(false);
+
+        txtPlanoNome.setEnabled(false);
+
+        txtPlanoPreco.setEnabled(false);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -206,15 +246,15 @@ public class MenuView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPlanoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnPlanoIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnPlanoDeletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPlanoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPlanoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
-                        .addComponent(jButton2)))
+                        .addComponent(btnPlanoCancelar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -230,11 +270,11 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(txtPlanoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPlanoIncluir)
+                    .addComponent(btnPlanoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPlanoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPlanoAlterar)
+                    .addComponent(btnPlanoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -248,6 +288,11 @@ public class MenuView extends javax.swing.JFrame {
 
             }
         ));
+        tabViewPlano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabViewPlanoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabViewPlano);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -386,6 +431,7 @@ public class MenuView extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             lblDateAcess.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(new Date()));
+            tabelaPlano.update((ArrayList<PlanoModel>) novoPlano.getAllPlano());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowActivated
@@ -422,6 +468,80 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUsuNovoActionPerformed
 
+    private void btnPlanoIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoIncluirActionPerformed
+        try {
+            incluirPlano = true;
+            PlanoEnableButtons(true);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnPlanoIncluirActionPerformed
+
+    private void btnPlanoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoSalvarActionPerformed
+        try {
+            String nomePlano = txtPlanoNome.getText();
+            double precoPlano = Double.parseDouble(txtPlanoPreco.getText());
+            boolean tipoDeAcesso = jcPlanoAcesso.getSelectedItem().toString().equalsIgnoreCase("sim") ? true : false;
+            PlanoModel plano = new PlanoModel();
+            plano.setNome(nomePlano);
+            plano.setPreco(precoPlano);
+            plano.setAcessoSimultaneo(tipoDeAcesso);
+
+            if (ValidacoesBll.validarEntradaDeDadosPlano(plano)) {
+                if (incluirPlano) {
+                    novoPlano.adicionarPlano(plano);
+                    JOptionPane.showMessageDialog(null, "Plano Incluido com Sucesso!");
+                    tabelaPlano.update(novoPlano.getAllPlano());
+                    System.out.println(novoPlano.getAllPlano());
+                } else {
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados do Plano não consistentes!\nO nome precisa ter mais que 5 caracteres e o preço precisa ser maior que zero!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos ");
+        } finally {
+            PlanoEnableButtons(false);
+        }
+    }//GEN-LAST:event_btnPlanoSalvarActionPerformed
+
+    private void btnPlanoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoCancelarActionPerformed
+        try {
+            PlanoEnableButtons(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnPlanoCancelarActionPerformed
+
+    private void btnPlanoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoAlterarActionPerformed
+        try {
+            PlanoEnableButtons(true);
+            incluirPlano = false;
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnPlanoAlterarActionPerformed
+
+    private void btnPlanoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletarActionPerformed
+        try {
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnPlanoDeletarActionPerformed
+
+    private void tabViewPlanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewPlanoMouseClicked
+        try {
+            int codigo = Integer.parseInt(tabViewPlano.getValueAt(tabViewPlano.getSelectedRow(), 2).toString());
+            System.out.println(codigo);
+
+            PlanoModel delete = novoPlano.getPlanoById(codigo);
+            txtPlanoNome.setText(delete.getNome());
+            txtPlanoPreco.setText(delete.getPreco() + "");
+            jcPlanoAcesso.setSelectedItem(delete.isAcessoSimultaneo());
+
+            System.out.println(delete);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tabViewPlanoMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -449,17 +569,21 @@ public class MenuView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuView().setVisible(true);
+                try {
+                    new MenuView().setVisible(true);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnPlanoAlterar;
+    private javax.swing.JButton btnPlanoCancelar;
+    private javax.swing.JButton btnPlanoDeletar;
+    private javax.swing.JButton btnPlanoIncluir;
+    private javax.swing.JButton btnPlanoSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -488,4 +612,42 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlanoNome;
     private javax.swing.JTextField txtPlanoPreco;
     // End of variables declaration//GEN-END:variables
+
+    private void PlanoEnableButtons(boolean butt) {
+        if (butt) {
+            btnPlanoIncluir.setEnabled(false);
+            btnPlanoAlterar.setEnabled(false);
+            btnPlanoCancelar.setEnabled(true);
+            btnPlanoDeletar.setEnabled(false);
+            btnPlanoSalvar.setEnabled(true);
+            txtPlanoNome.setEnabled(true);
+            txtPlanoPreco.setEnabled(true);
+            jcPlanoAcesso.setEnabled(true);
+        } else {
+            btnPlanoIncluir.setEnabled(true);
+            btnPlanoAlterar.setEnabled(true);
+            btnPlanoCancelar.setEnabled(true);
+            btnPlanoDeletar.setEnabled(true);
+
+            btnPlanoSalvar.setEnabled(false);
+            txtPlanoNome.setEnabled(false);
+            txtPlanoPreco.setEnabled(false);
+            jcPlanoAcesso.setEnabled(false);
+            txtPlanoNome.setText("");
+            txtPlanoPreco.setText("");
+            jcPlanoAcesso.setSelectedItem("Nao");
+        }
+    }
+
+    private void transferirDadosPlano(int id) {
+        try {
+            PlanoModel delete = novoPlano.getPlanoById(id);
+            txtPlanoNome.setText(delete.getNome());
+            txtPlanoPreco.setText(delete.getPreco() + "");
+            jcPlanoAcesso.setSelectedItem(delete.isAcessoSimultaneo());
+
+            System.out.println(delete);
+        } catch (Exception e) {
+        }
+    }
 }

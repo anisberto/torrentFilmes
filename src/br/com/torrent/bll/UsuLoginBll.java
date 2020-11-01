@@ -2,6 +2,7 @@ package br.com.torrent.bll;
 
 import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.UsuLoginModel;
+import java.util.Iterator;
 import java.util.List;
 
 public class UsuLoginBll {
@@ -24,7 +25,7 @@ public class UsuLoginBll {
         usuarioConect.updateUsuario(usu);
     }
 
-    public Iterable<UsuLoginModel> consultarFilmes() throws Exception {
+    public Iterator<UsuLoginModel> consultarFilmes() throws Exception {
         return usuarioConect.getAllUsuario();
     }
 
