@@ -9,9 +9,9 @@ public class ContratoModel {
     private String status;
     private PlanoModel id_plano;
     private double precoComDesconto;
-    private Usuario id_usu;
+    private UsuarioModel id_usu;
 
-    public ContratoModel(int id, String fim, String inicio, String status, PlanoModel id_plano, Usuario id_usu) {
+    public ContratoModel(int id, String fim, String inicio, String status, PlanoModel id_plano, UsuarioModel id_usu) {
         this.id = id;
         this.fim = fim;
         this.inicio = inicio;
@@ -33,11 +33,11 @@ public class ContratoModel {
         this.id = id;
     }
 
-    public Usuario getId_usu() {
+    public UsuarioModel getId_usu() {
         return id_usu;
     }
 
-    public void setId_usu(Usuario id_usu) {
+    public void setId_usu(UsuarioModel id_usu) {
         this.id_usu = id_usu;
     }
 
