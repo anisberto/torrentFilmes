@@ -42,6 +42,8 @@ public class UsuarioLoginTableModel extends AbstractTableModel {
                 return dados.get(rowIndex).getNome();
             case 1:
                 return dados.get(rowIndex).getLogin();
+            case 2:
+                return dados.get(rowIndex).getId() + "";
             default:
                 throw new AssertionError();
         }

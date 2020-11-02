@@ -20,7 +20,7 @@ public class UsuLoginDal {
     }
 
     public void adicionarUsuario(UsuLoginModel usuario) throws Exception {
-        String sql = "INSERT INTO usuario (usu_nome, usu_senha,'usu_nomeCompleto') VALUES (?, ?,?)";
+        String sql = "INSERT INTO log_usuarios (log_login, log_senha,log_nome) VALUES (?, ?,?)";
 
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class UsuLoginDal {
     }
 
     public void deleteUsuario(int id) throws Exception {
-        String sql = "DELETE FROM usuario WHERE usu_iden=?";
+        String sql = "DELETE FROM log_usuarios WHERE log_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -46,14 +46,14 @@ public class UsuLoginDal {
     }
 
     public void updateUsuario(UsuLoginModel usuario) throws Exception {
-        String sql = "UPDATE usuario set  usu_nome=?, usu_senha=?, where usu_iden=?";
+        String sql = "UPDATE log_usuarios set  log_nome=?, log_login=?, log_senha=? where log_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, usuario.getNome());
-            preparedStatement.setString(4, usuario.getSenha());
-            preparedStatement.setInt(3, usuario.getId());
+            preparedStatement.setString(2, usuario.getLogin());
+            preparedStatement.setString(3, usuario.getSenha());
+            preparedStatement.setInt(4, usuario.getId());
             preparedStatement.executeUpdate();
-
         } catch (SQLException erro) {
             throw new Exception("Ocorreu um erro ao alterar este registro\n"
                     + erro.getMessage());
@@ -62,15 +62,16 @@ public class UsuLoginDal {
 
     public ArrayList<UsuLoginModel> getAllUsuario() throws Exception {
         List<UsuLoginModel> listUsuario = new ArrayList<UsuLoginModel>();
-        String sql = "SELECT * FROM usuario";
+        String sql = "SELECT * FROM log_usuarios";
         try {
             Statement statement = (Statement) conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 UsuLoginModel usuario = new UsuLoginModel();
-                usuario.setId(rs.getInt("usu_iden"));
-                usuario.setNome(rs.getString("usu_nome"));
-                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setId(rs.getInt("log_iden"));
+                usuario.setNome(rs.getString("log_nome"));
+                usuario.setLogin(rs.getString("log_login"));
+                usuario.setSenha(rs.getString("log_senha"));
                 listUsuario.add(usuario);
             }
         } catch (SQLException erro) {
@@ -81,15 +82,16 @@ public class UsuLoginDal {
 
     public UsuLoginModel getUsuarioById(int id) throws Exception {
         UsuLoginModel usuario = new UsuLoginModel();
-        String sql = "SELECT * FROM usuario WHERE usu_iden=?";
+        String sql = "SELECT * FROM log_usuarios WHERE log_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                usuario.setId(rs.getInt("usu_iden"));
-                usuario.setNome(rs.getString("usu_nome"));
-                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setId(rs.getInt("log_iden"));
+                usuario.setNome(rs.getString("log_nome"));
+                usuario.setLogin(rs.getString("log_login"));
+                usuario.setSenha(rs.getString("log_senha"));
             }
         } catch (Exception erro) {
             throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
@@ -98,19 +100,19 @@ public class UsuLoginDal {
     }
 
     public UsuLoginModel findName(String nome) {
-        UsuLoginModel usu = new UsuLoginModel();
+        UsuLoginModel usuario = new UsuLoginModel();
         try {
             PreparedStatement prepa = conexao.prepareStatement("select * from usuario where usu_nome=?");
             prepa.setString(1, nome);
-            ResultSet result = prepa.executeQuery();
-            while (result.next()) {
-                usu.setId(result.getInt("usu_iden"));
-                usu.setLogin(result.getString("usu_nome"));
-                usu.setNome(result.getString("usu_nomeCompleto"));
-                usu.setSenha(result.getString("usu_senha"));
+            ResultSet rs = prepa.executeQuery();
+            while (rs.next()) {
+                usuario.setId(rs.getInt("log_iden"));
+                usuario.setNome(rs.getString("log_nome"));
+                usuario.setLogin(rs.getString("log_login"));
+                usuario.setSenha(rs.getString("log_senha"));
             }
         } catch (Exception e) {
         }
-        return usu;
+        return usuario;
     }
 }

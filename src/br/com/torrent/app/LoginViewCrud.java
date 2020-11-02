@@ -3,7 +3,6 @@ package br.com.torrent.app;
 import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.UsuLoginModel;
 import br.com.torrent.util.UsuarioLoginTableModel;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -12,12 +11,13 @@ public class LoginViewCrud extends javax.swing.JFrame {
 
     boolean incluir = true;
     UsuLoginDal usuarioNovo;
+    int idSelected;
     UsuarioLoginTableModel tabela = null;
 
     public LoginViewCrud() throws Exception {
         initComponents();
         usuarioNovo = new UsuLoginDal();
-        tabela = new UsuarioLoginTableModel(new String[]{"Nome do Usuario", "Login de Acesso"});
+        tabela = new UsuarioLoginTableModel(new String[]{"Nome do Usuario", "Login de Acesso", "Identificador"});
         jTableUsuarios.setModel(tabela);
     }
 
@@ -238,6 +238,11 @@ public class LoginViewCrud extends javax.swing.JFrame {
 
             }
         ));
+        jTableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableUsuarios);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -296,11 +301,15 @@ public class LoginViewCrud extends javax.swing.JFrame {
                 nUsuario.setNome(txtNome.getText());
                 nUsuario.setSenha(txtSenha.getPassword().toString());
                 nUsuario.setLogin(txtLogin.getText());
-
                 if (incluir) {
                     usuarioNovo.adicionarUsuario(nUsuario);
+                    tabela.update(usuarioNovo.getAllUsuario());
+                    JOptionPane.showMessageDialog(null, nUsuario.getNome() + "! Foi incluido com sucesso.");
                 } else {
-
+                    nUsuario.setId(idSelected);
+                    usuarioNovo.updateUsuario(nUsuario);
+                    tabela.update(usuarioNovo.getAllUsuario());
+                    JOptionPane.showMessageDialog(null, nUsuario.getNome() + "! Foi Alterado com sucesso.");
                 }
             }
         } catch (Exception e) {
@@ -325,7 +334,6 @@ public class LoginViewCrud extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
         try {
             LoginView login = new LoginView();
             login.setVisible(true);
@@ -336,7 +344,12 @@ public class LoginViewCrud extends javax.swing.JFrame {
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         try {
-
+            if(idSelected == 0)
+                JOptionPane.showMessageDialog(null, "Selecione o Usuario na Tabela!");
+            usuarioNovo.deleteUsuario(idSelected);
+            JOptionPane.showMessageDialog(null, "Usuario deletado");
+            tabela.update(usuarioNovo.getAllUsuario());
+            clearFields();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnDeletarActionPerformed
@@ -344,12 +357,12 @@ public class LoginViewCrud extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
             ContratoEnableButtons(true);
+            incluir = false;
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void jRadioButtonShowSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonShowSenhaActionPerformed
-        // TODO add your handling code here:
         if (txtSenha.getEchoChar() == '*') {
             txtSenha.setEchoChar((char) 0);
         } else {
@@ -364,9 +377,15 @@ public class LoginViewCrud extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowActivated
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
+        try {
+            int codigo = Integer.parseInt(jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 2).toString());
+            idSelected = codigo;
+            transFerirDados(codigo);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTableUsuariosMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -457,5 +476,15 @@ public class LoginViewCrud extends javax.swing.JFrame {
         txtLogin.setEnabled(false);
         txtNome.setEnabled(false);
         txtSenha.setEnabled(false);
+    }
+
+    private void transFerirDados(int codigo) {
+        try {
+            UsuLoginModel usuario = usuarioNovo.getUsuarioById(codigo);
+            txtLogin.setText(usuario.getLogin());
+            txtNome.setText(usuario.getNome());
+            txtSenha.setText(usuario.getSenha());
+        } catch (Exception e) {
+        }
     }
 }
