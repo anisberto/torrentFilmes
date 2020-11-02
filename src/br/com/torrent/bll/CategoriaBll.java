@@ -2,7 +2,7 @@ package br.com.torrent.bll;
 
 import br.com.torrent.dal.CategoriaDal;
 import br.com.torrent.model.CategoriaFilmesModel;
-import br.com.torrent.model.Usuario;
+import br.com.torrent.model.UsuarioModel;
 import java.util.List;
 
 /**
