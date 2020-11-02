@@ -2,7 +2,9 @@ package br.com.torrent.dal;
 
 import br.com.torrent.interfaces.ContratoInterface;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import br.com.torrent.model.ContratoModel;
 import br.com.torrent.util.Conexao;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.logging.Logger;
 public class ContratoDal implements ContratoInterface {
 
     private Connection conect;
+    private PlanoDal planoDal = new PlanoDal();
+    private UsuarioDal usuarioDal = new UsuarioDal();
 
     public ContratoDal() throws Exception {
         conect = Conexao.getInstance().getConnection();
@@ -40,6 +44,33 @@ public class ContratoDal implements ContratoInterface {
     }
 
     @Override
+    public ArrayList<ContratoModel> getAllContratos() {
+        ArrayList<ContratoModel> contratos = new ArrayList<ContratoModel>();
+        try {
+            Statement statement = conect.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM contrata");
+            while (result.next()) {
+                ContratoModel novocontrato = new ContratoModel();
+                novocontrato.setId(result.getInt("con_iden"));
+                novocontrato.setStatus(result.getString("con_status"));
+                novocontrato.setFim(result.getString("con_fim"));
+                novocontrato.setInicio(result.getString("con_inicio"));
+                novocontrato.setId_plano(planoDal.getPlanoById(result.getInt("con_pla_iden")));
+                novocontrato.setId_usu(usuarioDal.getUsuarioById(result.getInt("con_cup_iden")));
+                contratos.add(novocontrato);
+            }
+            return contratos;
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao Listar todos os Planos: " + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(PlanoDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void deleteContrato(ContratoModel contrato) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -50,17 +81,12 @@ public class ContratoDal implements ContratoInterface {
     }
 
     @Override
-    public ArrayList<ContratoModel> getAllContratos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ContratoModel getContratoById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ContratoModel findContratoUsuName() {
+    public ContratoModel findContratoUsuName(String nome) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

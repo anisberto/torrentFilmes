@@ -34,7 +34,7 @@ public class MenuView extends javax.swing.JFrame {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
-        tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Identificador", "Data Inicio", "Data Fim", "Status", "Usuario"});
+        tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Identificador", "Data Inicio", "Data Fim", "Status", "Preço do Plano", "Preço com Desconto"});
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
         novoPlano = new PlanoBll();
@@ -810,6 +810,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             lblDateAcess.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(new Date()));
             tabelaPlano.update((ArrayList<PlanoModel>) novoPlano.getAllPlano());
+            tabelaContrato.update(novoContrato.getAllContratos());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowActivated
@@ -944,7 +945,7 @@ public class MenuView extends javax.swing.JFrame {
             newContrato.setId_plano(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
             newContrato.setId_usu(usuarioBll.consultarUsuarioPorNome(jcContratoUsuarios.getSelectedItem().toString()));
             newContrato.setInicio(txtContratoInicio.getText());
-            newContrato.setStatus(Status.valueOf(jcContratoStatus.getSelectedItem().toString()));
+            newContrato.setStatus(jcContratoStatus.getSelectedItem().toString());
             if (incluirContrato) {
                 novoContrato.adicionarContrato(newContrato);
             } else {
