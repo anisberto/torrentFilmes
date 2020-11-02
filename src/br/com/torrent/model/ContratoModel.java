@@ -10,6 +10,7 @@ public class ContratoModel {
     private Date inicio;
     private Status status;
     private PlanoModel id_plano;
+    private double precoComDesconto;
     private Usuario id_usu;
 
     public ContratoModel(int id, Date fim, Date inicio, Status status, PlanoModel id_plano, Usuario id_usu) {
@@ -19,6 +20,7 @@ public class ContratoModel {
         this.status = status;
         this.id_plano = id_plano;
         this.id_usu = id_usu;
+        this.precoComDesconto = (getId_usu().getIden() * getId_plano().getPreco() - getId_plano().getPreco());
     }
 
     public ContratoModel() {
@@ -67,6 +69,10 @@ public class ContratoModel {
 
     public Status getStatus() {
         return status;
+    }
+
+    public double getPrecoComDesconto() {
+        return precoComDesconto;
     }
 
     public void setStatus(Status status) {
