@@ -37,9 +37,9 @@ public class LoginViewCrud extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         jLabelLogin = new javax.swing.JLabel();
         jLabelSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JPasswordField();
         txtLogin = new javax.swing.JTextField();
         jRadioButtonShowSenha = new javax.swing.JRadioButton();
+        txtSenha = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsuarios = new javax.swing.JTable();
@@ -170,8 +170,6 @@ public class LoginViewCrud extends javax.swing.JFrame {
 
         jLabelSenha.setText("Senha");
 
-        txtSenha.setEnabled(false);
-
         txtLogin.setEnabled(false);
 
         jRadioButtonShowSenha.setText("Exibir Senha");
@@ -182,6 +180,8 @@ public class LoginViewCrud extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,21 +191,20 @@ public class LoginViewCrud extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelNomdeDoUsuario)
                     .addComponent(jLabelSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                    .addComponent(txtNome))
+                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(txtSenha))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelLogin)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtLogin)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jRadioButtonShowSenha)
-                                .addGap(100, 100, 100)))
-                        .addGap(177, 177, 177))))
+                        .addComponent(txtLogin)
+                        .addGap(177, 177, 177))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jRadioButtonShowSenha)
+                        .addGap(277, 277, 277))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,8 +221,8 @@ public class LoginViewCrud extends javax.swing.JFrame {
                 .addComponent(jLabelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButtonShowSenha))
+                    .addComponent(jRadioButtonShowSenha)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -299,7 +298,8 @@ public class LoginViewCrud extends javax.swing.JFrame {
             } else {
                 UsuLoginModel nUsuario = new UsuLoginModel();
                 nUsuario.setNome(txtNome.getText());
-                nUsuario.setSenha(txtSenha.getPassword().toString());
+                String text = String.copyValueOf(txtSenha.getPassword());
+                nUsuario.setSenha(text);
                 nUsuario.setLogin(txtLogin.getText());
                 if (incluir) {
                     usuarioNovo.adicionarUsuario(nUsuario);

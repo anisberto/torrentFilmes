@@ -25,7 +25,7 @@ public class UsuLoginDal {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, usuario.getLogin());
-            preparedStatement.setString(2, usuario.getSenha());
+            preparedStatement.setString(2, usuario.getSenha().toString());
             preparedStatement.setString(3, usuario.getNome());
             preparedStatement.executeUpdate();
         } catch (SQLException erro) {
@@ -102,7 +102,7 @@ public class UsuLoginDal {
     public UsuLoginModel findName(String nome) {
         UsuLoginModel usuario = new UsuLoginModel();
         try {
-            PreparedStatement prepa = conexao.prepareStatement("select from log_usuarios where log_login =?");
+            PreparedStatement prepa = conexao.prepareStatement("select * from log_usuarios where log_login = ?");
             prepa.setString(1, nome);
             ResultSet rs = prepa.executeQuery();
             while (rs.next()) {

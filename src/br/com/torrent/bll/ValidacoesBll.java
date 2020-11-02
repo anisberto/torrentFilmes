@@ -1,21 +1,17 @@
 package br.com.torrent.bll;
 
+import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuLoginModel;
 
 public class ValidacoesBll {
 
     public static boolean validaUsuario(UsuLoginModel usuarioTela) throws Exception {
-        UsuLoginBll usuarioLog = new UsuLoginBll();
-        UsuLoginModel usuario = usuarioLog.findUsuLoginName(usuarioTela.getLogin());
-        System.out.println(usuarioTela.getSenha() + usuarioTela.getLogin());
+        UsuLoginDal usuarioLog = new UsuLoginDal();
+        UsuLoginModel usuario = usuarioLog.findName(usuarioTela.getLogin());
 
-        if (usuario.getLogin().contains(usuarioTela.getLogin())) {
-            if (usuario.getSenha().equalsIgnoreCase(usuarioTela.getSenha())) {
-                return true;
-            }else{
-                return false;
-            }
+        if (usuario.getLogin().contains(usuarioTela.getLogin()) && usuario.getSenha().equalsIgnoreCase(usuarioTela.getSenha())) {
+            return true;
         } else {
             return false;
         }

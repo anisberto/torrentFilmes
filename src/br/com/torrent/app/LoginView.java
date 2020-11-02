@@ -247,7 +247,7 @@ public class LoginView extends javax.swing.JFrame {
         try {
             String nomeEntrar = txtUsuario.getText();
             String senhaEntrar = new String(txtSenha.getPassword());
-            UsuLoginModel usuAuth = new UsuLoginModel(nomeEntrar,"", senhaEntrar);
+            UsuLoginModel usuAuth = new UsuLoginModel(nomeEntrar, "", senhaEntrar);
             System.out.println(txtSenha.getPassword());
             if (txtSenha.getPassword().length == 0 || txtUsuario.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos os Campos precisam ser preenchidos");
@@ -256,7 +256,7 @@ public class LoginView extends javax.swing.JFrame {
                 MenuView menu = new MenuView();
                 menu.setVisible(true);
                 dispose();
-                menu.userTransfer(nomeEntrar.toUpperCase());
+                menu.userTransfer(usuarioLog.findUsuLoginName(nomeEntrar).getNome().toUpperCase());
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inváĺido!");
                 txtSenha.setText("");
@@ -279,9 +279,14 @@ public class LoginView extends javax.swing.JFrame {
 
     private void UserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserMenuActionPerformed
         try {
-            LoginViewCrud telaUser = new LoginViewCrud();
-            telaUser.setVisible(true);
-            dispose();
+            String senhaMaster = JOptionPane.showInputDialog("Informe sua senha de Gestor");
+            if (senhaMaster.equalsIgnoreCase("master")) {
+                LoginViewCrud telaUser = new LoginViewCrud();
+                telaUser.setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Você não pode acessar este campo");
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_UserMenuActionPerformed
