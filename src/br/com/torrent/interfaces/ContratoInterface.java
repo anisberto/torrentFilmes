@@ -15,5 +15,5 @@ public interface ContratoInterface {
 
     public ContratoModel getContratoById(int id);
 
-    public ContratoModel findContratoUsuName();
+    public ContratoModel findContratoUsuName(String nome);
 }
