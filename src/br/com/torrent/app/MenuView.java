@@ -1,10 +1,14 @@
 package br.com.torrent.app;
 
+import br.com.torrent.bll.ContratoBll;
 import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.dal.UsuarioDal;
+import br.com.torrent.enumerations.Status;
+import br.com.torrent.interfaces.ContratoInterface;
 import br.com.torrent.interfaces.PlanoInterface;
+import br.com.torrent.model.ContratoModel;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.Usuario;
 import br.com.torrent.util.ContratoTableModel;
@@ -19,6 +23,7 @@ public class MenuView extends javax.swing.JFrame {
     Usuario usuario = new Usuario();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
+    ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     UsuarioBll usuarioBll = new UsuarioBll();
     boolean incluirPlano = true;
@@ -33,6 +38,7 @@ public class MenuView extends javax.swing.JFrame {
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
         novoPlano = new PlanoBll();
+        novoContrato = new ContratoBll();
     }
     
     @SuppressWarnings("unchecked")
@@ -799,8 +805,14 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnContratoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoSalvarActionPerformed
         try {
+            ContratoModel newContrato = new ContratoModel();
+            newContrato.setFim(new Date(txtContratoFim.getText()));
+            newContrato.setId_plano(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
+            newContrato.setId_usu(usuarioBll.consultarUsuarioPorNome(jcContratoUsuarios.getSelectedItem().toString()));
+            newContrato.setInicio(new Date(txtContratoInicio.getText()));
+            newContrato.setStatus(Status.valueOf(jcContratoStatus.getSelectedItem().toString()));
             if (incluirContrato) {
-                
+                novoContrato.adicionarContrato(newContrato);
             } else {
                 
             }

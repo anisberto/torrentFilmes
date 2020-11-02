@@ -101,4 +101,21 @@ public class UsuarioDal {
         }
         return usuario;
     }
+    public Usuario getUsuarioByNome(String nome) throws Exception {
+        Usuario usuario = new Usuario();
+        String sql = "SELECT * FROM cup_usuarios WHERE cup_nome=?";
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                usuario.setIden(rs.getInt("cup_iden"));
+                usuario.setNome(rs.getString("cup_nome"));
+                usuario.setSenha(rs.getString("cup_senha"));
+            }
+        } catch (Exception erro) {
+            throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
+        }
+        return usuario;
+    }
 }

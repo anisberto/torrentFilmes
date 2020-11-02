@@ -84,8 +84,12 @@ public class PlanoBll implements PlanoInterface {
     }
 
     @Override
-    public PlanoModel findPlanoName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PlanoModel findPlanoName(String nome) {
+        try {
+            return novoPlano.findPlanoName(nome);
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }

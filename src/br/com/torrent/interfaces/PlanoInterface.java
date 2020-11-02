@@ -16,5 +16,5 @@ public interface PlanoInterface {
 
     public PlanoModel getPlanoById(int id);
 
-    public PlanoModel findPlanoName();
+    public PlanoModel findPlanoName(String nome);
 }

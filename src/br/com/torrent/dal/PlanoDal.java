@@ -113,8 +113,27 @@ public class PlanoDal implements PlanoInterface {
     }
 
     @Override
-    public PlanoModel findPlanoName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PlanoModel findPlanoName(String nome) {
+        PlanoModel retPlano = new PlanoModel();
+        try {
+            PreparedStatement prep = conect.prepareStatement("SELECT * FROM planos where pla_nome =?");
+            prep.setString(1, nome);
+            ResultSet resul = prep.executeQuery();
+            while (resul.next()) {
+                retPlano.setId(resul.getInt("pla_iden"));
+                retPlano.setNome(resul.getString("pla_nome"));
+                retPlano.setAcessoSimultaneo(resul.getBoolean("pla_acesso_simultaneo"));
+                retPlano.setPreco(resul.getDouble("pla_preco"));
+            }
+            return retPlano;
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao buscar por nome: " + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(PlanoDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 
 }

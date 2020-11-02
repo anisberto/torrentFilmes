@@ -43,4 +43,8 @@ public class UsuarioBll {
         return usuarioDao.getUsuarioById(id);
     }
         
+    public Usuario consultarUsuarioPorNome(String nome) throws Exception {
+        return usuarioDao.getUsuarioByNome(nome);
+    }
+        
 }
