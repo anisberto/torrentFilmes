@@ -9,16 +9,15 @@ package br.com.torrent.model;
 public class Cupon {
 
     private double porcentagem;
-    private int data_geracao;
-    private int rando;
+    private String data_geracao;
 
     public Cupon() {
     }
 
-    public Cupon(double porcentagem, int data_geracao, int rando) {
+    public Cupon(double porcentagem, String data_geracao) {
         this.porcentagem = porcentagem;
         this.data_geracao = data_geracao;
-        this.rando = rando;
+
     }
 
     public double getPorcentagem() {
@@ -29,20 +28,12 @@ public class Cupon {
         this.porcentagem = porcentagem;
     }
 
-    public int getData_geracao() {
+    public String getData_geracao() {
         return data_geracao;
     }
 
-    public void setData_geracao(int data_geracao) {
+    public void setData_geracao(String data_geracao) {
         this.data_geracao = data_geracao;
-    }
-
-    public int getRando() {
-        return rando;
-    }
-
-    public void setRando(int rando) {
-        this.rando = rando;
     }
 
 }
