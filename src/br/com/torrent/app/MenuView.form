@@ -257,14 +257,14 @@
                 <Container class="javax.swing.JPanel" name="jPanel16">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder/>
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Cadastro de Usuario"/>
                       </Border>
                     </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="20" width="620" height="280"/>
+                      <AbsoluteConstraints x="10" y="20" width="700" height="330"/>
                     </Constraint>
                   </Constraints>
 
@@ -276,32 +276,32 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField3" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                          <Component id="txtUsuEmail" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField1" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                          <Component id="txtUsuUsuario" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField4" min="-2" pref="157" max="-2" attributes="0"/>
-                                          <Component id="jFormattedTextField1" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                          <Component id="txtUsuSenha" min="-2" pref="157" max="-2" attributes="0"/>
+                                          <Component id="txtUsuCpf" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnPlanoIncluir1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoDeletar1" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoAlterar1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoSalvar1" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoCancelar1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnPlanoIncluir1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnPlanoDeletar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="btnPlanoAlterar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnPlanoSalvar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnPlanoCancelar1" min="-2" pref="112" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="70" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -310,21 +310,21 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnPlanoIncluir1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoDeletar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoAlterar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnPlanoIncluir1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnPlanoAlterar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnPlanoSalvar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoCancelar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnPlanoCancelar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnPlanoDeletar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                              <EmptySpace pref="80" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -333,8 +333,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -347,7 +347,7 @@
                         <Property name="text" type="java.lang.String" value="Nome de Usuario: "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField1">
+                    <Component class="javax.swing.JTextField" name="txtUsuUsuario">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
@@ -364,11 +364,11 @@
                         <Property name="text" type="java.lang.String" value="Senha"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField3">
+                    <Component class="javax.swing.JTextField" name="txtUsuEmail">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField4">
+                    <Component class="javax.swing.JTextField" name="txtUsuSenha">
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                    <Component class="javax.swing.JFormattedTextField" name="txtUsuCpf">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="###.###.###-##" subtype="-1" type="5"/>
