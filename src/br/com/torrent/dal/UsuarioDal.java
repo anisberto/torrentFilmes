@@ -1,6 +1,6 @@
 package br.com.torrent.dal;
 
-import br.com.torrent.model.Usuario;
+import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class UsuarioDal {
         conexao = Conexao.getInstance().getConnection();
     }
 
-    public void adicionarUsuario(Usuario usuario) throws Exception {
+    public void adicionarUsuario(UsuarioModel usuario) throws Exception {
         String sql = "INSERT INTO usuario (usu_nome, usu_cpf, usu_email, usu_senha) VALUES (?, ?,?, ?, ? )";
 
         try { // preparando a conexao;
@@ -47,7 +47,7 @@ public class UsuarioDal {
         }
     }
 
-    public void updateUsuario(Usuario usuario) throws Exception {
+    public void updateUsuario(UsuarioModel usuario) throws Exception {
         String sql = "UPDATE usuario set  usu_nome=?, usu_cpf=?, usu_email=?, usu_senha=?, where usu_cup_iden=?";
 
         try {
@@ -64,13 +64,13 @@ public class UsuarioDal {
         }
     }
 
-    public List<Usuario> getAllUsuario() throws Exception {
-        List<Usuario> listUsuario = new ArrayList<Usuario>();
+    public List<UsuarioModel> getAllUsuario() throws Exception {
+        List<UsuarioModel> listUsuario = new ArrayList<UsuarioModel>();
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM cup_usuarios");
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                UsuarioModel usuario = new UsuarioModel();
                 usuario.setIden(rs.getInt("cup_iden"));
                 usuario.setNome(rs.getString("cup_nome"));
                 usuario.setEmail(rs.getString("cup_email"));
@@ -84,8 +84,8 @@ public class UsuarioDal {
         return listUsuario;
     }
 
-    public Usuario getUsuarioById(int id) throws Exception {
-        Usuario usuario = new Usuario();
+    public UsuarioModel getUsuarioById(int id) throws Exception {
+        UsuarioModel usuario = new UsuarioModel();
         String sql = "SELECT * FROM usuario WHERE usu_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -101,8 +101,8 @@ public class UsuarioDal {
         }
         return usuario;
     }
-    public Usuario getUsuarioByNome(String nome) throws Exception {
-        Usuario usuario = new Usuario();
+    public UsuarioModel getUsuarioByNome(String nome) throws Exception {
+        UsuarioModel usuario = new UsuarioModel();
         String sql = "SELECT * FROM cup_usuarios WHERE cup_nome=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
