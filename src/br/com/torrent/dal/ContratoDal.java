@@ -6,6 +6,7 @@ import java.sql.Connection;
 import br.com.torrent.model.ContratoModel;
 import br.com.torrent.util.Conexao;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,8 +25,8 @@ public class ContratoDal implements ContratoInterface {
                     + "	con_status, con_fim, con_inicio, con_pla_iden, con_cup_iden)\n"
                     + "	VALUES (?, ?, ?, ?, ?);");
             prep.setString(1, contrato.getStatus().toString());
-            prep.setDate(2, new java.sql.Date(contrato.getFim().getTime()));
-            prep.setDate(3, new java.sql.Date(contrato.getInicio().getTime()));
+            prep.setDate(2, new java.sql.Date(new Date(contrato.getFim()).getTime()));
+            prep.setDate(3, new java.sql.Date(new Date(contrato.getInicio()).getTime()));
             prep.setInt(4, contrato.getId_plano().getId());
             prep.setInt(5, contrato.getId_usu().getIden());
             prep.executeUpdate();

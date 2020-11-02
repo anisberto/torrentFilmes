@@ -6,14 +6,14 @@ import java.util.Date;
 public class ContratoModel {
 
     private int id;
-    private Date fim;
-    private Date inicio;
+    private String fim;
+    private String inicio;
     private Status status;
     private PlanoModel id_plano;
     private double precoComDesconto;
     private Usuario id_usu;
 
-    public ContratoModel(int id, Date fim, Date inicio, Status status, PlanoModel id_plano, Usuario id_usu) {
+    public ContratoModel(int id, String fim, String inicio, Status status, PlanoModel id_plano, Usuario id_usu) {
         this.id = id;
         this.fim = fim;
         this.inicio = inicio;
@@ -43,19 +43,19 @@ public class ContratoModel {
         this.id_usu = id_usu;
     }
 
-    public Date getFim() {
+    public String getFim() {
         return fim;
     }
 
-    public void setFim(Date fim) {
+    public void setFim(String fim) {
         this.fim = fim;
     }
 
-    public Date getInicio() {
+    public String getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
+    public void setInicio(String inicio) {
         this.inicio = inicio;
     }
 
