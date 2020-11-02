@@ -1,7 +1,7 @@
 package br.com.torrent.bll;
 
 import br.com.torrent.dal.UsuarioDal;
-import br.com.torrent.model.Usuario;
+import br.com.torrent.model.UsuarioModel;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,31 +19,31 @@ public class UsuarioBll {
     }
 
     // 1°
-    public void adicionarUsuario(Usuario usuario) throws Exception {
+    public void adicionarUsuario(UsuarioModel usuario) throws Exception {
         usuarioDao.adicionarUsuario(usuario);
     }
 
     // 2°
-    public void removerUsuario(Usuario usuario) throws Exception {
+    public void removerUsuario(UsuarioModel usuario) throws Exception {
         usuarioDao.deleteUsuario(usuario.getIden());
     }
 
     // 3°
-    public void alterarUsuario(Usuario usuario) throws Exception {
+    public void alterarUsuario(UsuarioModel usuario) throws Exception {
         usuarioDao.updateUsuario(usuario);
     }
 
     // 4° 
-    public List<Usuario> consultarUsuario() throws Exception {
+    public List<UsuarioModel> consultarUsuario() throws Exception {
         return usuarioDao.getAllUsuario();
     }
 
     // 5°
-    public Usuario consultarUsuarioPorId(int id) throws Exception {
+    public UsuarioModel consultarUsuarioPorId(int id) throws Exception {
         return usuarioDao.getUsuarioById(id);
     }
         
-    public Usuario consultarUsuarioPorNome(String nome) throws Exception {
+    public UsuarioModel consultarUsuarioPorNome(String nome) throws Exception {
         return usuarioDao.getUsuarioByNome(nome);
     }
         
