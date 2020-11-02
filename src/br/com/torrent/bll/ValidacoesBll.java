@@ -7,9 +7,15 @@ public class ValidacoesBll {
 
     public static boolean validaUsuario(UsuLoginModel usuarioTela) throws Exception {
         UsuLoginBll usuarioLog = new UsuLoginBll();
-        UsuLoginModel usuario = usuarioLog.findUsuLoginName(usuarioTela.getNome());
-        if (usuario.getId() > 0 && usuario.getNome().equalsIgnoreCase(usuarioTela.getNome()) && usuario.getSenha().equalsIgnoreCase(usuarioTela.getSenha())) {
-            return true;
+        UsuLoginModel usuario = usuarioLog.findUsuLoginName(usuarioTela.getLogin());
+        System.out.println(usuarioTela.getSenha() + usuarioTela.getLogin());
+
+        if (usuario.getLogin().contains(usuarioTela.getLogin())) {
+            if (usuario.getSenha().equalsIgnoreCase(usuarioTela.getSenha())) {
+                return true;
+            }else{
+                return false;
+            }
         } else {
             return false;
         }

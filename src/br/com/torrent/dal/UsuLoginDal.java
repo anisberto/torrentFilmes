@@ -102,7 +102,7 @@ public class UsuLoginDal {
     public UsuLoginModel findName(String nome) {
         UsuLoginModel usuario = new UsuLoginModel();
         try {
-            PreparedStatement prepa = conexao.prepareStatement("select * from usuario where usu_nome=?");
+            PreparedStatement prepa = conexao.prepareStatement("select from log_usuarios where log_login =?");
             prepa.setString(1, nome);
             ResultSet rs = prepa.executeQuery();
             while (rs.next()) {
