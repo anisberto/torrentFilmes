@@ -27,12 +27,14 @@ public class CuponDao {
             preparedStatement.setInt(1, idRandon);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                cupon.setRando(rs.getInt("id_radon"));
+                cupon.setPorcentagem(rs.getInt("id_radon"));
             }
         } catch (Exception erro) {
             throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
         }
         return cupon;
     }
+    
+    
 
 }
