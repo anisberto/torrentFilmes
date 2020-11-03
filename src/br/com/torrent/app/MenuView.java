@@ -221,17 +221,24 @@ public class MenuView extends javax.swing.JFrame {
 
         jLabel12.setText("Nome de Usuario: ");
 
+        txtUsuariosNome.setEnabled(false);
+
         jLabel13.setText("CPF");
 
         jLabel14.setText("E-mail");
 
         jLabel15.setText("Senha");
 
+        txtUsuariosEmail.setEnabled(false);
+
+        txtUsuariosSenha.setEnabled(false);
+
         try {
             txtUsuariosCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtUsuariosCpf.setEnabled(false);
 
         btnUsuariosIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
         btnUsuariosIncluir.setText("INCLUIR");
@@ -1025,23 +1032,19 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
-        // TODO add your handling code here:
+        Cupon cupon = new  Cupon();
         try {
-            Cupon cupon = new Cupon();
-            Cupon radon = cupon;
             usuario.setNome(txtUsuariosNome.getText());
             usuario.setCpf(txtUsuariosCpf.getText());
             usuario.setEmail(txtUsuariosEmail.getText());
             usuario.setSenha(txtUsuariosSenha.getText());
-            radon.getPorcentagem();
+            
 
-//            if (ValidacoesBll.validarCamposUsuarios(usuario)) {
-//                novoUsuario.adicionarUsuario(usuario);                
-//            }
             usuarioBll.adicionarUsuario(usuario);
             System.out.println("cadastro de usuario - ok");
             limparCamposUsuario();
             JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos ##");
         } finally {
