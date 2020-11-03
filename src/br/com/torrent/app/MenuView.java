@@ -811,7 +811,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Cupons", jPanel10);
+        jTabbedPane1.addTab("Ver Filmes", jPanel10);
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestão das Categorias"));
 
