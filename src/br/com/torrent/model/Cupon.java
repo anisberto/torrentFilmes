@@ -34,6 +34,6 @@ public class Cupon {
 
     public void setData_geracao(String data_geracao) {
         this.data_geracao = data_geracao;
-    }
+    }   
 
 }
