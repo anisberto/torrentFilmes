@@ -1,5 +1,6 @@
 package br.com.torrent.dal;
 
+import br.com.torrent.model.Cupon;
 import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -26,8 +27,8 @@ public class UsuarioDal {
             preparedStatement.setObject(1, usuario.getNome());
             preparedStatement.setObject(2, usuario.getCpf());
             preparedStatement.setObject(3, usuario.getEmail());
-            preparedStatement.setObject(4, usuario.getSenha());
-
+            preparedStatement.setObject(4, usuario.getSenha());          
+            
             preparedStatement.executeUpdate(); // executa o comando da String sql;
         } catch (SQLException erro) {
             throw new Exception("Error ao inserir registro" + erro.getMessage());
