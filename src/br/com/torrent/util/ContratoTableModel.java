@@ -44,9 +44,9 @@ public class ContratoTableModel extends AbstractTableModel {
             case 2:
                 return dados.get(rowIndex).getId() + "";
             case 3:
-                return dados.get(rowIndex).getInicio().toString();
+                return dados.get(rowIndex).getId_usu().getSenha();
             case 4:
-                return dados.get(rowIndex).getFim();
+                return dados.get(rowIndex).getInicio().toString() + " - " + dados.get(rowIndex).getFim();
             case 5:
                 return dados.get(rowIndex).getStatus();
             case 6:

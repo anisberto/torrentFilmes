@@ -7,7 +7,7 @@ public class UsuarioModel {
     private String cpf;
     private String email;
     private String senha;
-    
+    private double desconto;
 
     public UsuarioModel() {
     }

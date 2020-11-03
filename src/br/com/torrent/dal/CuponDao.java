@@ -34,7 +34,5 @@ public class CuponDao {
         }
         return cupon;
     }
-    
-    
 
 }

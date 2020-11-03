@@ -1,5 +1,6 @@
 package br.com.torrent.dal;
 
+import br.com.torrent.interfaces.CategoriasInterfaces;
 import br.com.torrent.model.CategoriaFilmesModel;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CategoriaDal {
+public class CategoriaDal implements CategoriasInterfaces{
 
     private Connection conexao;
 
@@ -97,5 +98,35 @@ public class CategoriaDal {
             throw new Exception("Erro ao buscar no banco de dados: Categoria!!\n" + erro.getMessage());
         }
         return categoria;
+    }
+
+    @Override
+    public void adicionarCategorias(CategoriaFilmesModel categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteCategorias(CategoriaFilmesModel categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateCategorias(CategoriaFilmesModel categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<CategoriaFilmesModel> getAllCategorias() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CategoriaFilmesModel getCategoriasById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CategoriaFilmesModel findCategoriasName(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

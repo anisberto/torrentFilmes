@@ -5,7 +5,6 @@ import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.dal.UsuarioDal;
-import br.com.torrent.enumerations.Status;
 import br.com.torrent.interfaces.ContratoInterface;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.interfaces.UsuarioInterface;
@@ -38,7 +37,7 @@ public class MenuView extends javax.swing.JFrame {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
-        tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Identificador", "Data Inicio", "Data Fim", "Status", "Preço do Plano", "Preço com Desconto"});
+        tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Preço com Desconto", "Percentual de Desconto", "Vigencia", "Status", "Preço do Plano", "Identificador"});
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
         novoPlano = new PlanoBll();
@@ -937,8 +936,8 @@ public class MenuView extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -958,8 +957,8 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Categorias", jPanel6);
@@ -1447,13 +1446,12 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
-        Cupon cupon = new  Cupon();
+        Cupon cupon = new Cupon();
         try {
             usuario.setNome(txtUsuariosNome.getText());
             usuario.setCpf(txtUsuariosCpf.getText());
             usuario.setEmail(txtUsuariosEmail.getText());
             usuario.setSenha(txtUsuariosSenha.getText());
-            
 
             usuarioBll.adicionarUsuario(usuario);
             System.out.println("cadastro de usuario - ok");

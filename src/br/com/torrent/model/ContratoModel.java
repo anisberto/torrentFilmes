@@ -1,6 +1,5 @@
 package br.com.torrent.model;
 
-import br.com.torrent.enumerations.Status;
 public class ContratoModel {
 
     private int id;
@@ -8,8 +7,8 @@ public class ContratoModel {
     private String inicio;
     private String status;
     private PlanoModel id_plano;
-    private double precoComDesconto;
     private UsuarioModel id_usu;
+    private double precoComDesconto;
 
     public ContratoModel(int id, String fim, String inicio, String status, PlanoModel id_plano, UsuarioModel id_usu) {
         this.id = id;
@@ -71,6 +70,10 @@ public class ContratoModel {
 
     public double getPrecoComDesconto() {
         return precoComDesconto;
+    }
+
+    public void setPrecoComDesconto(double precoComDesconto) {
+        this.precoComDesconto = precoComDesconto;
     }
 
     public void setStatus(String status) {

@@ -57,6 +57,7 @@ public class ContratoDal implements ContratoInterface {
                 novocontrato.setInicio(result.getString("con_inicio"));
                 novocontrato.setId_plano(planoDal.getPlanoById(result.getInt("con_pla_iden")));
                 novocontrato.setId_usu(usuarioDal.getUsuarioById(result.getInt("con_cup_iden")));
+                novocontrato.setPrecoComDesconto(result.getDouble("con_precocomdesconto"));
                 contratos.add(novocontrato);
             }
             return contratos;
