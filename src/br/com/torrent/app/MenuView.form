@@ -276,32 +276,32 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtUsuEmail" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                          <Component id="txtUsuariosEmail" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtUsuUsuario" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                          <Component id="txtUsuariosNome" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtUsuSenha" min="-2" pref="157" max="-2" attributes="0"/>
-                                          <Component id="txtUsuCpf" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                          <Component id="txtUsuariosSenha" min="-2" pref="157" max="-2" attributes="0"/>
+                                          <Component id="txtUsuariosCpf" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnPlanoIncluir1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="btnUsuariosIncluir" min="-2" pref="112" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoDeletar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="btnUsuariosDeletar" min="-2" pref="112" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoAlterar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="btnUsuariosAlterar" min="-2" pref="112" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoSalvar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="btnUsuariosSalvar" min="-2" pref="112" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoCancelar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="btnUsuariosCancelar" min="-2" pref="136" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="70" max="32767" attributes="0"/>
+                              <EmptySpace pref="46" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -310,11 +310,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnPlanoIncluir1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoAlterar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoSalvar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoCancelar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoDeletar1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnUsuariosIncluir" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnUsuariosAlterar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnUsuariosSalvar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnUsuariosCancelar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnUsuariosDeletar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="80" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -323,8 +323,8 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtUsuUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtUsuCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuariosNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuariosCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -333,8 +333,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtUsuEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtUsuSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuariosEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuariosSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -347,7 +347,7 @@
                         <Property name="text" type="java.lang.String" value="Nome de Usuario: "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtUsuUsuario">
+                    <Component class="javax.swing.JTextField" name="txtUsuariosNome">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
@@ -364,18 +364,18 @@
                         <Property name="text" type="java.lang.String" value="Senha"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtUsuEmail">
+                    <Component class="javax.swing.JTextField" name="txtUsuariosEmail">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtUsuSenha">
+                    <Component class="javax.swing.JTextField" name="txtUsuariosSenha">
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="txtUsuCpf">
+                    <Component class="javax.swing.JFormattedTextField" name="txtUsuariosCpf">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="###.###.###-##" subtype="-1" type="5"/>
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoIncluir1">
+                    <Component class="javax.swing.JButton" name="btnUsuariosIncluir">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/mais.png"/>
@@ -383,10 +383,10 @@
                         <Property name="text" type="java.lang.String" value="INCLUIR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoIncluir1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosIncluirActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoDeletar1">
+                    <Component class="javax.swing.JButton" name="btnUsuariosDeletar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/lixo-24.png"/>
@@ -394,10 +394,10 @@
                         <Property name="text" type="java.lang.String" value="DELETAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoDeletar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosDeletarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoAlterar1">
+                    <Component class="javax.swing.JButton" name="btnUsuariosAlterar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/papel.png"/>
@@ -405,10 +405,10 @@
                         <Property name="text" type="java.lang.String" value="ALTERAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoAlterar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosAlterarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoSalvar1">
+                    <Component class="javax.swing.JButton" name="btnUsuariosSalvar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/salve.png"/>
@@ -417,10 +417,10 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoSalvar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosSalvarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoCancelar1">
+                    <Component class="javax.swing.JButton" name="btnUsuariosCancelar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/cancel_77947.png"/>
@@ -428,7 +428,7 @@
                         <Property name="text" type="java.lang.String" value="CANCELAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoCancelar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosCancelarActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
