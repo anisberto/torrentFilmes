@@ -26,7 +26,8 @@ public class MenuView extends javax.swing.JFrame {
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     UsuarioBll usuarioBll = new UsuarioBll();
-    boolean incluirPlano = true;
+    boolean incluirUsuario = true;
+    boolean incluirPlano = true;    
     boolean incluirContrato = true;
     int idDelete;
 
@@ -60,18 +61,18 @@ public class MenuView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        txtUsuUsuario = new javax.swing.JTextField();
+        txtUsuariosNome = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtUsuEmail = new javax.swing.JTextField();
-        txtUsuSenha = new javax.swing.JTextField();
-        txtUsuCpf = new javax.swing.JFormattedTextField();
-        btnPlanoIncluir1 = new javax.swing.JButton();
-        btnPlanoDeletar1 = new javax.swing.JButton();
-        btnPlanoAlterar1 = new javax.swing.JButton();
-        btnPlanoSalvar1 = new javax.swing.JButton();
-        btnPlanoCancelar1 = new javax.swing.JButton();
+        txtUsuariosEmail = new javax.swing.JTextField();
+        txtUsuariosSenha = new javax.swing.JTextField();
+        txtUsuariosCpf = new javax.swing.JFormattedTextField();
+        btnUsuariosIncluir = new javax.swing.JButton();
+        btnUsuariosDeletar = new javax.swing.JButton();
+        btnUsuariosAlterar = new javax.swing.JButton();
+        btnUsuariosSalvar = new javax.swing.JButton();
+        btnUsuariosCancelar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         btnPlanoIncluir = new javax.swing.JButton();
@@ -224,49 +225,49 @@ public class MenuView extends javax.swing.JFrame {
         jLabel15.setText("Senha");
 
         try {
-            txtUsuCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtUsuariosCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        btnPlanoIncluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
-        btnPlanoIncluir1.setText("INCLUIR");
-        btnPlanoIncluir1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuariosIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
+        btnUsuariosIncluir.setText("INCLUIR");
+        btnUsuariosIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoIncluir1ActionPerformed(evt);
+                btnUsuariosIncluirActionPerformed(evt);
             }
         });
 
-        btnPlanoDeletar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
-        btnPlanoDeletar1.setText("DELETAR");
-        btnPlanoDeletar1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuariosDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
+        btnUsuariosDeletar.setText("DELETAR");
+        btnUsuariosDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoDeletar1ActionPerformed(evt);
+                btnUsuariosDeletarActionPerformed(evt);
             }
         });
 
-        btnPlanoAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
-        btnPlanoAlterar1.setText("ALTERAR");
-        btnPlanoAlterar1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuariosAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
+        btnUsuariosAlterar.setText("ALTERAR");
+        btnUsuariosAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoAlterar1ActionPerformed(evt);
+                btnUsuariosAlterarActionPerformed(evt);
             }
         });
 
-        btnPlanoSalvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        btnPlanoSalvar1.setText("SALVAR");
-        btnPlanoSalvar1.setEnabled(false);
-        btnPlanoSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuariosSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        btnUsuariosSalvar.setText("SALVAR");
+        btnUsuariosSalvar.setEnabled(false);
+        btnUsuariosSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoSalvar1ActionPerformed(evt);
+                btnUsuariosSalvarActionPerformed(evt);
             }
         });
 
-        btnPlanoCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
-        btnPlanoCancelar1.setText("CANCELAR");
-        btnPlanoCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuariosCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
+        btnUsuariosCancelar.setText("CANCELAR");
+        btnUsuariosCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoCancelar1ActionPerformed(evt);
+                btnUsuariosCancelarActionPerformed(evt);
             }
         });
 
@@ -279,54 +280,54 @@ public class MenuView extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuariosEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14)
-                            .addComponent(txtUsuUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuariosNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(txtUsuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuariosSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuariosCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(btnPlanoIncluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsuariosIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPlanoDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsuariosDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(btnPlanoAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsuariosAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPlanoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsuariosSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPlanoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addComponent(btnUsuariosCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPlanoIncluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnUsuariosIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsuariosAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsuariosSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsuariosCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUsuariosDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuariosNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuariosCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuariosEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuariosSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -792,11 +793,13 @@ public class MenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void limparCamposUsuario() {
-//        txtUsuNome.setText("");
-//        txtUsuCpf.setText("");
-//        txtUsuEmail.setText("");
-//        txtUsuSenha.setText("");
+        txtUsuariosNome.setText("");
+        txtUsuariosCpf.setText("");
+        txtUsuariosEmail.setText("");
+        txtUsuariosSenha.setText("");
     }
+
+
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         try {
             LoginView login = new LoginView();
@@ -822,17 +825,7 @@ public class MenuView extends javax.swing.JFrame {
     }
 
     private void btnUsuSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuSalvarActionPerformed
-        try {
-//            usuario.setNome(txtUsuNome.getText());
-//            usuario.setCpf(txtUsuCpf.getText());
-//            usuario.setEmail(txtUsuEmail.getText());
-//            usuario.setSenha(txtUsuSenha.getText());
-//
-//            usuarioBll.adicionarUsuario(usuario);
-            System.out.println("cadastro de usuario");
-            limparCamposUsuario();
-        } catch (Exception e) {
-        }
+
     }//GEN-LAST:event_btnUsuSalvarActionPerformed
 
     private void btnUsuConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuConsultarActionPerformed
@@ -1002,25 +995,41 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcContratoUsuariosAncestorAdded
 
-    private void btnPlanoIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoIncluir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoIncluir1ActionPerformed
+    private void btnUsuariosIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosIncluirActionPerformed
+        try {
+            incluirUsuario = true;
+            UsuariosEnableButtons(true);
+        } catch (Exception e) {            
+        }
+    }//GEN-LAST:event_btnUsuariosIncluirActionPerformed
 
-    private void btnPlanoDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletar1ActionPerformed
+    private void btnUsuariosDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoDeletar1ActionPerformed
+    }//GEN-LAST:event_btnUsuariosDeletarActionPerformed
 
-    private void btnPlanoAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoAlterar1ActionPerformed
+    private void btnUsuariosAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoAlterar1ActionPerformed
+    }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
-    private void btnPlanoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoSalvar1ActionPerformed
+    private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoSalvar1ActionPerformed
+        try {
+            usuario.setNome(txtUsuariosNome.getText());
+            usuario.setCpf(txtUsuariosCpf.getText());
+            usuario.setEmail(txtUsuariosEmail.getText());
+            usuario.setSenha(txtUsuariosSenha.getText());
 
-    private void btnPlanoCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoCancelar1ActionPerformed
+            usuarioBll.adicionarUsuario(usuario);
+            System.out.println("cadastro de usuario - ok");
+            limparCamposUsuario();
+            JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnUsuariosSalvarActionPerformed
+
+    private void btnUsuariosCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoCancelar1ActionPerformed
+    }//GEN-LAST:event_btnUsuariosCancelarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1065,15 +1074,15 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnContratoIncluir;
     private javax.swing.JButton btnContratoSalvar;
     private javax.swing.JButton btnPlanoAlterar;
-    private javax.swing.JButton btnPlanoAlterar1;
     private javax.swing.JButton btnPlanoCancelar;
-    private javax.swing.JButton btnPlanoCancelar1;
     private javax.swing.JButton btnPlanoDeletar;
-    private javax.swing.JButton btnPlanoDeletar1;
     private javax.swing.JButton btnPlanoIncluir;
-    private javax.swing.JButton btnPlanoIncluir1;
     private javax.swing.JButton btnPlanoSalvar;
-    private javax.swing.JButton btnPlanoSalvar1;
+    private javax.swing.JButton btnUsuariosAlterar;
+    private javax.swing.JButton btnUsuariosCancelar;
+    private javax.swing.JButton btnUsuariosDeletar;
+    private javax.swing.JButton btnUsuariosIncluir;
+    private javax.swing.JButton btnUsuariosSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1121,10 +1130,10 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtContratoInicio;
     private javax.swing.JTextField txtPlanoNome;
     private javax.swing.JTextField txtPlanoPreco;
-    private javax.swing.JFormattedTextField txtUsuCpf;
-    private javax.swing.JTextField txtUsuEmail;
-    private javax.swing.JTextField txtUsuSenha;
-    private javax.swing.JTextField txtUsuUsuario;
+    private javax.swing.JFormattedTextField txtUsuariosCpf;
+    private javax.swing.JTextField txtUsuariosEmail;
+    private javax.swing.JTextField txtUsuariosNome;
+    private javax.swing.JTextField txtUsuariosSenha;
     // End of variables declaration//GEN-END:variables
 
     private void PlanoEnableButtons(boolean butt) {
@@ -1187,5 +1196,32 @@ public class MenuView extends javax.swing.JFrame {
         txtPlanoPreco.setText("");
         jcPlanoAcesso.removeAllItems();
         jcPlanoAcesso.addItem("SIM");
+    }
+
+    private void UsuariosEnableButtons(boolean butt) {
+        if (butt) {
+            btnUsuariosIncluir.setEnabled(false);
+            btnUsuariosAlterar.setEnabled(false);
+            btnUsuariosCancelar.setEnabled(true);
+            btnUsuariosDeletar.setEnabled(false);
+            btnUsuariosSalvar.setEnabled(true);
+            txtUsuariosNome.setEnabled(true);
+            txtUsuariosCpf.setEnabled(true);
+            txtUsuariosEmail.setEnabled(true);
+            txtUsuariosSenha.setEnabled(true);
+
+        } else {
+            btnUsuariosIncluir.setEnabled(true);
+            btnUsuariosAlterar.setEnabled(true);
+            btnUsuariosCancelar.setEnabled(true);
+            btnUsuariosDeletar.setEnabled(true);
+
+            btnUsuariosSalvar.setEnabled(false);
+            txtUsuariosNome.setEnabled(false);
+            txtUsuariosCpf.setEnabled(false);
+            txtUsuariosEmail.setEnabled(false);
+            txtUsuariosSenha.setEnabled(false);
+            limparCamposUsuario();
+        }
     }
 }
