@@ -31,4 +31,6 @@ public class ValidacoesBll {
         return !usuario.getNome().isEmpty() && usuario.getCpf().isEmpty() && usuario.getEmail().isEmpty() && usuario.getSenha().isEmpty();
         
     }
+
+    
 }
