@@ -8,7 +8,9 @@ import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.enumerations.Status;
 import br.com.torrent.interfaces.ContratoInterface;
 import br.com.torrent.interfaces.PlanoInterface;
+import br.com.torrent.interfaces.UsuarioInterface;
 import br.com.torrent.model.ContratoModel;
+import br.com.torrent.model.Cupon;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.ContratoTableModel;
@@ -25,9 +27,10 @@ public class MenuView extends javax.swing.JFrame {
     PlanoTableModel tabelaPlano;
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
+    UsuarioInterface novoUsuario = null;
     UsuarioBll usuarioBll = new UsuarioBll();
     boolean incluirUsuario = true;
-    boolean incluirPlano = true;    
+    boolean incluirPlano = true;
     boolean incluirContrato = true;
     int idDelete;
 
@@ -1009,7 +1012,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             incluirUsuario = true;
             UsuariosEnableButtons(true);
-        } catch (Exception e) {            
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_btnUsuariosIncluirActionPerformed
 
@@ -1024,24 +1027,25 @@ public class MenuView extends javax.swing.JFrame {
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
         // TODO add your handling code here:
         try {
-            
-            UsuarioModel usuario = new UsuarioModel();
+            Cupon cupon = new Cupon();
+            Cupon radon = cupon;
             usuario.setNome(txtUsuariosNome.getText());
             usuario.setCpf(txtUsuariosCpf.getText());
             usuario.setEmail(txtUsuariosEmail.getText());
             usuario.setSenha(txtUsuariosSenha.getText());
-            
-            if (ValidacoesBll.validaUsuario(usuario)) {
-                if (incluirUsuario){
-                    
-                }
-            }
+            radon.getPorcentagem();
 
+//            if (ValidacoesBll.validarCamposUsuarios(usuario)) {
+//                novoUsuario.adicionarUsuario(usuario);                
+//            }
             usuarioBll.adicionarUsuario(usuario);
             System.out.println("cadastro de usuario - ok");
             limparCamposUsuario();
             JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos ##");
+        } finally {
+            UsuariosEnableButtons(false);
         }
     }//GEN-LAST:event_btnUsuariosSalvarActionPerformed
 
