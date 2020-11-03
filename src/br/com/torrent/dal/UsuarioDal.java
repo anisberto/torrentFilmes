@@ -19,7 +19,7 @@ public class UsuarioDal {
     }
 
     public void adicionarUsuario(UsuarioModel usuario) throws Exception {
-        String sql = "INSERT INTO usuario (usu_nome, usu_cpf, usu_email, usu_senha) VALUES (?, ?,?, ?, ? )";
+        String sql = "INSERT INTO cup_usuarios (cup_nome, cup_cpf, cup_email, cup_senha) VALUES (?, ?, ?, ?)";
 
         try { // preparando a conexao;
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
