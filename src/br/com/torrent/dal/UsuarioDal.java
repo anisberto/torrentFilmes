@@ -20,6 +20,7 @@ public class UsuarioDal {
     }
 
     public void adicionarUsuario(UsuarioModel usuario) throws Exception {
+
         String sql = "INSERT INTO cup_usuarios (cup_nome, cup_cpf, cup_email, cup_senha) VALUES (?, ?, ?, ?)";
 
         try { // preparando a conexao;
@@ -27,8 +28,8 @@ public class UsuarioDal {
             preparedStatement.setObject(1, usuario.getNome());
             preparedStatement.setObject(2, usuario.getCpf());
             preparedStatement.setObject(3, usuario.getEmail());
-            preparedStatement.setObject(4, usuario.getSenha());          
-            
+            preparedStatement.setObject(4, usuario.getSenha());
+
             preparedStatement.executeUpdate(); // executa o comando da String sql;
         } catch (SQLException erro) {
             throw new Exception("Error ao inserir registro" + erro.getMessage());
@@ -102,6 +103,7 @@ public class UsuarioDal {
         }
         return usuario;
     }
+
     public UsuarioModel getUsuarioByNome(String nome) throws Exception {
         UsuarioModel usuario = new UsuarioModel();
         String sql = "SELECT * FROM cup_usuarios WHERE cup_nome=?";
