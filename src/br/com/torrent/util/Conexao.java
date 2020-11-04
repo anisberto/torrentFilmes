@@ -31,7 +31,7 @@ public class Conexao {
                 String urlDb = props.getProperty("dburl");
                 conect = DriverManager.getConnection(urlDb, props);
             } catch (Exception errorConectCreate) {
-                throw new Exception("Erro ao conectar no banco de dados! " + errorConectCreate.getMessage());
+                throw new Exception("Erro ao conectar no banco de dados! 22655" + errorConectCreate.getMessage());
             }
         }
         return conect;
@@ -71,7 +71,6 @@ public class Conexao {
         try (FileInputStream fs = new FileInputStream("./src/br/com/torrent/util/db.properties")) {
             Properties fileProperties = new Properties();
             fileProperties.load(fs);
-            System.out.println("Conectado");
             return fileProperties;
         } catch (IOException error) {
             throw new IOException("Erro ao Carregar Propriedades: " + error.getMessage());
