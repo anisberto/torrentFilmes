@@ -17,7 +17,7 @@ public class CategoriaDal implements CategoriasInterfaces {
     private Connection conexao;
 
     public CategoriaDal() throws Exception {
-        conexao = (Connection) Conexao.getInstance();
+        conexao = Conexao.getInstance().getConnection();
     }
 
     @Override

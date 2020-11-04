@@ -1629,7 +1629,7 @@ public class MenuView extends javax.swing.JFrame {
                 try {
                     new MenuView().setVisible(true);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null, "Erro: 456456" + ex.getMessage());
                 }
             }
         });

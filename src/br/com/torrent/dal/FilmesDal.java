@@ -20,7 +20,7 @@ public class FilmesDal implements FilmesInterfaces {
     CategoriaBll catego = new CategoriaBll();
 
     public FilmesDal() throws Exception {
-        conexao = (Connection) Conexao.getInstance();
+        conexao = Conexao.getInstance().getConnection();
     }
 
     @Override
