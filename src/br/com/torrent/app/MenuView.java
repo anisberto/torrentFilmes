@@ -1,17 +1,21 @@
 package br.com.torrent.app;
 
+import br.com.torrent.bll.CategoriaBll;
 import br.com.torrent.bll.ContratoBll;
 import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.dal.UsuarioDal;
+import br.com.torrent.interfaces.CategoriasInterfaces;
 import br.com.torrent.interfaces.ContratoInterface;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.interfaces.UsuarioInterface;
+import br.com.torrent.model.CategoriaFilmesModel;
 import br.com.torrent.model.ContratoModel;
 import br.com.torrent.model.Cupon;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuarioModel;
+import br.com.torrent.util.CategoriaTableModel;
 import br.com.torrent.util.ContratoTableModel;
 import br.com.torrent.util.PlanoTableModel;
 import java.text.SimpleDateFormat;
@@ -20,7 +24,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class MenuView extends javax.swing.JFrame {
-
+    
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
@@ -28,22 +32,28 @@ public class MenuView extends javax.swing.JFrame {
     ContratoTableModel tabelaContrato;
     UsuarioInterface novoUsuario = null;
     UsuarioBll usuarioBll = new UsuarioBll();
+    CategoriaTableModel categoriaTabela;
+    CategoriasInterfaces novaCategoria;
     boolean incluirUsuario = true;
     boolean incluirPlano = true;
     boolean incluirContrato = true;
+    boolean incluirCategoria = true;
     int idDelete;
-
+    
     public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
         tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Preço com Desconto", "Percentual de Desconto", "Vigencia", "Status", "Preço do Plano", "Identificador"});
+        categoriaTabela = new CategoriaTableModel(new String[]{"Nome da Categoria", "Identificador"});
+        tabViewCategoria.setModel(categoriaTabela);
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
         novoPlano = new PlanoBll();
         novoContrato = new ContratoBll();
+        novaCategoria = new CategoriaBll();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,17 +127,17 @@ public class MenuView extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
-        btnContratoIncluir1 = new javax.swing.JButton();
-        btnContratoCancelar1 = new javax.swing.JButton();
-        btnContratoSalvar1 = new javax.swing.JButton();
-        btnContratoDeletar1 = new javax.swing.JButton();
-        btnContratoAlterar1 = new javax.swing.JButton();
+        btnCategoriaIncluir = new javax.swing.JButton();
+        btnCategoriaCancelar = new javax.swing.JButton();
+        btnCategoriaSalvar = new javax.swing.JButton();
+        btnCategoriaDeletar = new javax.swing.JButton();
+        btnCategoriaAlterar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        txtPlanoNome1 = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabViewContrato1 = new javax.swing.JTable();
+        tabViewCategoria = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         btnContratoIncluir = new javax.swing.JButton();
@@ -314,7 +324,7 @@ public class MenuView extends javax.swing.JFrame {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -364,7 +374,7 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPlanoIncluir1)
                     .addComponent(btnPlanoDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -815,48 +825,48 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestão das Categorias"));
 
-        btnContratoIncluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
-        btnContratoIncluir1.setText("INCLUIR");
-        btnContratoIncluir1.addActionListener(new java.awt.event.ActionListener() {
+        btnCategoriaIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
+        btnCategoriaIncluir.setText("INCLUIR");
+        btnCategoriaIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContratoIncluir1ActionPerformed(evt);
+                btnCategoriaIncluirActionPerformed(evt);
             }
         });
 
-        btnContratoCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
-        btnContratoCancelar1.setText("CANCELAR");
-        btnContratoCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCategoriaCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
+        btnCategoriaCancelar.setText("CANCELAR");
+        btnCategoriaCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContratoCancelar1ActionPerformed(evt);
+                btnCategoriaCancelarActionPerformed(evt);
             }
         });
 
-        btnContratoSalvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        btnContratoSalvar1.setText("SALVAR");
-        btnContratoSalvar1.setEnabled(false);
-        btnContratoSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCategoriaSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        btnCategoriaSalvar.setText("SALVAR");
+        btnCategoriaSalvar.setEnabled(false);
+        btnCategoriaSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContratoSalvar1ActionPerformed(evt);
+                btnCategoriaSalvarActionPerformed(evt);
             }
         });
 
-        btnContratoDeletar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
-        btnContratoDeletar1.setText("DELETAR");
-        btnContratoDeletar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCategoriaDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
+        btnCategoriaDeletar.setText("DELETAR");
+        btnCategoriaDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContratoDeletar1ActionPerformed(evt);
+                btnCategoriaDeletarActionPerformed(evt);
             }
         });
 
-        btnContratoAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
-        btnContratoAlterar1.setText("ALTERAR");
-        btnContratoAlterar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCategoriaAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
+        btnCategoriaAlterar.setText("ALTERAR");
+        btnCategoriaAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContratoAlterar1ActionPerformed(evt);
+                btnCategoriaAlterarActionPerformed(evt);
             }
         });
 
-        txtPlanoNome1.setEnabled(false);
+        txtCategoria.setEnabled(false);
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel20.setText("Nome");
@@ -869,19 +879,19 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addComponent(btnContratoIncluir1)
+                        .addComponent(btnCategoriaIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnContratoDeletar1)
+                        .addComponent(btnCategoriaDeletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnContratoAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCategoriaAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnContratoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCategoriaSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(btnContratoCancelar1))
+                        .addComponent(btnCategoriaCancelar))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPlanoNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -893,22 +903,22 @@ public class MenuView extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(txtPlanoNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnContratoIncluir1)
-                    .addComponent(btnContratoDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnContratoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnContratoAlterar1)
-                    .addComponent(btnContratoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCategoriaIncluir)
+                    .addComponent(btnCategoriaDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCategoriaSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCategoriaAlterar)
+                    .addComponent(btnCategoriaCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder("Categorias"));
 
-        tabViewContrato1.setModel(new javax.swing.table.DefaultTableModel(
+        tabViewCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -916,12 +926,12 @@ public class MenuView extends javax.swing.JFrame {
 
             }
         ));
-        tabViewContrato1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabViewCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabViewContrato1MouseClicked(evt);
+                tabViewCategoriaMouseClicked(evt);
             }
         });
-        jScrollPane6.setViewportView(tabViewContrato1);
+        jScrollPane6.setViewportView(tabViewCategoria);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -1232,7 +1242,7 @@ public class MenuView extends javax.swing.JFrame {
         txtUsuariosEmail.setText("");
         txtUsuariosSenha.setText("");
     }
-
+    
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         try {
@@ -1291,7 +1301,7 @@ public class MenuView extends javax.swing.JFrame {
             plano.setNome(nomePlano);
             plano.setPreco(precoPlano);
             plano.setAcessoSimultaneo(tipoDeAcesso);
-
+            
             if (ValidacoesBll.validarEntradaDeDadosPlano(plano)) {
                 if (incluirPlano) {
                     novoPlano.adicionarPlano(plano);
@@ -1376,7 +1386,7 @@ public class MenuView extends javax.swing.JFrame {
             if (incluirContrato) {
                 novoContrato.adicionarContrato(newContrato);
             } else {
-
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Incluir: " + e.getMessage());
@@ -1452,12 +1462,12 @@ public class MenuView extends javax.swing.JFrame {
             usuario.setCpf(txtUsuariosCpf.getText());
             usuario.setEmail(txtUsuariosEmail.getText());
             usuario.setSenha(txtUsuariosSenha.getText());
-
+            
             usuarioBll.adicionarUsuario(usuario);
             System.out.println("cadastro de usuario - ok");
             limparCamposUsuario();
             JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos ##");
         } finally {
@@ -1493,30 +1503,54 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabViewPlano1MouseClicked
 
-    private void btnContratoIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoIncluir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContratoIncluir1ActionPerformed
+    private void btnCategoriaIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaIncluirActionPerformed
+        try {
+            CategoriasEnableButtons(true);
+            incluirCategoria = true;
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnCategoriaIncluirActionPerformed
 
-    private void btnContratoCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContratoCancelar1ActionPerformed
+    private void btnCategoriaCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaCancelarActionPerformed
+        try {
+            CategoriasEnableButtons(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnCategoriaCancelarActionPerformed
 
-    private void btnContratoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoSalvar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContratoSalvar1ActionPerformed
+    private void btnCategoriaSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaSalvarActionPerformed
+        try {
+            CategoriaFilmesModel catFilme = new CategoriaFilmesModel();
+            catFilme.setNome(txtCategoria.getText());
+            if (incluirCategoria) {
+                novaCategoria.adicionarCategorias(catFilme);
+            } else {
+                
+            }
+        } catch (Exception e) {
+        } finally {
+            CategoriasEnableButtons(false);
+        }
+    }//GEN-LAST:event_btnCategoriaSalvarActionPerformed
 
-    private void btnContratoDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoDeletar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContratoDeletar1ActionPerformed
+    private void btnCategoriaDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaDeletarActionPerformed
+        try {
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnCategoriaDeletarActionPerformed
 
-    private void btnContratoAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoAlterar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContratoAlterar1ActionPerformed
+    private void btnCategoriaAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaAlterarActionPerformed
+        try {
+            CategoriasEnableButtons(true);
+            incluirCategoria = false;
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnCategoriaAlterarActionPerformed
 
-    private void tabViewContrato1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewContrato1MouseClicked
+    private void tabViewCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewCategoriaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabViewContrato1MouseClicked
-
+    }//GEN-LAST:event_tabViewCategoriaMouseClicked
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1554,16 +1588,16 @@ public class MenuView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCategoriaAlterar;
+    private javax.swing.JButton btnCategoriaCancelar;
+    private javax.swing.JButton btnCategoriaDeletar;
+    private javax.swing.JButton btnCategoriaIncluir;
+    private javax.swing.JButton btnCategoriaSalvar;
     private javax.swing.JButton btnContratoAlterar;
-    private javax.swing.JButton btnContratoAlterar1;
     private javax.swing.JButton btnContratoCancelar;
-    private javax.swing.JButton btnContratoCancelar1;
     private javax.swing.JButton btnContratoDeletar;
-    private javax.swing.JButton btnContratoDeletar1;
     private javax.swing.JButton btnContratoIncluir;
-    private javax.swing.JButton btnContratoIncluir1;
     private javax.swing.JButton btnContratoSalvar;
-    private javax.swing.JButton btnContratoSalvar1;
     private javax.swing.JButton btnPlanoAlterar;
     private javax.swing.JButton btnPlanoAlterar1;
     private javax.swing.JButton btnPlanoCancelar;
@@ -1640,14 +1674,14 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcPlanoAcesso1;
     private javax.swing.JLabel lblDateAcess;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTable tabViewCategoria;
     private javax.swing.JTable tabViewContrato;
-    private javax.swing.JTable tabViewContrato1;
     private javax.swing.JTable tabViewPlano;
     private javax.swing.JTable tabViewPlano1;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JFormattedTextField txtContratoFim;
     private javax.swing.JFormattedTextField txtContratoInicio;
     private javax.swing.JTextField txtPlanoNome;
-    private javax.swing.JTextField txtPlanoNome1;
     private javax.swing.JTextField txtPlanoNome2;
     private javax.swing.JTextField txtPlanoPreco;
     private javax.swing.JTextField txtPlanoPreco1;
@@ -1672,7 +1706,7 @@ public class MenuView extends javax.swing.JFrame {
             btnPlanoAlterar.setEnabled(true);
             btnPlanoCancelar.setEnabled(true);
             btnPlanoDeletar.setEnabled(true);
-
+            
             btnPlanoSalvar.setEnabled(false);
             txtPlanoNome.setEnabled(false);
             txtPlanoPreco.setEnabled(false);
@@ -1682,7 +1716,7 @@ public class MenuView extends javax.swing.JFrame {
             jcPlanoAcesso.setSelectedItem("Nao");
         }
     }
-
+    
     private void ContratoEnableButtons(boolean butt) {
         if (butt) {
             btnContratoIncluir.setEnabled(false);
@@ -1695,11 +1729,11 @@ public class MenuView extends javax.swing.JFrame {
             btnContratoAlterar.setEnabled(true);
             btnContratoCancelar.setEnabled(true);
             btnContratoDeletar.setEnabled(true);
-
+            
             btnContratoSalvar.setEnabled(false);
         }
     }
-
+    
     private void transferirDadosPlano(int id) {
         try {
             PlanoModel delete = novoPlano.getPlanoById(id);
@@ -1711,14 +1745,14 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+    
     public void clearFields() {
         txtPlanoNome.setText("");
         txtPlanoPreco.setText("");
         jcPlanoAcesso.removeAllItems();
         jcPlanoAcesso.addItem("SIM");
     }
-
+    
     private void UsuariosEnableButtons(boolean butt) {
         if (butt) {
             btnUsuariosIncluir.setEnabled(false);
@@ -1730,19 +1764,40 @@ public class MenuView extends javax.swing.JFrame {
             txtUsuariosCpf.setEnabled(true);
             txtUsuariosEmail.setEnabled(true);
             txtUsuariosSenha.setEnabled(true);
-
+            
         } else {
             btnUsuariosIncluir.setEnabled(true);
             btnUsuariosAlterar.setEnabled(true);
             btnUsuariosCancelar.setEnabled(true);
             btnUsuariosDeletar.setEnabled(true);
-
+            
             btnUsuariosSalvar.setEnabled(false);
             txtUsuariosNome.setEnabled(false);
             txtUsuariosCpf.setEnabled(false);
             txtUsuariosEmail.setEnabled(false);
             txtUsuariosSenha.setEnabled(false);
             limparCamposUsuario();
+        }
+    }
+    
+    private void CategoriasEnableButtons(boolean butt) {
+        if (butt) {
+            btnCategoriaIncluir.setEnabled(false);
+            btnCategoriaAlterar.setEnabled(false);
+            btnCategoriaCancelar.setEnabled(true);
+            btnCategoriaDeletar.setEnabled(false);
+            btnCategoriaSalvar.setEnabled(true);
+            txtCategoria.setEnabled(true);
+        } else {
+            btnCategoriaIncluir.setEnabled(true);
+            btnCategoriaAlterar.setEnabled(true);
+            btnCategoriaCancelar.setEnabled(true);
+            btnCategoriaDeletar.setEnabled(true);
+            
+            btnCategoriaSalvar.setEnabled(false);
+            txtCategoria.setEnabled(false);
+            
+            txtCategoria.setText("");
         }
     }
 }

@@ -7,7 +7,7 @@ public interface CategoriasInterfaces {
 
     public void adicionarCategorias(CategoriaFilmesModel categoria);
 
-    public void deleteCategorias(CategoriaFilmesModel categoria);
+    public void deleteCategorias(int id);
 
     public void updateCategorias(CategoriaFilmesModel categoria);
 

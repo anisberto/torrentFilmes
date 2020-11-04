@@ -317,7 +317,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanel20" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnPlanoIncluir1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnPlanoDeletar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
@@ -458,7 +458,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane5" pref="86" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" pref="98" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1214,20 +1214,20 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnContratoIncluir1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnCategoriaIncluir" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnContratoDeletar1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnCategoriaDeletar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnContratoAlterar1" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="btnCategoriaAlterar" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnContratoSalvar1" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="btnCategoriaSalvar" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace pref="109" max="32767" attributes="0"/>
-                                      <Component id="btnContratoCancelar1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnCategoriaCancelar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtPlanoNome1" min="-2" pref="196" max="-2" attributes="0"/>
+                                      <Component id="txtCategoria" min="-2" pref="196" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel16" min="-2" pref="88" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1243,17 +1243,17 @@
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPlanoNome1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnContratoIncluir1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnContratoDeletar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="btnContratoSalvar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="btnContratoAlterar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnContratoCancelar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnCategoriaIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCategoriaDeletar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnCategoriaSalvar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnCategoriaAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCategoriaCancelar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1261,7 +1261,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnContratoIncluir1">
+                    <Component class="javax.swing.JButton" name="btnCategoriaIncluir">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/mais.png"/>
@@ -1269,10 +1269,10 @@
                         <Property name="text" type="java.lang.String" value="INCLUIR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContratoIncluir1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaIncluirActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnContratoCancelar1">
+                    <Component class="javax.swing.JButton" name="btnCategoriaCancelar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/cancel_77947.png"/>
@@ -1280,10 +1280,10 @@
                         <Property name="text" type="java.lang.String" value="CANCELAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContratoCancelar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaCancelarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnContratoSalvar1">
+                    <Component class="javax.swing.JButton" name="btnCategoriaSalvar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/salve.png"/>
@@ -1292,10 +1292,10 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContratoSalvar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaSalvarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnContratoDeletar1">
+                    <Component class="javax.swing.JButton" name="btnCategoriaDeletar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/lixo-24.png"/>
@@ -1303,10 +1303,10 @@
                         <Property name="text" type="java.lang.String" value="DELETAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContratoDeletar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaDeletarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnContratoAlterar1">
+                    <Component class="javax.swing.JButton" name="btnCategoriaAlterar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/papel.png"/>
@@ -1314,12 +1314,12 @@
                         <Property name="text" type="java.lang.String" value="ALTERAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContratoAlterar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCategoriaAlterarActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtPlanoNome1">
+                    <Component class="javax.swing.JTextField" name="txtCategoria">
                       <Properties>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
@@ -1371,7 +1371,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tabViewContrato1">
+                        <Component class="javax.swing.JTable" name="tabViewCategoria">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="0" rowCount="0"/>
@@ -1384,7 +1384,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabViewContrato1MouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabViewCategoriaMouseClicked"/>
                           </Events>
                         </Component>
                       </SubComponents>

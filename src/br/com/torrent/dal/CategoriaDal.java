@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-public class CategoriaDal implements CategoriasInterfaces{
+public class CategoriaDal implements CategoriasInterfaces {
 
     private Connection conexao;
 
@@ -20,20 +20,24 @@ public class CategoriaDal implements CategoriasInterfaces{
         conexao = (Connection) Conexao.getInstance();
     }
 
-    public void adicionarCategoria(CategoriaFilmesModel categoria) throws Exception {
+    @Override
+    public void adicionarCategorias(CategoriaFilmesModel categoria) {
         String sql = "INSERT INTO categorias (cat_nome) VALUES (?, default )";
-
-        try { // preparando a conexao;
+        try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, categoria.getNome());
-
-            preparedStatement.executeUpdate(); // executa o comando da String sql;
+            preparedStatement.executeUpdate();
         } catch (SQLException erro) {
-            throw new Exception("Error ao inserir registro Categoria" + erro.getMessage());
+            try {
+                throw new Exception("Error ao inserir registro Categoria" + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void deleteCategoria(int id) throws Exception {
+    @Override
+    public void deleteCategorias(int id) {
         String sql = "DELETE FROM categorias WHERE cat_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -41,14 +45,18 @@ public class CategoriaDal implements CategoriasInterfaces{
             preparedStatement.executeUpdate();
 
         } catch (SQLException erro) {
-            throw new Exception("Ocorreu um erro ao deletar este registro!\n"
-                    + erro.getMessage());
+            try {
+                throw new Exception("Ocorreu um erro ao deletar este registro!\n"
+                        + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void updateCategoria(CategoriaFilmesModel categoria) throws Exception {
+    @Override
+    public void updateCategorias(CategoriaFilmesModel categoria) {
         String sql = "UPDATE categorias set  cat_nome=?, where fil_cat_iden=?";
-
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, categoria.getNome());
@@ -56,21 +64,23 @@ public class CategoriaDal implements CategoriasInterfaces{
             preparedStatement.executeUpdate();
 
         } catch (SQLException erro) {
-            throw new Exception("Ocorreu um erro ao alterar este registro\n"
-                    + erro.getMessage());
+            try {
+                throw new Exception("Ocorreu um erro ao alterar este registro\n"
+                        + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public List<CategoriaFilmesModel> getAllCategoria() throws Exception {
-        List<CategoriaFilmesModel> listCategoria = new ArrayList<CategoriaFilmesModel>();
-        // buscar por ordena��o por ID;
+    @Override
+    public ArrayList<CategoriaFilmesModel> getAllCategorias() {
+        ArrayList<CategoriaFilmesModel> listCategoria = new ArrayList<CategoriaFilmesModel>();
         String sql = "SELECT * FROM categorias";
         try {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            //        ? enquato estive proximo fa�a;
             while (rs.next()) {
-                //     ? fazendo um estacia��o com o [new]
                 CategoriaFilmesModel categoria = new CategoriaFilmesModel();
                 categoria.setIden(rs.getInt("cat_iden"));
                 categoria.setNome(rs.getString("cat_nome"));
@@ -78,12 +88,17 @@ public class CategoriaDal implements CategoriasInterfaces{
                 System.out.println("teste 1");
             }
         } catch (SQLException erro) {
-            throw new Exception("Ocorreu um erro ao consultar os registros de Categoria\n" + erro.getMessage());
+            try {
+                throw new Exception("Ocorreu um erro ao consultar os registros de Categoria\n" + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return listCategoria;
     }
 
-    public CategoriaFilmesModel getCategoriaById(int id) throws Exception {
+    @Override
+    public CategoriaFilmesModel getCategoriasById(int id) {
         CategoriaFilmesModel categoria = new CategoriaFilmesModel();
         String sql = "SELECT * FROM categorias WHERE cat_iden=?";
         try {
@@ -95,38 +110,34 @@ public class CategoriaDal implements CategoriasInterfaces{
                 categoria.setNome(rs.getString("cat_nome"));
             }
         } catch (Exception erro) {
-            throw new Exception("Erro ao buscar no banco de dados: Categoria!!\n" + erro.getMessage());
+            try {
+                throw new Exception("Erro ao buscar no banco de dados: Categoria!!\n" + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return categoria;
     }
 
     @Override
-    public void adicionarCategorias(CategoriaFilmesModel categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteCategorias(CategoriaFilmesModel categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateCategorias(CategoriaFilmesModel categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<CategoriaFilmesModel> getAllCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CategoriaFilmesModel getCategoriasById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public CategoriaFilmesModel findCategoriasName(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaFilmesModel categoria = new CategoriaFilmesModel();
+        String sql = "SELECT * FROM categorias WHERE cat_nome=?";
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                categoria.setIden(rs.getInt("cat_iden"));
+                categoria.setNome(rs.getString("cat_nome"));
+            }
+        } catch (Exception erro) {
+            try {
+                throw new Exception("Erro ao buscar no banco de dados: Categoria!!\n" + erro.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(CategoriaDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return categoria;
     }
 }

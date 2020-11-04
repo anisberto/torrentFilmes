@@ -1,48 +1,98 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.torrent.bll;
 
 import br.com.torrent.dal.FilmesDal;
+import br.com.torrent.interfaces.FilmesInterfaces;
 import br.com.torrent.model.FilmeModel;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author AnthonnyMax
- */
-public class FilmesBll {
-    
+public class FilmesBll implements FilmesInterfaces {
+
     private FilmesDal filmesDao;
 
     public FilmesBll() throws Exception {
         filmesDao = new FilmesDal();
     }
 
-    // 1�
-    public void adicionarFilmes(FilmeModel filme) throws Exception {
-        filmesDao.adicionarFilme(filme);
+    @Override
+    public void adicionarFilmes(FilmeModel filme) {
+        try {
+            filmesDao.adicionarFilmes(filme);
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao incluir: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
-    // 2�
-    public void removerFilmes(FilmeModel filme) throws Exception {
-        filmesDao.deleteUsuario(filme.getIden());
+    @Override
+    public void deleteFilmes(int id) {
+        try {
+            filmesDao.deleteFilmes(id);
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao deletar: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
-    // 3�
-    public void alterarFilmes(FilmeModel filme) throws Exception {
-        filmesDao.updateFilme(filme);
+    @Override
+    public void updateFilmes(FilmeModel filme) {
+        try {
+            filmesDao.updateFilmes(filme);
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao atulizar: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
-    // 4� 
-    public List<FilmeModel> consultarFilmes() throws Exception {
-        return filmesDao.getAllFilme();
+    @Override
+    public ArrayList<FilmeModel> getAllFilmes() {
+        try {
+            return filmesDao.getAllFilmes();
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao listar todos: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 
-    // 5�
-    public FilmeModel consultarFilmesPorId(int id) throws Exception {
-        return filmesDao.getFilmeById(id);
+    @Override
+    public FilmeModel getFilmesById(int id) {
+        try {
+            filmesDao.getFilmesById(id);
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao buscar por id: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public FilmeModel findFilmesTitulo(String titulo) {
+        try {
+            filmesDao.findFilmesTitulo(titulo);
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao buscar por titulo: dal.erro." + e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(FilmesBll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 }
