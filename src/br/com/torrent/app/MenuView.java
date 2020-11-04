@@ -1296,6 +1296,7 @@ public class MenuView extends javax.swing.JFrame {
             lblDateAcess.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(new Date()));
             tabelaPlano.update((ArrayList<PlanoModel>) novoPlano.getAllPlano());
             tabelaContrato.update(novoContrato.getAllContratos());
+            categoriaTabela.update(novaCategoria.getAllCategorias());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formWindowActivated
@@ -1568,6 +1569,7 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         } finally {
             CategoriasEnableButtons(false);
+            categoriaTabela.update(novaCategoria.getAllCategorias());
         }
     }//GEN-LAST:event_btnCategoriaSalvarActionPerformed
 

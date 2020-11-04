@@ -22,7 +22,7 @@ public class CategoriaDal implements CategoriasInterfaces {
 
     @Override
     public void adicionarCategorias(CategoriaFilmesModel categoria) {
-        String sql = "INSERT INTO categorias (cat_nome) VALUES (?, default )";
+        String sql = "INSERT INTO categorias (cat_nome) VALUES (?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, categoria.getNome());
@@ -85,7 +85,6 @@ public class CategoriaDal implements CategoriasInterfaces {
                 categoria.setIden(rs.getInt("cat_iden"));
                 categoria.setNome(rs.getString("cat_nome"));
                 listCategoria.add(categoria);
-                System.out.println("teste 1");
             }
         } catch (SQLException erro) {
             try {
