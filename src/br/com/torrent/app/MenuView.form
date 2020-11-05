@@ -280,23 +280,22 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jcContratoCategoria" max="32767" attributes="0"/>
+                                      <Component id="jcFilmeCategoria" pref="176" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="txtAnoFilme" min="-2" pref="132" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="btnPlanoIncluir1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnFilmeIncluir" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnPlanoDeletar1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnFilmeDeletar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnPlanoAlterar1" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="btnFilmeAlterar" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnPlanoSalvar1" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                      <Component id="btnPlanoCancelar1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                                      <Component id="btnFilmeSalvar" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnFilmeCancelar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -312,18 +311,18 @@
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFilmeTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jcContratoCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jcFilmeCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanel20" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnPlanoIncluir1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoDeletar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoSalvar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoAlterar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnPlanoCancelar1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnFilmeIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnFilmeDeletar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnFilmeSalvar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="btnFilmeAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnFilmeCancelar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -331,7 +330,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnPlanoIncluir1">
+                    <Component class="javax.swing.JButton" name="btnFilmeIncluir">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/mais.png"/>
@@ -339,10 +338,10 @@
                         <Property name="text" type="java.lang.String" value="INCLUIR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoIncluir1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilmeIncluirActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoCancelar1">
+                    <Component class="javax.swing.JButton" name="btnFilmeCancelar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/cancel_77947.png"/>
@@ -350,10 +349,10 @@
                         <Property name="text" type="java.lang.String" value="CANCELAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoCancelar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilmeCancelarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoSalvar1">
+                    <Component class="javax.swing.JButton" name="btnFilmeSalvar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/salve.png"/>
@@ -362,10 +361,10 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoSalvar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilmeSalvarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoDeletar1">
+                    <Component class="javax.swing.JButton" name="btnFilmeDeletar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/lixo-24.png"/>
@@ -373,10 +372,10 @@
                         <Property name="text" type="java.lang.String" value="DELETAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoDeletar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilmeDeletarActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnPlanoAlterar1">
+                    <Component class="javax.swing.JButton" name="btnFilmeAlterar">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/br/com/torrent/icons/papel.png"/>
@@ -384,7 +383,7 @@
                         <Property name="text" type="java.lang.String" value="ALTERAR"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlanoAlterar1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFilmeAlterarActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
@@ -403,16 +402,17 @@
                         <Property name="text" type="java.lang.String" value="ano"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jcContratoCategoria">
+                    <Component class="javax.swing.JComboBox" name="jcFilmeCategoria">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
                             <StringItem index="0" value="Selecione"/>
                           </StringArray>
                         </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jcContratoCategoriaAncestorAdded"/>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jcFilmeCategoriaAncestorAdded"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -477,6 +477,7 @@
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="rows" type="int" value="5"/>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -522,7 +523,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tabViewPlano1">
+                        <Component class="javax.swing.JTable" name="tabViewFilme">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="0" rowCount="0"/>
@@ -535,7 +536,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabViewPlano1MouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabViewFilmeMouseClicked"/>
                           </Events>
                         </Component>
                       </SubComponents>

@@ -7,7 +7,7 @@ public interface ContratoInterface {
 
     public void adicionarContrato(ContratoModel contrato);
 
-    public void deleteContrato(ContratoModel contrato);
+    public void deleteContrato(int idContrato);
 
     public void updateContrato(ContratoModel contrato);
 

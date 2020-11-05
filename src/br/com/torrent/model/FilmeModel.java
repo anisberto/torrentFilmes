@@ -1,9 +1,6 @@
 package br.com.torrent.model;
 
-/**
- *
- * @author AnthonnyMax
- */
+
 public class FilmeModel {
 
     private int iden;

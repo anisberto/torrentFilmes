@@ -72,23 +72,70 @@ public class ContratoDal implements ContratoInterface {
     }
 
     @Override
-    public void deleteContrato(ContratoModel contrato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteContrato(int contrato) {
+        try {
+            PreparedStatement prepa = conect.prepareStatement("DELETE * FROM contrata where con_iden =?");
+            prepa.setInt(1, contrato);
+            prepa.executeUpdate();
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao deletar: dal.error.2445");
+            } catch (Exception ex) {
+                Logger.getLogger(ContratoDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public void updateContrato(ContratoModel contrato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement prepare = conect.prepareStatement("UPDATE contrata set con_status = ?, con_fim = ?, con_inicio"
+                    + " = ?, con_plan_iden = ?, con_cup_iden = ?, con_precocomdesconto = ?");
+            prepare.setString(1, contrato.getStatus());
+            prepare.setDate(2, new java.sql.Date(new Date(contrato.getFim()).getTime()));
+            prepare.setDate(3, new java.sql.Date(new Date(contrato.getInicio()).getTime()));
+            prepare.setInt(4, contrato.getId_plano().getId());
+            prepare.setInt(5, contrato.getId_usu().getIden());
+            prepare.setDouble(6, contrato.getPrecoComDesconto());
+            prepare.executeUpdate();
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao atualizar: dal.error.2323");
+            } catch (Exception ex) {
+                Logger.getLogger(ContratoDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public ContratoModel getContratoById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ContratoModel bContrato = new ContratoModel();
+        try {
+            PreparedStatement prep = conect.prepareStatement("SELECT * FROM contrata WHERE con_iden = ?");
+            prep.setInt(1, id);
+            ResultSet resultado = prep.executeQuery();
+
+            while (resultado.next()) {
+                bContrato.setId(resultado.getInt("con_iden"));
+                bContrato.setStatus(resultado.getString("con_status"));
+                bContrato.setFim(resultado.getDate("con_fim").toString());
+                bContrato.setInicio(resultado.getDate("con_inicio").toString());
+                bContrato.setId_plano(planoDal.getPlanoById(resultado.getInt("con_plan_iden")));
+                bContrato.setId_usu(usuarioDal.getUsuarioById(resultado.getInt("con_cup_iden")));
+                bContrato.setPrecoComDesconto(resultado.getDouble("con_precocomdesconto"));
+            }
+        } catch (Exception e) {
+            try {
+                throw new Exception("Erro ao buscar por id: dal.erro.1223");
+            } catch (Exception ex) {
+                Logger.getLogger(ContratoDal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return bContrato;
     }
 
     @Override
     public ContratoModel findContratoUsuName(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
-
 }
