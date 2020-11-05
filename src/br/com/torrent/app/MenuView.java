@@ -2,21 +2,25 @@ package br.com.torrent.app;
 
 import br.com.torrent.bll.CategoriaBll;
 import br.com.torrent.bll.ContratoBll;
+import br.com.torrent.bll.FilmesBll;
 import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
 import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.CategoriasInterfaces;
 import br.com.torrent.interfaces.ContratoInterface;
+import br.com.torrent.interfaces.FilmesInterfaces;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.interfaces.UsuarioInterface;
 import br.com.torrent.model.CategoriaFilmesModel;
 import br.com.torrent.model.ContratoModel;
 import br.com.torrent.model.Cupon;
+import br.com.torrent.model.FilmeModel;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.CategoriaTableModel;
 import br.com.torrent.util.ContratoTableModel;
+import br.com.torrent.util.FilmeTableModel;
 import br.com.torrent.util.PlanoTableModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,14 +37,17 @@ public class MenuView extends javax.swing.JFrame {
     
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
+    FilmeTableModel tabelaFilmesModel;
     UsuarioInterface novoUsuario = null;
     UsuarioBll usuarioBll = new UsuarioBll();
     CategoriaTableModel categoriaTabela;
     CategoriasInterfaces novaCategoria;
+    FilmesInterfaces novofilme = null;
     boolean incluirUsuario = true;
     boolean incluirPlano = true;
     boolean incluirContrato = true;
     boolean incluirCategoria = true;
+    boolean incluirFilmes = true;
     int idDelete;
 
     public MenuView() throws Exception {
@@ -49,6 +56,8 @@ public class MenuView extends javax.swing.JFrame {
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
         tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Preço com Desconto", "Percentual de Desconto", "Vigencia", "Status", "Preço do Plano", "Identificador"});
         categoriaTabela = new CategoriaTableModel(new String[]{"Nome da Categoria", "Identificador"});
+        tabelaFilmesModel = new FilmeTableModel(new String[]{"Identificador", "Titulo", "Ano de Lançamento", "Categoria"});
+        tabViewFilme.setModel(tabelaFilmesModel);
         tabViewCategoria.setModel(categoriaTabela);
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
@@ -56,6 +65,7 @@ public class MenuView extends javax.swing.JFrame {
         novoPlano = new PlanoBll();
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
+        novofilme = new FilmesBll();
     }
 
     @SuppressWarnings("unchecked")
@@ -75,14 +85,14 @@ public class MenuView extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
-        btnPlanoIncluir1 = new javax.swing.JButton();
-        btnPlanoCancelar1 = new javax.swing.JButton();
-        btnPlanoSalvar1 = new javax.swing.JButton();
-        btnPlanoDeletar1 = new javax.swing.JButton();
-        btnPlanoAlterar1 = new javax.swing.JButton();
+        btnFilmeIncluir = new javax.swing.JButton();
+        btnFilmeCancelar = new javax.swing.JButton();
+        btnFilmeSalvar = new javax.swing.JButton();
+        btnFilmeDeletar = new javax.swing.JButton();
+        btnFilmeAlterar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jcContratoCategoria = new javax.swing.JComboBox<>();
+        jcFilmeCategoria = new javax.swing.JComboBox<>();
         txtAnoFilme = new javax.swing.JTextField();
         txtFilmeTitulo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -91,7 +101,7 @@ public class MenuView extends javax.swing.JFrame {
         txtSinopseFilme = new javax.swing.JTextArea();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tabViewPlano1 = new javax.swing.JTable();
+        tabViewFilme = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -254,44 +264,44 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestão dos Planos"));
 
-        btnPlanoIncluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
-        btnPlanoIncluir1.setText("INCLUIR");
-        btnPlanoIncluir1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmeIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
+        btnFilmeIncluir.setText("INCLUIR");
+        btnFilmeIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoIncluir1ActionPerformed(evt);
+                btnFilmeIncluirActionPerformed(evt);
             }
         });
 
-        btnPlanoCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
-        btnPlanoCancelar1.setText("CANCELAR");
-        btnPlanoCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmeCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/cancel_77947.png"))); // NOI18N
+        btnFilmeCancelar.setText("CANCELAR");
+        btnFilmeCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoCancelar1ActionPerformed(evt);
+                btnFilmeCancelarActionPerformed(evt);
             }
         });
 
-        btnPlanoSalvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
-        btnPlanoSalvar1.setText("SALVAR");
-        btnPlanoSalvar1.setEnabled(false);
-        btnPlanoSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmeSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/salve.png"))); // NOI18N
+        btnFilmeSalvar.setText("SALVAR");
+        btnFilmeSalvar.setEnabled(false);
+        btnFilmeSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoSalvar1ActionPerformed(evt);
+                btnFilmeSalvarActionPerformed(evt);
             }
         });
 
-        btnPlanoDeletar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
-        btnPlanoDeletar1.setText("DELETAR");
-        btnPlanoDeletar1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmeDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/lixo-24.png"))); // NOI18N
+        btnFilmeDeletar.setText("DELETAR");
+        btnFilmeDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoDeletar1ActionPerformed(evt);
+                btnFilmeDeletarActionPerformed(evt);
             }
         });
 
-        btnPlanoAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
-        btnPlanoAlterar1.setText("ALTERAR");
-        btnPlanoAlterar1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmeAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/papel.png"))); // NOI18N
+        btnFilmeAlterar.setText("ALTERAR");
+        btnFilmeAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlanoAlterar1ActionPerformed(evt);
+                btnFilmeAlterarActionPerformed(evt);
             }
         });
 
@@ -305,8 +315,11 @@ public class MenuView extends javax.swing.JFrame {
         jcContratoCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
+        jcFilmeCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jcFilmeCategoria.setEnabled(false);
+        jcFilmeCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jcContratoCategoriaAncestorAdded(evt);
+                jcFilmeCategoriaAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -323,6 +336,7 @@ public class MenuView extends javax.swing.JFrame {
 
         txtSinopseFilme.setColumns(20);
         txtSinopseFilme.setRows(5);
+        txtSinopseFilme.setEnabled(false);
         jScrollPane5.setViewportView(txtSinopseFilme);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -357,22 +371,21 @@ public class MenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcContratoCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcFilmeCategoria, 0, 176, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
                         .addComponent(txtAnoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addComponent(btnPlanoIncluir1)
+                        .addComponent(btnFilmeIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPlanoDeletar1)
+                        .addComponent(btnFilmeDeletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPlanoAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFilmeAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPlanoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(btnPlanoCancelar1)
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addComponent(btnFilmeSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFilmeCancelar)))
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
@@ -384,23 +397,23 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(txtFilmeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jcContratoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcFilmeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPlanoIncluir1)
-                    .addComponent(btnPlanoDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlanoAlterar1)
-                    .addComponent(btnPlanoCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFilmeIncluir)
+                    .addComponent(btnFilmeDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilmeSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilmeAlterar)
+                    .addComponent(btnFilmeCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Filmes"));
 
-        tabViewPlano1.setModel(new javax.swing.table.DefaultTableModel(
+        tabViewFilme.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -408,12 +421,12 @@ public class MenuView extends javax.swing.JFrame {
 
             }
         ));
-        tabViewPlano1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabViewFilme.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabViewPlano1MouseClicked(evt);
+                tabViewFilmeMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(tabViewPlano1);
+        jScrollPane4.setViewportView(tabViewFilme);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1305,6 +1318,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             lblDateAcess.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(new Date()));
             tabelaPlano.update((ArrayList<PlanoModel>) novoPlano.getAllPlano());
+            tabelaFilmesModel.update(novofilme.getAllFilmes());
             tabelaContrato.update(novoContrato.getAllContratos());
             categoriaTabela.update(novaCategoria.getAllCategorias());
         } catch (Exception e) {
@@ -1461,7 +1475,12 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContratoAlterarActionPerformed
 
     private void tabViewContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewContratoMouseClicked
-        // TODO add your handling code here:
+        try {
+            int codigo = Integer.parseInt(tabViewContrato.getValueAt(tabViewContrato.getSelectedRow(), 7).toString());
+            System.out.println(codigo);
+            transferirDadosGridContrato(codigo);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_tabViewContratoMouseClicked
 
     private void jcContratoPlanosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoPlanosAncestorAdded
@@ -1529,32 +1548,55 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUsuariosCancelarActionPerformed
 
-    private void btnPlanoIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoIncluir1ActionPerformed
+    private void btnFilmeIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeIncluirActionPerformed
         try {
-            
+            enableBuFilmes(true);
+            incluirFilmes = true;
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_btnPlanoIncluir1ActionPerformed
+    }//GEN-LAST:event_btnFilmeIncluirActionPerformed
 
-    private void btnPlanoCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoCancelar1ActionPerformed
+    private void btnFilmeCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeCancelarActionPerformed
+        try {
+            enableBuFilmes(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnFilmeCancelarActionPerformed
 
-    private void btnPlanoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoSalvar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoSalvar1ActionPerformed
+    private void btnFilmeSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeSalvarActionPerformed
+        try {
+            FilmeModel novoFilme = new FilmeModel();
+            novoFilme.setTitulo(txtFilmeTitulo.getText());
+            novoFilme.setCategoria(novaCategoria.findCategoriasName(jcFilmeCategoria.getSelectedItem().toString()));
+            novoFilme.setAno(Integer.parseInt(txtAnoFilme.getText()));
+            novoFilme.setSinopse(txtSinopseFilme.getText());
+            if (incluirFilmes) {
+                novofilme.adicionarFilmes(novoFilme);
+                JOptionPane.showMessageDialog(null, "Filme incluido com Sucesso!");
+            } else {
 
-    private void btnPlanoDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoDeletar1ActionPerformed
+            }
+        } catch (Exception e) {
+        } finally {
+            tabelaFilmesModel.update(novofilme.getAllFilmes());
+            enableBuFilmes(false);
+        }
+    }//GEN-LAST:event_btnFilmeSalvarActionPerformed
 
-    private void btnPlanoAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoAlterar1ActionPerformed
+    private void btnFilmeDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlanoAlterar1ActionPerformed
+    }//GEN-LAST:event_btnFilmeDeletarActionPerformed
 
-    private void tabViewPlano1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewPlano1MouseClicked
+    private void btnFilmeAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeAlterarActionPerformed
+        try {
+            enableBuFilmes(true);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnFilmeAlterarActionPerformed
+
+    private void tabViewFilmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewFilmeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabViewPlano1MouseClicked
+    }//GEN-LAST:event_tabViewFilmeMouseClicked
 
     private void btnCategoriaIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaIncluirActionPerformed
         try {
@@ -1602,8 +1644,11 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCategoriaAlterarActionPerformed
 
     private void tabViewCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewCategoriaMouseClicked
-        // TODO add your handling code here:
-
+        try {
+            int codigo = Integer.parseInt(tabViewContrato.getValueAt(tabViewContrato.getSelectedRow(), 7).toString());
+            transferirDadosGridCategoria(codigo);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_tabViewCategoriaMouseClicked
 
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
@@ -1618,18 +1663,12 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
-    private void jcContratoCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoCategoriaAncestorAdded
+    private void jcFilmeCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcFilmeCategoriaAncestorAdded
         try {
-            CategoriaFilmesModel contrat = new CategoriaFilmesModel();
-            jcContratoCategoria.removeAllItems();
-            ArrayList<CategoriaFilmesModel> contraPlanos = (ArrayList<CategoriaFilmesModel>) novaCategoria.getAllCategorias();
-            jcContratoCategoria.addItem("Selecione");
-            for (CategoriaFilmesModel plan : contraPlanos) {
-                jcContratoCategoria.addItem(plan.getNome());
-            }
+            setItemsCombo();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jcContratoCategoriaAncestorAdded
+    }//GEN-LAST:event_jcFilmeCategoriaAncestorAdded
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1678,16 +1717,16 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnContratoDeletar;
     private javax.swing.JButton btnContratoIncluir;
     private javax.swing.JButton btnContratoSalvar;
+    private javax.swing.JButton btnFilmeAlterar;
+    private javax.swing.JButton btnFilmeCancelar;
+    private javax.swing.JButton btnFilmeDeletar;
+    private javax.swing.JButton btnFilmeIncluir;
+    private javax.swing.JButton btnFilmeSalvar;
     private javax.swing.JButton btnPlanoAlterar;
-    private javax.swing.JButton btnPlanoAlterar1;
     private javax.swing.JButton btnPlanoCancelar;
-    private javax.swing.JButton btnPlanoCancelar1;
     private javax.swing.JButton btnPlanoDeletar;
-    private javax.swing.JButton btnPlanoDeletar1;
     private javax.swing.JButton btnPlanoIncluir;
-    private javax.swing.JButton btnPlanoIncluir1;
     private javax.swing.JButton btnPlanoSalvar;
-    private javax.swing.JButton btnPlanoSalvar1;
     private javax.swing.JButton btnUsuariosAlterar;
     private javax.swing.JButton btnUsuariosCancelar;
     private javax.swing.JButton btnUsuariosDeletar;
@@ -1747,17 +1786,17 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JComboBox<String> jcContratoCategoria;
     private javax.swing.JComboBox<String> jcContratoPlanos;
     private javax.swing.JComboBox<String> jcContratoStatus;
     private javax.swing.JComboBox<String> jcContratoUsuarios;
+    private javax.swing.JComboBox<String> jcFilmeCategoria;
     private javax.swing.JComboBox<String> jcPlanoAcesso;
     private javax.swing.JLabel lblDateAcess;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTable tabViewCategoria;
     private javax.swing.JTable tabViewContrato;
+    private javax.swing.JTable tabViewFilme;
     private javax.swing.JTable tabViewPlano;
-    private javax.swing.JTable tabViewPlano1;
     private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtAnoFilme;
     private javax.swing.JTextField txtCategoria;
@@ -1913,6 +1952,57 @@ public class MenuView extends javax.swing.JFrame {
               
             }
         } catch (Exception e) {
+
+    private void transferirDadosGridContrato(int codigo) {
+        ContratoModel bIContrato = novoContrato.getContratoById(codigo);
+        System.out.println(bIContrato);
+        txtContratoInicio.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(bIContrato.getInicio()));
+        txtContratoFim.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(bIContrato.getFim()));
+    }
+
+    private void transferirDadosGridCategoria(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void enableBuFilmes(boolean butt) {
+        if (butt) {
+            btnFilmeIncluir.setEnabled(false);
+            btnFilmeAlterar.setEnabled(false);
+            btnFilmeCancelar.setEnabled(true);
+            btnFilmeDeletar.setEnabled(false);
+            btnFilmeSalvar.setEnabled(true);
+
+            txtFilmeTitulo.setEnabled(true);
+            txtAnoFilme.setEnabled(true);
+            jcFilmeCategoria.setEnabled(true);
+            txtSinopseFilme.setEnabled(true);
+        } else {
+            btnFilmeIncluir.setEnabled(true);
+            btnFilmeAlterar.setEnabled(true);
+            btnFilmeCancelar.setEnabled(true);
+            btnFilmeDeletar.setEnabled(true);
+            btnFilmeSalvar.setEnabled(false);
+
+            txtFilmeTitulo.setEnabled(false);
+            txtAnoFilme.setEnabled(false);
+            jcFilmeCategoria.setEnabled(false);
+            txtSinopseFilme.setEnabled(false);
+
+            txtSinopseFilme.setText("");
+            txtFilmeTitulo.setText("");
+            txtAnoFilme.setText("");
+            jcFilmeCategoria.removeAllItems();
+            jcFilmeCategoria.addItem("Selecione");
+            setItemsCombo();
+        }
+    }
+
+    private void setItemsCombo() {
+        jcFilmeCategoria.removeAllItems();
+        ArrayList<CategoriaFilmesModel> contraPlanos = (ArrayList<CategoriaFilmesModel>) novaCategoria.getAllCategorias();
+        jcFilmeCategoria.addItem("Selecione");
+        for (CategoriaFilmesModel plan : contraPlanos) {
+            jcFilmeCategoria.addItem(plan.getNome());
         }
     }
 }

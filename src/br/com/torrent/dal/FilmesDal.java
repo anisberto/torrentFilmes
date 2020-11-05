@@ -25,13 +25,13 @@ public class FilmesDal implements FilmesInterfaces {
 
     @Override
     public void adicionarFilmes(FilmeModel filme) {
-        String sql = "INSERT INTO filmes (fil_titulo, fil_ano, fil_sinope, fil_cat_iden) VALUES (?,?,?,?, default )";
+        String sql = "INSERT INTO filmes (fil_titulo, fil_ano, fil_sinopse, fil_cat_iden) VALUES (?,?,?,? )";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, filme.getTitulo());
             preparedStatement.setObject(2, filme.getAno());
-            preparedStatement.setObject(3, filme.getSinopse());
-            preparedStatement.setObject(4, filme.getCategoria());
+            preparedStatement.setString(3, filme.getSinopse());
+            preparedStatement.setObject(4, filme.getCategoria().getIden());
             preparedStatement.executeUpdate();
         } catch (SQLException erro) {
             try {
@@ -94,10 +94,9 @@ public class FilmesDal implements FilmesInterfaces {
                 filme.setIden(rs.getInt("fil_iden"));
                 filme.setTitulo(rs.getString("fil_titulo"));
                 filme.setAno(rs.getInt("fil_ano"));
-                filme.setSinopse(rs.getString("fil_sinope"));
-                //filme.setCategoria(catego.consultarCategoriaPorId(rs.getInt("fil_cat_iden")));
+                filme.setSinopse(rs.getString("fil_sinopse"));
+                filme.setCategoria(catego.getCategoriasById(rs.getInt("fil_cat_iden")));
                 listFilmes.add(filme);
-                System.out.println("teste 1");
             }
         } catch (SQLException erro) {
             try {
@@ -122,7 +121,7 @@ public class FilmesDal implements FilmesInterfaces {
                 filme.setTitulo(rs.getString("fil_titulo"));
                 filme.setAno(rs.getInt("fil_ano"));
                 filme.setSinopse(rs.getString("fil_sinope"));
-                //filme.setCategoria(catego.consultarCategoriaPorId(rs.getInt("fil_cat_iden")));
+                filme.setCategoria(catego.getCategoriasById(rs.getInt("fil_cat_iden")));
             }
         } catch (Exception erro) {
             try {
@@ -147,7 +146,7 @@ public class FilmesDal implements FilmesInterfaces {
                 filme.setTitulo(rs.getString("fil_titulo"));
                 filme.setAno(rs.getInt("fil_ano"));
                 filme.setSinopse(rs.getString("fil_sinope"));
-                //filme.setCategoria(catego.consultarCategoriaPorId(rs.getInt("fil_cat_iden")));
+                filme.setCategoria(catego.getCategoriasById(rs.getInt("fil_cat_iden")));
             }
         } catch (Exception erro) {
             try {

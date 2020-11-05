@@ -29,7 +29,7 @@ public class ContratoBll implements ContratoInterface {
     }
 
     @Override
-    public void deleteContrato(ContratoModel contrato) {
+    public void deleteContrato(int contrato) {
         try {
             contratobll.deleteContrato(contrato);
         } catch (Exception e) {
