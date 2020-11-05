@@ -34,7 +34,7 @@ public class MenuView extends javax.swing.JFrame {
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
-    
+
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     FilmeTableModel tabelaFilmesModel;
@@ -92,7 +92,7 @@ public class MenuView extends javax.swing.JFrame {
         btnFilmeAlterar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jcFilmeCategoria = new javax.swing.JComboBox<>();
+        jcContratoCategoria = new javax.swing.JComboBox<>();
         txtAnoFilme = new javax.swing.JTextField();
         txtFilmeTitulo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -312,14 +312,12 @@ public class MenuView extends javax.swing.JFrame {
         jLabel18.setText("ano");
 
         jcContratoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jcContratoCategoria.setEnabled(false);
         jcContratoCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-        jcFilmeCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
-        jcFilmeCategoria.setEnabled(false);
-        jcFilmeCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jcFilmeCategoriaAncestorAdded(evt);
+                jcContratoCategoriaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -371,7 +369,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcFilmeCategoria, 0, 176, Short.MAX_VALUE)
+                        .addComponent(jcContratoCategoria, 0, 176, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
@@ -397,7 +395,7 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(txtFilmeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jcFilmeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcContratoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1079,10 +1077,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoPlanosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1090,10 +1088,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoUsuariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1567,7 +1565,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             FilmeModel novoFilme = new FilmeModel();
             novoFilme.setTitulo(txtFilmeTitulo.getText());
-            novoFilme.setCategoria(novaCategoria.findCategoriasName(jcFilmeCategoria.getSelectedItem().toString()));
+            novoFilme.setCategoria(novaCategoria.findCategoriasName(jcContratoCategoria.getSelectedItem().toString()));
             novoFilme.setAno(Integer.parseInt(txtAnoFilme.getText()));
             novoFilme.setSinopse(txtSinopseFilme.getText());
             if (incluirFilmes) {
@@ -1652,7 +1650,7 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_tabViewCategoriaMouseClicked
 
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
-        
+
         try {
             int coluna = tableUsuarios.getSelectedRow();
             Integer codigo = Integer.parseInt(tableUsuarios.getValueAt(coluna, 0).toString());
@@ -1663,12 +1661,12 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
-    private void jcFilmeCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcFilmeCategoriaAncestorAdded
+    private void jcContratoCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoCategoriaAncestorAdded
         try {
             setItemsCombo();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jcFilmeCategoriaAncestorAdded
+    }//GEN-LAST:event_jcContratoCategoriaAncestorAdded
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1786,10 +1784,10 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JComboBox<String> jcContratoCategoria;
     private javax.swing.JComboBox<String> jcContratoPlanos;
     private javax.swing.JComboBox<String> jcContratoStatus;
     private javax.swing.JComboBox<String> jcContratoUsuarios;
-    private javax.swing.JComboBox<String> jcFilmeCategoria;
     private javax.swing.JComboBox<String> jcPlanoAcesso;
     private javax.swing.JLabel lblDateAcess;
     private javax.swing.JLabel lblUser;
@@ -1921,6 +1919,7 @@ public class MenuView extends javax.swing.JFrame {
             txtCategoria.setText("");
         }
     }
+
     // Usuario
     private void transferirDadosUsuario(int id) {
         try {
@@ -1928,14 +1927,15 @@ public class MenuView extends javax.swing.JFrame {
             txtUsuariosNome.setText(delete.getNome());
             txtUsuariosCpf.setText(delete.getNome());
             txtUsuariosEmail.setText(delete.getNome());
-            
+
         } catch (Exception e) {
         }
     }
-    private void consultarUsuarios(List<UsuarioModel> lista) throws Exception{
+
+    private void consultarUsuarios(List<UsuarioModel> lista) throws Exception {
         DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
         modelo.setNumRows(0);
-        
+
         for (int pos = 0; pos < lista.size(); pos++) {
             String[] linha = new String[2];
             UsuarioModel aux = lista.get(pos);
@@ -1945,13 +1945,15 @@ public class MenuView extends javax.swing.JFrame {
 
         }
     }
-    
-    private void preencheUsuario(int id) throws Exception{
+
+    private void preencheUsuario(int id) throws Exception {
         try {
-            if (id > 0){
-              
+            if (id > 0) {
+
             }
         } catch (Exception e) {
+        }
+    }
 
     private void transferirDadosGridContrato(int codigo) {
         ContratoModel bIContrato = novoContrato.getContratoById(codigo);
@@ -1974,7 +1976,7 @@ public class MenuView extends javax.swing.JFrame {
 
             txtFilmeTitulo.setEnabled(true);
             txtAnoFilme.setEnabled(true);
-            jcFilmeCategoria.setEnabled(true);
+            jcContratoCategoria.setEnabled(true);
             txtSinopseFilme.setEnabled(true);
         } else {
             btnFilmeIncluir.setEnabled(true);
@@ -1985,24 +1987,24 @@ public class MenuView extends javax.swing.JFrame {
 
             txtFilmeTitulo.setEnabled(false);
             txtAnoFilme.setEnabled(false);
-            jcFilmeCategoria.setEnabled(false);
+            jcContratoCategoria.setEnabled(false);
             txtSinopseFilme.setEnabled(false);
 
             txtSinopseFilme.setText("");
             txtFilmeTitulo.setText("");
             txtAnoFilme.setText("");
-            jcFilmeCategoria.removeAllItems();
-            jcFilmeCategoria.addItem("Selecione");
+            jcContratoCategoria.removeAllItems();
+            jcContratoCategoria.addItem("Selecione");
             setItemsCombo();
         }
     }
 
     private void setItemsCombo() {
-        jcFilmeCategoria.removeAllItems();
+        jcContratoCategoria.removeAllItems();
         ArrayList<CategoriaFilmesModel> contraPlanos = (ArrayList<CategoriaFilmesModel>) novaCategoria.getAllCategorias();
-        jcFilmeCategoria.addItem("Selecione");
+        jcContratoCategoria.addItem("Selecione");
         for (CategoriaFilmesModel plan : contraPlanos) {
-            jcFilmeCategoria.addItem(plan.getNome());
+            jcContratoCategoria.addItem(plan.getNome());
         }
     }
 }
