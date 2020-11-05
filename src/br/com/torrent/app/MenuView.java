@@ -21,13 +21,16 @@ import br.com.torrent.util.PlanoTableModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MenuView extends javax.swing.JFrame {
 
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
+    
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     UsuarioInterface novoUsuario = null;
@@ -49,6 +52,7 @@ public class MenuView extends javax.swing.JFrame {
         tabViewCategoria.setModel(categoriaTabela);
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
+        tableUsuarios.setModel(tabelaPlano);
         novoPlano = new PlanoBll();
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
@@ -299,10 +303,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         jcContratoCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoCategoriaAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -545,12 +549,10 @@ public class MenuView extends javax.swing.JFrame {
             tableUsuarios.getColumnModel().getColumn(0).setMinWidth(50);
             tableUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
             tableUsuarios.getColumnModel().getColumn(0).setMaxWidth(50);
-            tableUsuarios.getColumnModel().getColumn(2).setMinWidth(150);
             tableUsuarios.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tableUsuarios.getColumnModel().getColumn(2).setMaxWidth(150);
-            tableUsuarios.getColumnModel().getColumn(4).setMinWidth(50);
-            tableUsuarios.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tableUsuarios.getColumnModel().getColumn(4).setMaxWidth(50);
+            tableUsuarios.getColumnModel().getColumn(4).setMinWidth(60);
+            tableUsuarios.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tableUsuarios.getColumnModel().getColumn(4).setMaxWidth(60);
         }
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
@@ -1064,10 +1066,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoPlanosAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1075,10 +1077,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoUsuariosAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1605,10 +1607,13 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_tabViewCategoriaMouseClicked
 
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
+        
         try {
-            int codigo = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
-            transferirDadosPlano(codigo);
-            idDelete = codigo;
+            int coluna = tableUsuarios.getSelectedRow();
+            Integer codigo = Integer.parseInt(tableUsuarios.getValueAt(coluna, 0).toString());
+            //int linha = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
+//            transferirDadosUsuario(linha);
+//            idDelete = linha;
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
@@ -1875,6 +1880,39 @@ public class MenuView extends javax.swing.JFrame {
             txtCategoria.setEnabled(false);
 
             txtCategoria.setText("");
+        }
+    }
+    // Usuario
+    private void transferirDadosUsuario(int id) {
+        try {
+            UsuarioModel delete = novoUsuario.getUsuarioById(id);
+            txtUsuariosNome.setText(delete.getNome());
+            txtUsuariosCpf.setText(delete.getNome());
+            txtUsuariosEmail.setText(delete.getNome());
+            
+        } catch (Exception e) {
+        }
+    }
+    private void consultarUsuarios(List<UsuarioModel> lista) throws Exception{
+        DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
+        modelo.setNumRows(0);
+        
+        for (int pos = 0; pos < lista.size(); pos++) {
+            String[] linha = new String[2];
+            UsuarioModel aux = lista.get(pos);
+            linha[0] = aux.getIden() + "";
+            linha[1] = aux.getNome() + "";
+            modelo.addRow(linha);
+
+        }
+    }
+    
+    private void preencheUsuario(int id) throws Exception{
+        try {
+            if (id > 0){
+              
+            }
+        } catch (Exception e) {
         }
     }
 }
