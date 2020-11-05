@@ -284,7 +284,7 @@ public class LoginView extends javax.swing.JFrame {
                 LoginViewCrud telaUser = new LoginViewCrud();
                 telaUser.setVisible(true);
                 dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Você não pode acessar este campo");
             }
         } catch (Exception e) {

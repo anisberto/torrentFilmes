@@ -276,15 +276,15 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtPlanoNome2" min="-2" pref="237" max="-2" attributes="0"/>
+                                      <Component id="txtFilmeTitulo" min="-2" pref="237" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jcPlanoAcesso1" max="32767" attributes="0"/>
+                                      <Component id="jcContratoCategoria" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtPlanoPreco1" min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="txtAnoFilme" min="-2" pref="132" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="btnPlanoIncluir1" min="-2" max="-2" attributes="0"/>
@@ -308,11 +308,11 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtPlanoPreco1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtAnoFilme" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPlanoNome2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFilmeTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jcPlanoAcesso1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jcContratoCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -403,26 +403,27 @@
                         <Property name="text" type="java.lang.String" value="ano"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jcPlanoAcesso1">
+                    <Component class="javax.swing.JComboBox" name="jcContratoCategoria">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="SIM"/>
-                            <StringItem index="1" value="NAO"/>
+                          <StringArray count="1">
+                            <StringItem index="0" value="Selecione"/>
                           </StringArray>
                         </Property>
-                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jcContratoCategoriaAncestorAdded"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtPlanoPreco1">
+                    <Component class="javax.swing.JTextField" name="txtAnoFilme">
                       <Properties>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtPlanoNome2">
+                    <Component class="javax.swing.JTextField" name="txtFilmeTitulo">
                       <Properties>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
@@ -472,7 +473,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea1">
+                            <Component class="javax.swing.JTextArea" name="txtSinopseFilme">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="rows" type="int" value="5"/>

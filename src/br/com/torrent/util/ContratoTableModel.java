@@ -42,9 +42,9 @@ public class ContratoTableModel extends AbstractTableModel {
             case 1:
                 return dados.get(rowIndex).getId_usu().getNome();
             case 2:
-                return dados.get(rowIndex).getId() + "";
+                return dados.get(rowIndex).getPrecoComDesconto() + "";
             case 3:
-                return dados.get(rowIndex).getId_usu().getSenha();
+                return dados.get(rowIndex).getId_usu().getIden()+"";
             case 4:
                 return dados.get(rowIndex).getInicio().toString() + " - " + dados.get(rowIndex).getFim();
             case 5:
@@ -52,7 +52,7 @@ public class ContratoTableModel extends AbstractTableModel {
             case 6:
                 return "R$ " + dados.get(rowIndex).getId_plano().getPreco() + "";
             case 7:
-                return "R$ " + dados.get(rowIndex).getPrecoComDesconto();
+                return "" + dados.get(rowIndex).getId();
             default:
                 throw new AssertionError();
         }

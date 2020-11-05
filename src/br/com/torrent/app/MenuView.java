@@ -78,13 +78,13 @@ public class MenuView extends javax.swing.JFrame {
         btnPlanoAlterar1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jcPlanoAcesso1 = new javax.swing.JComboBox<>();
-        txtPlanoPreco1 = new javax.swing.JTextField();
-        txtPlanoNome2 = new javax.swing.JTextField();
+        jcContratoCategoria = new javax.swing.JComboBox<>();
+        txtAnoFilme = new javax.swing.JTextField();
+        txtFilmeTitulo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtSinopseFilme = new javax.swing.JTextArea();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabViewPlano1 = new javax.swing.JTable();
@@ -297,21 +297,29 @@ public class MenuView extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel18.setText("ano");
 
-        jcPlanoAcesso1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIM", "NAO" }));
-        jcPlanoAcesso1.setEnabled(false);
+        jcContratoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jcContratoCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jcContratoCategoriaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        txtPlanoPreco1.setEnabled(false);
+        txtAnoFilme.setEnabled(false);
 
-        txtPlanoNome2.setEnabled(false);
+        txtFilmeTitulo.setEnabled(false);
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel19.setText("Titulo");
 
         jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
+        txtSinopseFilme.setColumns(20);
+        txtSinopseFilme.setRows(5);
+        jScrollPane5.setViewportView(txtSinopseFilme);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -341,15 +349,15 @@ public class MenuView extends javax.swing.JFrame {
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPlanoNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFilmeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcPlanoAcesso1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcContratoCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
-                        .addComponent(txtPlanoPreco1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAnoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(btnPlanoIncluir1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -368,11 +376,11 @@ public class MenuView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPlanoPreco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(txtPlanoNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFilmeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jcPlanoAcesso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcContratoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1056,10 +1064,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoPlanosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1067,10 +1075,10 @@ public class MenuView extends javax.swing.JFrame {
 
         jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoUsuariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1431,6 +1439,7 @@ public class MenuView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Incluir: " + e.getMessage());
         } finally {
             ContratoEnableButtons(false);
+            tabelaContrato.update(novoContrato.getAllContratos());
         }
     }//GEN-LAST:event_btnContratoSalvarActionPerformed
 
@@ -1519,7 +1528,10 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosCancelarActionPerformed
 
     private void btnPlanoIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoIncluir1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnPlanoIncluir1ActionPerformed
 
     private void btnPlanoCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoCancelar1ActionPerformed
@@ -1600,6 +1612,19 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
+
+    private void jcContratoCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcContratoCategoriaAncestorAdded
+        try {
+            CategoriaFilmesModel contrat = new CategoriaFilmesModel();
+            jcContratoCategoria.removeAllItems();
+            ArrayList<CategoriaFilmesModel> contraPlanos = (ArrayList<CategoriaFilmesModel>) novaCategoria.getAllCategorias();
+            jcContratoCategoria.addItem("Selecione");
+            for (CategoriaFilmesModel plan : contraPlanos) {
+                jcContratoCategoria.addItem(plan.getNome());
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jcContratoCategoriaAncestorAdded
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1716,27 +1741,27 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JComboBox<String> jcContratoCategoria;
     private javax.swing.JComboBox<String> jcContratoPlanos;
     private javax.swing.JComboBox<String> jcContratoStatus;
     private javax.swing.JComboBox<String> jcContratoUsuarios;
     private javax.swing.JComboBox<String> jcPlanoAcesso;
-    private javax.swing.JComboBox<String> jcPlanoAcesso1;
     private javax.swing.JLabel lblDateAcess;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTable tabViewCategoria;
     private javax.swing.JTable tabViewContrato;
     private javax.swing.JTable tabViewPlano;
     private javax.swing.JTable tabViewPlano1;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTable tableUsuarios;
+    private javax.swing.JTextField txtAnoFilme;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JFormattedTextField txtContratoFim;
     private javax.swing.JFormattedTextField txtContratoInicio;
+    private javax.swing.JTextField txtFilmeTitulo;
     private javax.swing.JTextField txtPlanoNome;
-    private javax.swing.JTextField txtPlanoNome2;
     private javax.swing.JTextField txtPlanoPreco;
-    private javax.swing.JTextField txtPlanoPreco1;
+    private javax.swing.JTextArea txtSinopseFilme;
     private javax.swing.JFormattedTextField txtUsuariosCpf;
     private javax.swing.JTextField txtUsuariosEmail;
     private javax.swing.JTextField txtUsuariosNome;

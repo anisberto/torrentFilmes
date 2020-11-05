@@ -69,6 +69,7 @@ public class ContratoModel {
     }
 
     public double getPrecoComDesconto() {
+        precoComDesconto = (getId_plano().getPreco()-(getId_usu().getIden() * getId_plano().getPreco()));
         return precoComDesconto;
     }
 
