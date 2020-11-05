@@ -124,7 +124,7 @@ public class UsuarioBll implements UsuarioInterface {
 //
 //    // 5°
 //    public UsuarioModel consultarUsuarioPorId(int id) throws Exception {
-//        return usuarioDao.getUsuarioById(id);
+//        return UsuarioDal.getUsuarioById(id);
 //    }
 //        
 //    public UsuarioModel consultarUsuarioPorNome(String nome) throws Exception {
