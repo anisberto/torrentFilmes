@@ -120,7 +120,7 @@ public class FilmesDal implements FilmesInterfaces {
                 filme.setIden(rs.getInt("fil_iden"));
                 filme.setTitulo(rs.getString("fil_titulo"));
                 filme.setAno(rs.getInt("fil_ano"));
-                filme.setSinopse(rs.getString("fil_sinope"));
+                filme.setSinopse(rs.getString("fil_sinopse"));
                 filme.setCategoria(catego.getCategoriasById(rs.getInt("fil_cat_iden")));
             }
         } catch (Exception erro) {

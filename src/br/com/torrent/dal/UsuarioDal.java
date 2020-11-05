@@ -103,18 +103,18 @@ public class UsuarioDal implements UsuarioInterface {
         UsuarioModel retUsuario = new UsuarioModel();
 
         try {
-            String sql = "SELECT * FROM usuario WHERE usu_iden=?";
+            String sql = "SELECT * FROM cup_usuarios WHERE cup_iden=?";
             PreparedStatement preparedStatement = conect.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                retUsuario.setIden(rs.getInt("usu_id"));
-                retUsuario.setNome(rs.getString("usu_nome"));
-                retUsuario.setSenha(rs.getString("usu_senha"));
+                retUsuario.setIden(rs.getInt("cup_iden"));
+                retUsuario.setNome(rs.getString("cup_nome"));
+                retUsuario.setSenha(rs.getString("cup_senha"));
             }
         } catch (Exception erro) {
             try {
-                throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
+                throw new Exception("Erro ao buscar no banco de dados: !!\n" + erro.getMessage());
             } catch (Exception ex) {
                 Logger.getLogger(UsuarioDal.class.getName()).log(Level.SEVERE, null, ex);
             }

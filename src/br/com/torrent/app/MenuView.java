@@ -1581,13 +1581,7 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnFilmeDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeDeletarActionPerformed
         try {
-            int idFilmeDelete = Integer.parseInt(tabViewFilme.getValueAt(tabViewFilme.getSelectedRow(), 0).toString());
-            int confi = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Filme: " + novofilme.getFilmesById(idFilmeDelete).getTitulo());
-            if (confi == 0) {
-                novofilme.deleteFilmes(idFilmeDelete);
-            }else{
-                JOptionPane.showMessageDialog(null,"Deleção cancelada");
-            }
+            transferirDadosFilmes();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnFilmeDeletarActionPerformed
@@ -1600,7 +1594,7 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFilmeAlterarActionPerformed
 
     private void tabViewFilmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewFilmeMouseClicked
-        // TODO add your handling code here:
+        transferirDadosFilmes();
     }//GEN-LAST:event_tabViewFilmeMouseClicked
 
     private void btnCategoriaIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaIncluirActionPerformed
@@ -2012,6 +2006,19 @@ public class MenuView extends javax.swing.JFrame {
         jcContratoCategoria.addItem("Selecione");
         for (CategoriaFilmesModel plan : contraPlanos) {
             jcContratoCategoria.addItem(plan.getNome());
+        }
+    }
+
+    private void transferirDadosFilmes() {
+        try {
+            int codigo = Integer.parseInt(tabViewFilme.getValueAt(tabViewFilme.getSelectedRow(), 0).toString());
+            FilmeModel deleteFil = novofilme.getFilmesById(codigo);
+            txtAnoFilme.setText(deleteFil.getAno()+"");
+            txtFilmeTitulo.setText(deleteFil.getTitulo());
+            jcContratoCategoria.addItem(deleteFil.getCategoria().getNome());
+            txtSinopseFilme.setText(deleteFil.getSinopse());
+            JOptionPane.showMessageDialog(null, deleteFil);
+        } catch (Exception e) {
         }
     }
 }
