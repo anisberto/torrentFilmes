@@ -71,7 +71,7 @@ public class FilmesBll implements FilmesInterfaces {
     @Override
     public FilmeModel getFilmesById(int id) {
         try {
-            filmesDao.getFilmesById(id);
+            return filmesDao.getFilmesById(id);
         } catch (Exception e) {
             try {
                 throw new Exception("Erro ao buscar por id: dal.erro." + e.getMessage());

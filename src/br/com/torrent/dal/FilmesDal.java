@@ -62,14 +62,14 @@ public class FilmesDal implements FilmesInterfaces {
 
     @Override
     public void updateFilmes(FilmeModel filme) {
-        String sql = "UPDATE filmes set  fil_titulo=?, fil_ano=?, fil_sinope=?, where fil_cat_iden=?";
+        String sql = "UPDATE filmes set  fil_titulo=?, fil_ano=?, fil_sinope=?,fil_cat_iden where fil_cat_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, filme.getTitulo());
-            preparedStatement.setInt(2, filme.getIden());
-            preparedStatement.setInt(3, filme.getAno());
-            preparedStatement.setString(4, filme.getSinopse());
-            preparedStatement.setString(5, filme.getCategoria().getNome());
+            preparedStatement.setInt(2, filme.getAno());
+            preparedStatement.setString(3, filme.getSinopse());
+            preparedStatement.setString(4, filme.getCategoria().getNome());
+            preparedStatement.setInt(5, filme.getIden());
             preparedStatement.executeUpdate();
 
         } catch (SQLException erro) {
@@ -111,9 +111,8 @@ public class FilmesDal implements FilmesInterfaces {
     @Override
     public FilmeModel getFilmesById(int id) {
         FilmeModel filme = new FilmeModel();
-        String sql = "SELECT * FROM filmes WHERE fil_iden=?";
         try {
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            PreparedStatement preparedStatement = conexao.prepareStatement("select * from filmes where fil_iden=?");
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
