@@ -60,4 +60,10 @@ public class UsuarioModel {
         this.senha = senha;
     }
 
+    @Override
+    public String toString() {
+        return "UsuarioModel{" + "iden=" + iden + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", desconto=" + desconto + '}';
+    }
+
+    
 }
