@@ -1,7 +1,6 @@
 package br.com.torrent.dal;
 
 import br.com.torrent.interfaces.UsuarioInterface;
-import br.com.torrent.model.Cupon;
 import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -47,18 +46,18 @@ public class UsuarioDal implements UsuarioInterface {
     public void deleteUsuario(UsuarioModel usuario) {
 
         try {
-            String sql = "DELETE FROM usuario WHERE usu_iden=?";
+            String sql = "DELETE FROM cup_usuarios WHERE usu_iden=?";
             PreparedStatement preparedStatement = conect.prepareStatement(sql);
             preparedStatement.setInt(1, usuario.getIden());
             preparedStatement.executeUpdate();
-        } catch (SQLException erro) {
+        } catch (Exception e) {
         }
     }
 
     @Override
     public void updateUsuario(UsuarioModel usuario) {
         try {
-            String sql = "UPDATE usuario set  usu_nome=?, usu_cpf=?, usu_email=?, usu_senha=?, where usu_cup_iden=?";
+            String sql = "UPDATE cup_usuarios set  usu_nome=?, usu_cpf=?, usu_email=?, usu_senha=?, where usu_cup_iden=?";
             PreparedStatement preparedStatement = conect.prepareStatement(sql);
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setInt(2, usuario.getIden());
@@ -110,6 +109,8 @@ public class UsuarioDal implements UsuarioInterface {
             if (rs.next()) {
                 retUsuario.setIden(rs.getInt("cup_iden"));
                 retUsuario.setNome(rs.getString("cup_nome"));
+                retUsuario.setEmail(rs.getString("cup_email"));
+                retUsuario.setEmail(rs.getString("cup_cpf"));
                 retUsuario.setSenha(rs.getString("cup_senha"));
             }
         } catch (Exception erro) {

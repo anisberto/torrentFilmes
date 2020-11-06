@@ -1,14 +1,9 @@
 package br.com.torrent.util;
 
-import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuarioModel;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author edivan
- */
 public class UsuarioTableModel extends AbstractTableModel {
 
     ArrayList<UsuarioModel> dados = null;

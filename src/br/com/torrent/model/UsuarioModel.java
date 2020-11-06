@@ -12,12 +12,14 @@ public class UsuarioModel {
     public UsuarioModel() {
     }
 
-    public UsuarioModel(int iden, String nome, String cpf, String email, String senha) {
+    public UsuarioModel(int iden, String nome, String cpf, String email, String senha, double desconto) {
         this.iden = iden;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
+        this.desconto = desconto;
+        
     }
 
     public int getIden() {
@@ -60,10 +62,17 @@ public class UsuarioModel {
         this.senha = senha;
     }
 
+    public double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
+    }
+
     @Override
     public String toString() {
         return "UsuarioModel{" + "iden=" + iden + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", desconto=" + desconto + '}';
     }
-
-    
+        
 }
