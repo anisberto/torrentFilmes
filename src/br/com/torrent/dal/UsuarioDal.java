@@ -85,7 +85,7 @@ public class UsuarioDal implements UsuarioInterface {
                 novoUsuario.setCpf(rs.getString("cup_cpf"));
                 usuarios.add(novoUsuario);
             }
-            //return usuarios;
+            return (ArrayList<UsuarioModel>) usuarios;
         } catch (Exception e) {
             try {
                 throw new Exception("Erro ao Listar todos os usuarios: " + e.getMessage());

@@ -16,4 +16,5 @@ public interface CategoriasInterfaces {
     public CategoriaFilmesModel getCategoriasById(int id);
 
     public CategoriaFilmesModel findCategoriasName(String nome);
+
 }
