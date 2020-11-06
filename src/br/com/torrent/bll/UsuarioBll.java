@@ -4,7 +4,6 @@ import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.UsuarioInterface;
 import br.com.torrent.model.UsuarioModel;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +24,7 @@ public class UsuarioBll implements UsuarioInterface {
             try {
                 throw new Exception("Erro bll incluir" + e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -38,7 +37,7 @@ public class UsuarioBll implements UsuarioInterface {
             try {
                 throw new Exception(e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -51,7 +50,7 @@ public class UsuarioBll implements UsuarioInterface {
             try {
                 throw new Exception(e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
 
             }
         }
@@ -65,7 +64,7 @@ public class UsuarioBll implements UsuarioInterface {
             try {
                 throw new Exception(e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -79,7 +78,7 @@ public class UsuarioBll implements UsuarioInterface {
             try {
                 throw new Exception(e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -94,40 +93,4 @@ public class UsuarioBll implements UsuarioInterface {
         return null;
     }
 
-//    public UsuarioBll() {
-//        try {
-//            usuarioDao = new UsuarioDal();
-//        } catch (Exception ex) {
-//            Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//
-//    // 1°
-//    public void adicionarUsuario(UsuarioModel usuario) throws Exception {
-//        usuarioDao.adicionarUsuario(usuario);
-//    }
-//
-//    // 2°
-//    public void removerUsuario(UsuarioModel usuario) throws Exception {
-//        usuarioDao.deleteUsuario(usuario.getIden());
-//    }
-//
-//    // 3°
-//    public void alterarUsuario(UsuarioModel usuario) throws Exception {
-//        usuarioDao.updateUsuario(usuario);
-//    }
-//
-//    // 4° 
-//    public List<UsuarioModel> consultarUsuario() throws Exception {
-//        return usuarioDao.getAllUsuario();
-//    }
-//
-//    // 5°
-//    public UsuarioModel consultarUsuarioPorId(int id) throws Exception {
-//        return UsuarioDal.getUsuarioById(id);
-//    }
-//        
-//    public UsuarioModel consultarUsuarioPorNome(String nome) throws Exception {
-//        return usuarioDao.getUsuarioByNome(nome);
-//    }
 }
