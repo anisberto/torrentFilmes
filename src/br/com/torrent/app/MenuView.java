@@ -1501,7 +1501,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             novoUsuario.deleteUsuario(novoUsuario.getUsuarioById(idUsuarioDelete));
             JOptionPane.showMessageDialog(null, "Usuario: " + novoUsuario.getUsuarioById(idDelete).getNome() + "! Deletado");
-            clearFields();
+            CleanFieldsUsuario();
             tabelaUsuario.update(novoUsuario.getAllUsuario());
         } catch (Exception e) {
         }
