@@ -1912,7 +1912,8 @@ public class MenuView extends javax.swing.JFrame {
         txtUsuariosSenha.setText("");
     }
 
-    private void EnableBuUsuario(boolean butt) {
+    private void EnableBuUsuario(boolean butt) {}
+    
     public void clearFilmesFilds() {
         txtFilmeTitulo.setText("");
         txtAnoFilme.setText("");
