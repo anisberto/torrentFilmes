@@ -81,4 +81,8 @@ public class PlanoTableModel extends AbstractTableModel {
         }
     }
 
+    public void update(PlanoModel next) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
