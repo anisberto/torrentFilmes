@@ -1669,11 +1669,12 @@ public class MenuView extends javax.swing.JFrame {
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
 
         try {
-            int coluna = tableUsuarios.getSelectedRow();
-            Integer codigo = Integer.parseInt(tableUsuarios.getValueAt(coluna, 0).toString());
+//            int coluna = tableUsuarios.getSelectedRow();
+//            Integer codigo = Integer.parseInt(tableUsuarios.getValueAt(coluna, 0).toString());
+            int codigo = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
             //int linha = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
-//            transferirDadosUsuario(linha);
-//            idDelete = linha;
+            transferirDadosUsuario(codigo);
+            idDelete = codigo;
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
@@ -1952,6 +1953,7 @@ public class MenuView extends javax.swing.JFrame {
             txtUsuariosNome.setText(delete.getNome());
             txtUsuariosCpf.setText(delete.getNome());
             txtUsuariosEmail.setText(delete.getNome());
+            txtUsuariosSenha.setText(delete.getNome());
 
         } catch (Exception e) {
         }
