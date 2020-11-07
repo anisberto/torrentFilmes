@@ -57,6 +57,8 @@ public class PlanoDal implements PlanoInterface {
             try {
                 throw new Exception("Erro ao Listar todos os Planos: " + e.getMessage());
             } catch (Exception ex) {
+                Conexao conec = Conexao.getInstance();
+                conec.notifyObservers();
                 Logger.getLogger(PlanoDal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

@@ -1,5 +1,7 @@
 package br.com.torrent.util;
 
+import br.com.torrent.interfaces.ConnectionObservable;
+import br.com.torrent.interfaces.ConnectionObserver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,12 +9,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
-public class Conexao {
+public class Conexao implements ConnectionObservable {
 
     private static Conexao conexao = null;
     private static Connection conect = null;
+    List<ConnectionObserver> connectionObservers = new ArrayList<>();
+    private boolean isConnected = true;
 
     private Conexao() {
     }
@@ -31,7 +37,10 @@ public class Conexao {
                 String urlDb = props.getProperty("dburl");
                 conect = DriverManager.getConnection(urlDb, props);
             } catch (Exception errorConectCreate) {
+                isConnected = false;
                 throw new Exception("Erro ao conectar no banco de dados! 22655" + errorConectCreate.getMessage());
+            } finally {
+                notifyObservers();
             }
         }
         return conect;
@@ -73,7 +82,24 @@ public class Conexao {
             fileProperties.load(fs);
             return fileProperties;
         } catch (IOException error) {
-            throw new IOException("Erro ao Carregar Propriedades: " + error.getMessage());
+            throw new IOException("Erro ao Carre");
         }
+    }
+
+    @Override
+    public void addConnectionObserver(ConnectionObserver connectionObserver) {
+        connectionObservers.add(connectionObserver);
+    }
+
+    @Override
+    public void removeConnectionObserver(ConnectionObserver connectionObserver) {
+        connectionObservers.remove(connectionObserver);
+    }
+
+    @Override
+    public void notifyObservers() {
+        connectionObservers.forEach(connect ->{
+            connect.onConnectionChange(isConnected);
+        } );
     }
 }
