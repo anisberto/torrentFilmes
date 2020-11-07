@@ -4,7 +4,6 @@ import br.com.torrent.dal.PlanoDal;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.model.PlanoModel;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +29,7 @@ public class PlanoBll implements PlanoInterface {
     }
 
     @Override
-    public void deletePlano(PlanoModel plano) {
+    public void deletePlano(int plano) {
         try {
             novoPlano.deletePlano(plano);
         } catch (Exception e) {

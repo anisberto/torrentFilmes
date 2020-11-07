@@ -8,7 +8,7 @@ public interface PlanoInterface {
 
     public void adicionarPlano(PlanoModel plano);
 
-    public void deletePlano(PlanoModel plano);
+    public void deletePlano(int plano);
 
     public void updatePlano(PlanoModel plano);
 

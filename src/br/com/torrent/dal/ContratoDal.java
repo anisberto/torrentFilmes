@@ -120,7 +120,7 @@ public class ContratoDal implements ContratoInterface {
                 bContrato.setStatus(resultado.getString("con_status"));
                 bContrato.setFim(resultado.getDate("con_fim").toString());
                 bContrato.setInicio(resultado.getDate("con_inicio").toString());
-                bContrato.setId_plano(planoDal.getPlanoById(resultado.getInt("con_plan_iden")));
+                bContrato.setId_plano(planoDal.getPlanoById(resultado.getInt("con_pla_iden")));
                 bContrato.setId_usu(usuarioDal.getUsuarioById(resultado.getInt("con_cup_iden")));
                 bContrato.setPrecoComDesconto(resultado.getDouble("con_precocomdesconto"));
             }

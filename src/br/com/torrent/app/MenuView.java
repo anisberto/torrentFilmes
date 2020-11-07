@@ -409,7 +409,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAnoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
@@ -653,7 +653,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(txtUsuariosSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 780, 420));
@@ -1403,9 +1403,19 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnPlanoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletarActionPerformed
         try {
-            novoPlano.deletePlano(novoPlano.getPlanoById(idDelete));
-            JOptionPane.showMessageDialog(null, "Plano: " + novoPlano.getPlanoById(idDelete).getNome() + "! Deletado");
-            clearPlanosFields();
+           if (txtPlanoNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Selecione o Plano na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Plano: " + txtPlanoNome.getText(), "Deleção",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
+                if (conf == 0) {
+                    novoPlano.deletePlano(idDelete);
+                    System.out.println(idDelete);
+                    JOptionPane.showMessageDialog(null, "Plano deletada com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deleção Cancelada!");
+                }
+            }
             tabelaPlano.update(novoPlano.getAllPlano());
         } catch (Exception e) {
         }
@@ -1474,7 +1484,6 @@ public class MenuView extends javax.swing.JFrame {
     private void tabViewContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewContratoMouseClicked
         try {
             int codigo = Integer.parseInt(tabViewContrato.getValueAt(tabViewContrato.getSelectedRow(), 7).toString());
-            System.out.println(codigo);
             transferirDadosGridContrato(codigo);
         } catch (Exception e) {
         }
@@ -1646,7 +1655,23 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnCategoriaDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaDeletarActionPerformed
         try {
+            if (txtCategoria.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Selecione a Categoria na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção da Categoria: " + txtCategoria.getText(), "Deleção",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
+                if (conf == 0) {
+                    int codigo1 = Integer.parseInt(tabViewCategoria.getValueAt(tabViewCategoria.getSelectedRow(), 1).toString());
+                    novaCategoria.deleteCategorias(codigo1);
+                    JOptionPane.showMessageDialog(null, "Categoria deletada com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deleção Cancelada!");
+                }
+            }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Violação ao Deletar");
+        }finally{
+            txtCategoria.setText("");
         }
     }//GEN-LAST:event_btnCategoriaDeletarActionPerformed
 
@@ -1660,8 +1685,7 @@ public class MenuView extends javax.swing.JFrame {
 
     private void tabViewCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewCategoriaMouseClicked
         try {
-            int codigo = Integer.parseInt(tabViewContrato.getValueAt(tabViewContrato.getSelectedRow(), 7).toString());
-            transferirDadosGridCategoria(codigo);
+            transferirDadosCategoria();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tabViewCategoriaMouseClicked
@@ -1985,8 +2009,14 @@ public class MenuView extends javax.swing.JFrame {
     private void transferirDadosGridContrato(int codigo) {
         ContratoModel bIContrato = novoContrato.getContratoById(codigo);
         System.out.println(bIContrato);
-        txtContratoInicio.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(bIContrato.getInicio()));
-        txtContratoFim.setText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(bIContrato.getFim()));
+        txtContratoInicio.setText(bIContrato.getInicio().toString());
+        txtContratoFim.setText(bIContrato.getFim().toString());
+        jcContratoPlanos.removeAllItems();
+        jcContratoPlanos.addItem(bIContrato.getId_plano().getNome());
+        jcContratoUsuarios.removeAllItems();
+        jcContratoUsuarios.addItem(bIContrato.getId_usu().getNome());
+        jcContratoStatus.removeAllItems();
+        jcContratoStatus.addItem(bIContrato.getStatus());
     }
 
     private void transferirDadosGridCategoria(int codigo) {
@@ -2045,6 +2075,15 @@ public class MenuView extends javax.swing.JFrame {
             jcFilmeCategoria.removeAllItems();
             jcFilmeCategoria.addItem(deleteFil.getCategoria().getNome().toString());
             txtSinopseFilme.setText(deleteFil.getSinopse().toUpperCase());
+        } catch (Exception e) {
+        }
+    }
+
+    public void transferirDadosCategoria() {
+        try {
+            int codigo = Integer.parseInt(tabViewCategoria.getValueAt(tabViewCategoria.getSelectedRow(), 1).toString());
+            CategoriaFilmesModel cate = novaCategoria.getCategoriasById(codigo);
+            txtCategoria.setText(cate.getNome());
         } catch (Exception e) {
         }
     }

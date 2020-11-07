@@ -66,10 +66,10 @@ public class PlanoDal implements PlanoInterface {
     }
 
     @Override
-    public void deletePlano(PlanoModel plano) {
+    public void deletePlano(int plano) {
         try {
-            PreparedStatement prep = conect.prepareStatement("DELETE FROM planos where pla_iden=?");
-            prep.setInt(1, plano.getId());
+            PreparedStatement prep = conect.prepareStatement("DELETE FROM planos WHERE pla_iden=?");
+            prep.setInt(1, plano);
             prep.executeUpdate();
         } catch (Exception e) {
         }
