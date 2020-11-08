@@ -74,7 +74,8 @@ public class ContratoDal implements ContratoInterface {
     @Override
     public void deleteContrato(int contrato) {
         try {
-            PreparedStatement prepa = conect.prepareStatement("DELETE * FROM contrata where con_iden =?");
+            PreparedStatement prepa = conect.prepareStatement("DELETE FROM contrata\n"
+                    + "	WHERE con_iden=?;");
             prepa.setInt(1, contrato);
             prepa.executeUpdate();
         } catch (Exception e) {
@@ -89,14 +90,16 @@ public class ContratoDal implements ContratoInterface {
     @Override
     public void updateContrato(ContratoModel contrato) {
         try {
-            PreparedStatement prepare = conect.prepareStatement("UPDATE contrata set con_status = ?, con_fim = ?, con_inicio"
-                    + " = ?, con_plan_iden = ?, con_cup_iden = ?, con_precocomdesconto = ?");
+            PreparedStatement prepare = conect.prepareStatement("UPDATE contrata\n"
+                    + "	SET con_status=?, con_fim=?, con_inicio=?, con_pla_iden=?, con_cup_iden=?, con_precocomdesconto=?\n"
+                    + "	WHERE con_iden=?;");
             prepare.setString(1, contrato.getStatus());
             prepare.setDate(2, new java.sql.Date(new Date(contrato.getFim()).getTime()));
             prepare.setDate(3, new java.sql.Date(new Date(contrato.getInicio()).getTime()));
             prepare.setInt(4, contrato.getId_plano().getId());
             prepare.setInt(5, contrato.getId_usu().getIden());
             prepare.setDouble(6, contrato.getPrecoComDesconto());
+            prepare.setInt(7, contrato.getId());
             prepare.executeUpdate();
         } catch (Exception e) {
             try {

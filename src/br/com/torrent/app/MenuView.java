@@ -6,6 +6,7 @@ import br.com.torrent.bll.FilmesBll;
 import br.com.torrent.bll.PlanoBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.ValidacoesBll;
+import br.com.torrent.bll.ValidacoesUsuarioBll;
 import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.CategoriasInterfaces;
 import br.com.torrent.interfaces.ContratoInterface;
@@ -51,6 +52,7 @@ public class MenuView extends javax.swing.JFrame {
     boolean incluirCategoria = true;
     boolean incluirFilmes = true;
     int idDeleteFilme;
+    int idContratoMov;
     int IdCategoriaTable;
     int idDelete;
 
@@ -405,7 +407,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcFilmeCategoria, 0, 166, Short.MAX_VALUE)
+                        .addComponent(jcFilmeCategoria, 0, 179, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
@@ -473,7 +475,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -643,7 +645,7 @@ public class MenuView extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -733,7 +735,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(btnCategoriaAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCategoriaSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                         .addComponent(btnCategoriaCancelar))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel20)
@@ -793,7 +795,7 @@ public class MenuView extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -864,6 +866,7 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
+        jcContratoPlanos.setEnabled(false);
         jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoPlanosAncestorAdded(evt);
@@ -875,6 +878,7 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
+        jcContratoUsuarios.setEnabled(false);
         jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoUsuariosAncestorAdded(evt);
@@ -886,14 +890,17 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jcContratoStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "INATIVO" }));
+        jcContratoStatus.setEnabled(false);
 
         jLabel7.setText("Data de Inicio");
 
         jLabel8.setText("Data de Fim");
 
         txtContratoInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtContratoInicio.setEnabled(false);
 
         txtContratoFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtContratoFim.setEnabled(false);
 
         jLabel9.setText("Plano");
 
@@ -929,7 +936,7 @@ public class MenuView extends javax.swing.JFrame {
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addGap(66, 66, 66)
                                 .addComponent(jcContratoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(53, Short.MAX_VALUE))
+                        .addContainerGap(66, Short.MAX_VALUE))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -964,7 +971,7 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jcContratoPlanos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(jcContratoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContratoIncluir)
                     .addComponent(btnContratoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1012,11 +1019,11 @@ public class MenuView extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+            .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -1024,9 +1031,9 @@ public class MenuView extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane1.addTab("Contratos", jPanel13);
@@ -1130,7 +1137,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel16Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 554, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 556, Short.MAX_VALUE))
                             .addGroup(jPanel16Layout.createSequentialGroup()
                                 .addComponent(txtUsuariosEmail)
                                 .addGap(33, 33, 33)))
@@ -1143,7 +1150,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(btnUsuariosDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(btnUsuariosAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(btnUsuariosSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsuariosCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1180,11 +1187,11 @@ public class MenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtUsuariosSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 780, 470));
+        jPanel3.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 770, 430));
 
         jTabbedPane1.addTab("Usuarios", jPanel3);
 
@@ -1217,7 +1224,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1289,6 +1296,16 @@ public class MenuView extends javax.swing.JFrame {
 
         lblFilmeVer.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblFilmeVer.setText("Filme");
+        lblFilmeVer.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblFilmeVerPropertyChange(evt);
+            }
+        });
+        lblFilmeVer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lblFilmeVerKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1347,10 +1364,10 @@ public class MenuView extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnVerRelatorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVerFilmesVer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1367,7 +1384,6 @@ public class MenuView extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -1389,7 +1405,8 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -1514,7 +1531,6 @@ public class MenuView extends javax.swing.JFrame {
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
                 if (conf == 0) {
                     novoPlano.deletePlano(idDelete);
-                    System.out.println(idDelete);
                     JOptionPane.showMessageDialog(null, "Plano deletada com sucesso");
                 } else {
                     JOptionPane.showMessageDialog(null, "Deleção Cancelada!");
@@ -1559,8 +1575,11 @@ public class MenuView extends javax.swing.JFrame {
             newContrato.setStatus(jcContratoStatus.getSelectedItem().toString());
             if (incluirContrato) {
                 novoContrato.adicionarContrato(newContrato);
+                JOptionPane.showMessageDialog(null, "Contrato Incluido com Sucesso! ☺", "Update", JOptionPane.INFORMATION_MESSAGE);
             } else {
-
+                newContrato.setId(idContratoMov);
+                novoContrato.updateContrato(newContrato);
+                JOptionPane.showMessageDialog(null, "Contrato atualizado com Sucesso! ☺", "Update", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Incluir: " + e.getMessage());
@@ -1572,8 +1591,21 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnContratoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratoDeletarActionPerformed
         try {
-            ContratoEnableButtons(false);
+            if (txtContratoInicio.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Selecione o Contrato na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Contrato: Nº: " + idContratoMov, "Deleção",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
+                if (conf == 0) {
+                    novoContrato.deleteContrato(idContratoMov);
+                    JOptionPane.showMessageDialog(null, "Categoria deletada com sucesso ☺");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deleção Cancelada! ☺");
+                }
+            }
         } catch (Exception e) {
+        } finally {
+            ContratoEnableButtons(false);
         }
     }//GEN-LAST:event_btnContratoDeletarActionPerformed
 
@@ -1589,6 +1621,7 @@ public class MenuView extends javax.swing.JFrame {
         try {
             int codigo = Integer.parseInt(tabViewContrato.getValueAt(tabViewContrato.getSelectedRow(), 7).toString());
             transferirDadosGridContrato(codigo);
+            idContratoMov = codigo;
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tabViewContratoMouseClicked
@@ -1610,7 +1643,6 @@ public class MenuView extends javax.swing.JFrame {
             UsuarioDal usua = new UsuarioDal();
             jcContratoUsuarios.removeAllItems();
             ArrayList<UsuarioModel> usuariosNaLiata = (ArrayList<UsuarioModel>) usua.getAllUsuario();
-            System.out.println(usuariosNaLiata);
             jcContratoUsuarios.addItem("Selecione");
             for (UsuarioModel usuarios : usuariosNaLiata) {
                 jcContratoUsuarios.addItem(usuarios.getNome());
@@ -1673,6 +1705,27 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnFilmeCancelarActionPerformed
+    public void updateJCContratoPlano() {
+        ArrayList<PlanoModel> planos = novoPlano.getAllPlano();
+        jcContratoPlanos.removeAllItems();
+        jcContratoPlanos.addItem("Selecione");
+        for (PlanoModel plan : planos) {
+            jcContratoPlanos.addItem(plan.getNome());
+        }
+    }
+
+    public void updateJCContratoUsuario() {
+        try {
+            UsuarioDal usua = new UsuarioDal();
+            jcContratoUsuarios.removeAllItems();
+            ArrayList<UsuarioModel> usuariosNaLiata = (ArrayList<UsuarioModel>) usua.getAllUsuario();
+            jcContratoUsuarios.addItem("Selecione");
+            for (UsuarioModel usuarios : usuariosNaLiata) {
+                jcContratoUsuarios.addItem(usuarios.getNome());
+            }
+        } catch (Exception e) {
+        }
+    }
 
     private void btnFilmeSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeSalvarActionPerformed
         try {
@@ -1819,9 +1872,24 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnVerFilmesVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFilmesVerActionPerformed
         try {
-            FilmeProgress proFilme = new FilmeProgress();
-            proFilme.setVisible(true);
-            dispose();
+            if (lblFilmeVer.getText().equalsIgnoreCase("filme") || lblUsuarioVer.getText().equalsIgnoreCase("Usuario")) {
+                JOptionPane.showMessageDialog(null, "Selecione o Usuario e o Filme! ☼ ", "Seção", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                UsuarioModel localUser = usuarioBll.getUsuarioById(Integer.parseInt(tabelaUsuariosVer.getValueAt(tabelaUsuariosVer.getSelectedRow(), 0).toString()));
+                UsuarioModel UserTeste = new UsuarioModel();
+                UserTeste.setIden(1);
+                UserTeste.setNome(lblUsuarioVer.getText());
+                UserTeste.setSenha(JOptionPane.showInputDialog(null, "Informe a senha do usuario: " + UserTeste.getNome() + " !Para Ver o Filme! ☺"));
+                
+                if (ValidacoesUsuarioBll.validaAcessoUser(UserTeste)) {
+                    FilmeProgress proFilme = new FilmeProgress();
+                    proFilme.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Acesso Negado! ", "Acesso Restrito", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnVerFilmesVerActionPerformed
@@ -1843,6 +1911,14 @@ public class MenuView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tabelaFilmesVerMouseClicked
+
+    private void lblFilmeVerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblFilmeVerPropertyChange
+
+    }//GEN-LAST:event_lblFilmeVerPropertyChange
+
+    private void lblFilmeVerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblFilmeVerKeyPressed
+
+    }//GEN-LAST:event_lblFilmeVerKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2029,6 +2105,16 @@ public class MenuView extends javax.swing.JFrame {
             btnContratoCancelar.setEnabled(true);
             btnContratoDeletar.setEnabled(false);
             btnContratoSalvar.setEnabled(true);
+
+            txtContratoInicio.setEnabled(true);
+            txtContratoFim.setEnabled(true);
+            jcContratoPlanos.setEnabled(true);
+            jcContratoUsuarios.setEnabled(true);
+            jcContratoStatus.setEnabled(true);
+            updateJCContratoUsuario();
+            updateJCContratoPlano();
+            jcContratoStatus.addItem("ATIVO");
+            jcContratoStatus.addItem("INATIVO");
         } else {
             btnContratoIncluir.setEnabled(true);
             btnContratoAlterar.setEnabled(true);
@@ -2036,6 +2122,22 @@ public class MenuView extends javax.swing.JFrame {
             btnContratoDeletar.setEnabled(true);
 
             btnContratoSalvar.setEnabled(false);
+            txtContratoInicio.setEnabled(false);
+            txtContratoFim.setEnabled(false);
+
+            txtContratoInicio.setText("");
+            txtContratoFim.setText("");
+
+            jcContratoPlanos.setEnabled(false);
+            jcContratoUsuarios.setEnabled(false);
+            jcContratoStatus.setEnabled(false);
+
+            jcContratoPlanos.removeAllItems();
+            jcContratoPlanos.addItem("Selecione");
+            jcContratoUsuarios.removeAllItems();
+            jcContratoUsuarios.addItem("Selecione");
+            jcContratoStatus.removeAllItems();
+            jcContratoStatus.addItem("Selecione");
         }
     }
 
@@ -2152,19 +2254,14 @@ public class MenuView extends javax.swing.JFrame {
 
     private void transferirDadosGridContrato(int codigo) {
         ContratoModel bIContrato = novoContrato.getContratoById(codigo);
-        System.out.println(bIContrato);
-        txtContratoInicio.setText(bIContrato.getInicio().toString());
-        txtContratoFim.setText(bIContrato.getFim().toString());
+        txtContratoInicio.setText(formatDateStruct(bIContrato.getInicio().toString()));
+        txtContratoFim.setText(formatDateStruct(bIContrato.getFim().toString()));
         jcContratoPlanos.removeAllItems();
         jcContratoPlanos.addItem(bIContrato.getId_plano().getNome());
         jcContratoUsuarios.removeAllItems();
         jcContratoUsuarios.addItem(bIContrato.getId_usu().getNome());
         jcContratoStatus.removeAllItems();
         jcContratoStatus.addItem(bIContrato.getStatus());
-    }
-
-    private void transferirDadosGridCategoria(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void enableBuFilmes(boolean butt) {
@@ -2231,5 +2328,10 @@ public class MenuView extends javax.swing.JFrame {
             txtCategoria.setText(cate.getNome());
         } catch (Exception e) {
         }
+    }
+
+    public String formatDateStruct(String oldDate) {
+        String[] newForm = oldDate.split("-");
+        return newForm[2] + "/" + newForm[1] + "/" + newForm[0];
     }
 }
