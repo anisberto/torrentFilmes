@@ -62,13 +62,14 @@ public class FilmesDal implements FilmesInterfaces {
 
     @Override
     public void updateFilmes(FilmeModel filme) {
-        String sql = "UPDATE filmes set  fil_titulo=?, fil_ano=?, fil_sinope=?,fil_cat_iden where fil_cat_iden=?";
         try {
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1, filme.getTitulo());
-            preparedStatement.setInt(2, filme.getAno());
-            preparedStatement.setString(3, filme.getSinopse());
-            preparedStatement.setString(4, filme.getCategoria().getNome());
+            PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE public.filmes\n"
+                    + "	SET fil_ano=?, fil_sinopse=?, fil_titulo=?, fil_cat_iden=?\n"
+                    + "	WHERE fil_iden=?;");
+            preparedStatement.setString(3, filme.getTitulo());
+            preparedStatement.setInt(1, filme.getAno());
+            preparedStatement.setString(2, filme.getSinopse());
+            preparedStatement.setInt(4, filme.getCategoria().getIden());
             preparedStatement.setInt(5, filme.getIden());
             preparedStatement.executeUpdate();
 

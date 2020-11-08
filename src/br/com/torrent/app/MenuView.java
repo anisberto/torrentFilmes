@@ -49,6 +49,7 @@ public class MenuView extends javax.swing.JFrame {
     boolean incluirCategoria = true;
     boolean incluirFilmes = true;
     int idDeleteFilme;
+    int IdCategoriaTable;
     int idDelete;
 
     public MenuView() throws Exception {
@@ -139,10 +140,14 @@ public class MenuView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabViewPlano = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaFilmesVer = new javax.swing.JTable();
+        jPanel24 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tabelaUsuariosVer = new javax.swing.JTable();
+        btnVerFilmesVer = new javax.swing.JButton();
+        btnVerRelatorio = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         btnCategoriaIncluir = new javax.swing.JButton();
@@ -457,7 +462,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -801,7 +806,7 @@ public class MenuView extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -846,47 +851,90 @@ public class MenuView extends javax.swing.JFrame {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
+        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuarios Cadastrados"));
+
+        tabelaUsuariosVer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane8.setViewportView(tabelaUsuariosVer);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane8)
                 .addContainerGap())
         );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        btnVerFilmesVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/iconfinder_Education-Filled_12_3672897 (1).png"))); // NOI18N
+        btnVerFilmesVer.setText("Ver Filme");
+        btnVerFilmesVer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVerFilmesVer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVerFilmesVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerFilmesVerActionPerformed(evt);
+            }
+        });
+
+        btnVerRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/iconfinder_DocumentManagement-documentation-folder-projectmanagement-filemanagement_6071829.png"))); // NOI18N
+        btnVerRelatorio.setText("Relatorio de Visualizações");
+        btnVerRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVerRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVerRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerRelatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(btnVerFilmesVer, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVerRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVerFilmesVer)
+                    .addComponent(btnVerRelatorio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1015,7 +1063,7 @@ public class MenuView extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1403,7 +1451,7 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnPlanoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanoDeletarActionPerformed
         try {
-           if (txtPlanoNome.getText().isEmpty()) {
+            if (txtPlanoNome.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Selecione o Plano na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
             } else {
                 int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Plano: " + txtPlanoNome.getText(), "Deleção",
@@ -1581,7 +1629,8 @@ public class MenuView extends javax.swing.JFrame {
                 novofilme.adicionarFilmes(novoFilme);
                 JOptionPane.showMessageDialog(null, "Filme incluido com Sucesso!");
             } else {
-
+                novoFilme.setIden(idDeleteFilme);
+                novofilme.updateFilmes(novoFilme);
             }
         } catch (Exception e) {
         } finally {
@@ -1644,7 +1693,8 @@ public class MenuView extends javax.swing.JFrame {
             if (incluirCategoria) {
                 novaCategoria.adicionarCategorias(catFilme);
             } else {
-
+                catFilme.setIden(IdCategoriaTable);
+                novaCategoria.updateCategorias(catFilme);
             }
         } catch (Exception e) {
         } finally {
@@ -1670,7 +1720,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Violação ao Deletar");
-        }finally{
+        } finally {
             txtCategoria.setText("");
         }
     }//GEN-LAST:event_btnCategoriaDeletarActionPerformed
@@ -1706,9 +1756,23 @@ public class MenuView extends javax.swing.JFrame {
     private void jcFilmeCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcFilmeCategoriaAncestorAdded
         try {
             setItemsCombo();
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jcFilmeCategoriaAncestorAdded
+
+    private void btnVerFilmesVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFilmesVerActionPerformed
+        try {
+            FilmeProgress proFilme = new FilmeProgress();
+            proFilme.setVisible(true);
+            dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnVerFilmesVerActionPerformed
+
+    private void btnVerRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerRelatorioActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1772,6 +1836,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuariosDeletar;
     private javax.swing.JButton btnUsuariosIncluir;
     private javax.swing.JButton btnUsuariosSalvar;
+    private javax.swing.JButton btnVerFilmesVer;
+    private javax.swing.JButton btnVerRelatorio;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1802,7 +1868,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
@@ -1810,6 +1875,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1824,6 +1890,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcContratoPlanos;
     private javax.swing.JComboBox<String> jcContratoStatus;
@@ -1837,6 +1904,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTable tabViewFilme;
     private javax.swing.JTable tabViewPlano;
     private javax.swing.JTable tabelaFilmesVer;
+    private javax.swing.JTable tabelaUsuariosVer;
     private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtAnoFilme;
     private javax.swing.JTextField txtCategoria;
@@ -2082,6 +2150,7 @@ public class MenuView extends javax.swing.JFrame {
     public void transferirDadosCategoria() {
         try {
             int codigo = Integer.parseInt(tabViewCategoria.getValueAt(tabViewCategoria.getSelectedRow(), 1).toString());
+            IdCategoriaTable = codigo;
             CategoriaFilmesModel cate = novaCategoria.getCategoriasById(codigo);
             txtCategoria.setText(cate.getNome());
         } catch (Exception e) {

@@ -56,9 +56,10 @@ public class CategoriaDal implements CategoriasInterfaces {
 
     @Override
     public void updateCategorias(CategoriaFilmesModel categoria) {
-        String sql = "UPDATE categorias set  cat_nome=?, where fil_cat_iden=?";
         try {
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE categorias\n"
+                    + "	SET cat_nome=?\n"
+                    + "	WHERE cat_iden=?;");
             preparedStatement.setString(1, categoria.getNome());
             preparedStatement.setInt(2, categoria.getIden());
             preparedStatement.executeUpdate();
