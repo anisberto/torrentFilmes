@@ -8,7 +8,6 @@ public class FilmeProgress extends javax.swing.JFrame {
 
     public FilmeProgress() {
         initComponents();
-        btnStop.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +36,7 @@ public class FilmeProgress extends javax.swing.JFrame {
         jLabel1.setText("Vendo Filme......");
 
         btnStop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/iconfinder_Education-Filled_12_3672897 (1).png"))); // NOI18N
-        btnStop.setText("VER FILME DEPOIS");
+        btnStop.setText("VER FILME");
         btnStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStopActionPerformed(evt);
@@ -126,7 +125,35 @@ public class FilmeProgress extends javax.swing.JFrame {
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         try {
-            stop();
+            int cont = 0;
+            int stopingPoint = 0;
+            for (cont = 0; cont < 101; cont++) {
+                try {
+//                    Thread.sleep(100);
+                    progressBar.setValue(cont);
+                    lblProgresso.setText(String.valueOf(cont) + "%");
+                    if (cont == 100) {
+                        setVisible(false);
+                        dispose();
+                    }
+                    if (btnStop.isVisible()) {
+                        stopingPoint = cont;
+                        cont = stop();
+                        System.out.println(stopingPoint);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            if (stopingPoint >= 100) {
+//                setVisible(false);
+//                dispose();
+//                JOptionPane.showMessageDialog(null, "O filme foi visualizado por completo", "Visualização", JOptionPane.INFORMATION_MESSAGE);
+//            } else {
+//                setVisible(false);
+//                dispose();
+//                JOptionPane.showMessageDialog(null, "O filme não foi visualizado por completo", "Visualização", JOptionPane.INFORMATION_MESSAGE);
+//            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnStopActionPerformed
@@ -166,35 +193,7 @@ public class FilmeProgress extends javax.swing.JFrame {
                 progress.setVisible(true);
             }
         });
-        int cont = 0;
-        int stopingPoint = 0;
-        for (cont = 0; cont < 101; cont++) {
-            try {
-                Thread.sleep(200);
-                progress.progressBar.setValue(cont);
-                progress.lblProgresso.setText(String.valueOf(cont) + "%");
-                if (cont == 100) {
-                    progress.setVisible(false);
-                    progress.dispose();
-                }
-                if (progress.btnStop.isVisible()) {
-                    stopingPoint = cont;
-                    cont = progress.stop();
-                    System.out.println(stopingPoint);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (stopingPoint >= 100) {
-            progress.setVisible(false);
-            progress.dispose();
-            JOptionPane.showMessageDialog(null, "O filme foi visualizado por completo", "Visualização", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            progress.setVisible(false);
-            progress.dispose();
-            JOptionPane.showMessageDialog(null, "O filme não foi visualizado por completo", "Visualização", JOptionPane.INFORMATION_MESSAGE);
-        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
