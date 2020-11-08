@@ -3,13 +3,14 @@ package br.com.torrent.model;
 public class VisualizaModel {
 
     private int id;
-    private Cupon cupom;
+    private UsuarioModel usuario;
     private FilmeModel fime;
     private String data_visualizacao;
     private boolean visuCompleto;
 
-    public VisualizaModel(Cupon cupom, FilmeModel fime, String data_visualizacao, boolean visuCompleto) {
-        this.cupom = cupom;
+    public VisualizaModel(int id, UsuarioModel usuario, FilmeModel fime, String data_visualizacao, boolean visuCompleto) {
+        this.id = id;
+        this.usuario = usuario;
         this.fime = fime;
         this.data_visualizacao = data_visualizacao;
         this.visuCompleto = visuCompleto;
@@ -27,12 +28,12 @@ public class VisualizaModel {
         this.id = id;
     }
 
-    public Cupon getCupom() {
-        return cupom;
+    public UsuarioModel getUsuario() {
+        return usuario;
     }
 
-    public void setCupom(Cupon cupom) {
-        this.cupom = cupom;
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
     public FilmeModel getFime() {
@@ -61,7 +62,7 @@ public class VisualizaModel {
 
     @Override
     public String toString() {
-        return "VisualizaModel{" + "id=" + id + ", cupom=" + cupom + ", fime=" + fime + ", data_visualizacao=" + data_visualizacao + ", visuCompleto=" + visuCompleto + '}';
+        return "VisualizaModel{" + "id=" + id + ", usuario=" + usuario + ", fime=" + fime + ", data_visualizacao=" + data_visualizacao + ", visuCompleto=" + visuCompleto + '}';
     }
 
 }

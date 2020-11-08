@@ -1883,6 +1883,10 @@ public class MenuView extends javax.swing.JFrame {
                 
                 if (ValidacoesUsuarioBll.validaAcessoUser(UserTeste)) {
                     FilmeProgress proFilme = new FilmeProgress();
+                    proFilme.nomeUser = lblUser.getText();
+                    proFilme.tituloDoFilme = lblFilmeVer.getText(); 
+                    proFilme.idUser = Integer.parseInt(tabelaUsuariosVer.getValueAt(tabelaUsuariosVer.getSelectedRow(), 0).toString());
+                    proFilme.idFilme = Integer.parseInt(tabelaFilmesVer.getValueAt(tabelaFilmesVer.getSelectedRow(), 0).toString());
                     proFilme.setVisible(true);
                     dispose();
                 } else {
@@ -1895,7 +1899,13 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerFilmesVerActionPerformed
 
     private void btnVerRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRelatorioActionPerformed
-        // TODO add your handling code here:
+        try {
+            RelacaoVisualizados rela = new RelacaoVisualizados();
+            rela.setVisible(true);
+            rela.nomeUser = lblUser.getText();
+            dispose();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnVerRelatorioActionPerformed
 
     private void tabelaUsuariosVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuariosVerMouseClicked

@@ -7,7 +7,7 @@ public interface VisualizaInterface {
 
     public void adicionarVisualizacao(VisualizaModel vizualiza);
 
-    public void deleteVisualizacao(VisualizaModel vizualiza);
+    public void deleteVisualizacao(int idVisu);
 
     public void updateVisualizacao(VisualizaModel vizualiza);
 
