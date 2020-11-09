@@ -36,12 +36,14 @@ public class MenuView extends javax.swing.JFrame {
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
     PlanoTableModel tabelaPlano;
+    UsuarioTableModel tabelaUsuario;
+    UsuarioInterface novoUsuario;
 
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     FilmeTableModel tabelaFilmesModel;
     UsuarioTableModel tabelaUsuariosFilmes;
-    UsuarioInterface novoUsuario = null;
+    //UsuarioInterface novoUsuario = null;
     UsuarioBll usuarioBll = new UsuarioBll();
     CategoriaTableModel categoriaTabela;
     CategoriasInterfaces novaCategoria;
@@ -55,6 +57,8 @@ public class MenuView extends javax.swing.JFrame {
     int idContratoMov;
     int IdCategoriaTable;
     int idDelete;
+    int idDeleteUsuario;
+     
 
     public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
@@ -70,7 +74,7 @@ public class MenuView extends javax.swing.JFrame {
         tabViewCategoria.setModel(categoriaTabela);
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
-        tableUsuarios.setModel(tabelaUsuariosFilmes);
+        tabViewUsuario.setModel(tabelaUsuariosFilmes);
         novoPlano = new PlanoBll();
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
@@ -178,7 +182,7 @@ public class MenuView extends javax.swing.JFrame {
         btnUsuariosSalvar = new javax.swing.JButton();
         btnUsuariosCancelar = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tableUsuarios = new javax.swing.JTable();
+        tabViewUsuario = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -352,10 +356,10 @@ public class MenuView extends javax.swing.JFrame {
         jcFilmeCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         jcFilmeCategoria.setEnabled(false);
         jcFilmeCategoria.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcFilmeCategoriaAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -868,10 +872,10 @@ public class MenuView extends javax.swing.JFrame {
         jcContratoPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoPlanos.setEnabled(false);
         jcContratoPlanos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoPlanosAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -880,10 +884,10 @@ public class MenuView extends javax.swing.JFrame {
         jcContratoUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecione" }));
         jcContratoUsuarios.setEnabled(false);
         jcContratoUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jcContratoUsuariosAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1104,7 +1108,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tabViewUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1112,12 +1116,12 @@ public class MenuView extends javax.swing.JFrame {
 
             }
         ));
-        tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabViewUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableUsuariosMouseClicked(evt);
+                tabViewUsuarioMouseClicked(evt);
             }
         });
-        jScrollPane7.setViewportView(tableUsuarios);
+        jScrollPane7.setViewportView(tabViewUsuario);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1660,7 +1664,22 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosIncluirActionPerformed
 
     private void btnUsuariosDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosDeletarActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (txtUsuariosNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Selecione o usuario na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Plano: " + txtUsuariosNome.getText(), "Deleção",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
+                if (conf == 0) {
+                    novoUsuario.deleteUsuario(usuario);
+                    JOptionPane.showMessageDialog(null, "Plano deletada com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deleção Cancelada!");
+                }
+            }
+            tabelaUsuario.update(novoUsuario.getAllUsuario());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnUsuariosDeletarActionPerformed
 
     private void btnUsuariosAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosAlterarActionPerformed
@@ -1849,18 +1868,15 @@ public class MenuView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tabViewCategoriaMouseClicked
 
-    private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
-
+    private void tabViewUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewUsuarioMouseClicked
         try {
-//            int coluna = tableUsuarios.getSelectedRow();
-//            Integer codigo = Integer.parseInt(tableUsuarios.getValueAt(coluna, 0).toString());
-            int codigo = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
-            //int linha = Integer.parseInt(tableUsuarios.getValueAt(tableUsuarios.getSelectedRow(), 2).toString());
-            transferirDadosUsuario(codigo);
-            idDelete = codigo;
+             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 2).toString());
+            
+            transferirDadosUsuario();    
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_tableUsuariosMouseClicked
+        
+    }//GEN-LAST:event_tabViewUsuarioMouseClicked
 
     private void jcFilmeCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcFilmeCategoriaAncestorAdded
         try {
@@ -1880,11 +1896,11 @@ public class MenuView extends javax.swing.JFrame {
                 UserTeste.setIden(1);
                 UserTeste.setNome(lblUsuarioVer.getText());
                 UserTeste.setSenha(JOptionPane.showInputDialog(null, "Informe a senha do usuario: " + UserTeste.getNome() + " !Para Ver o Filme! ☺"));
-                
+
                 if (ValidacoesUsuarioBll.validaAcessoUser(UserTeste)) {
                     FilmeProgress proFilme = new FilmeProgress();
                     proFilme.nomeUser = lblUser.getText();
-                    proFilme.tituloDoFilme = lblFilmeVer.getText(); 
+                    proFilme.tituloDoFilme = lblFilmeVer.getText();
                     proFilme.idUser = Integer.parseInt(tabelaUsuariosVer.getValueAt(tabelaUsuariosVer.getSelectedRow(), 0).toString());
                     proFilme.idFilme = Integer.parseInt(tabelaFilmesVer.getValueAt(tabelaFilmesVer.getSelectedRow(), 0).toString());
                     proFilme.setVisible(true);
@@ -2065,9 +2081,9 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTable tabViewContrato;
     private javax.swing.JTable tabViewFilme;
     private javax.swing.JTable tabViewPlano;
+    private javax.swing.JTable tabViewUsuario;
     private javax.swing.JTable tabelaFilmesVer;
     private javax.swing.JTable tabelaUsuariosVer;
-    private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtAnoFilme;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JFormattedTextField txtContratoFim;
@@ -2227,20 +2243,22 @@ public class MenuView extends javax.swing.JFrame {
     }
 
     // Usuario
-    private void transferirDadosUsuario(int id) {
+    private void transferirDadosUsuario() {
         try {
-            UsuarioModel delete = novoUsuario.getUsuarioById(id);
-            txtUsuariosNome.setText(delete.getNome());
-            txtUsuariosCpf.setText(delete.getNome());
-            txtUsuariosEmail.setText(delete.getNome());
-            txtUsuariosSenha.setText(delete.getNome());
-
+            int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
+            UsuarioModel deleteUsu = novoUsuario.getUsuarioById(codigo);
+            idDeleteUsuario = codigo;
+            txtUsuariosNome.setText(deleteUsu.getNome() + "");
+            txtUsuariosCpf.setText(deleteUsu.getCpf()+"");
+            txtUsuariosEmail.setText(deleteUsu.getEmail()+"");
+            txtUsuariosSenha.setText(deleteUsu.getSenha()+"");
         } catch (Exception e) {
         }
+
     }
 
     private void consultarUsuarios(List<UsuarioModel> lista) throws Exception {
-        DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabViewUsuario.getModel();
         modelo.setNumRows(0);
 
         for (int pos = 0; pos < lista.size(); pos++) {
