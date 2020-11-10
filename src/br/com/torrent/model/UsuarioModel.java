@@ -19,7 +19,7 @@ public class UsuarioModel {
         this.email = email;
         this.senha = senha;
         this.desconto = desconto;
-        
+
     }
 
     public int getIden() {
@@ -45,6 +45,7 @@ public class UsuarioModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+    
 
     public String getEmail() {
         return email;
@@ -74,5 +75,5 @@ public class UsuarioModel {
     public String toString() {
         return "UsuarioModel{" + "iden=" + iden + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", desconto=" + desconto + '}';
     }
-        
+
 }
