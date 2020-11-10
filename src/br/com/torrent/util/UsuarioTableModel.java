@@ -47,6 +47,8 @@ public class UsuarioTableModel extends AbstractTableModel {
                 return dados.get(rowIndex).getEmail() + "";           
             case 4:
                 return dados.get(rowIndex).getSenha() + "";
+                case 5:
+                return dados.get(rowIndex).getDesconto()+ "";
             default:
                 throw new AssertionError();
         }
