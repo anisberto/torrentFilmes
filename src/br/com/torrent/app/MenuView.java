@@ -2272,7 +2272,7 @@ public class MenuView extends javax.swing.JFrame {
             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
             UsuarioModel deleteUsu = novoUsuarioInter.getUsuarioById(codigo);
             idDeleteUsuario = codigo;
-            System.out.println(deleteUsu);
+            
             txtUsuariosNome.setText(deleteUsu.getNome() + "");
             txtUsuariosCpf1.setText(deleteUsu.getCpf());
             txtUsuariosEmail.setText(deleteUsu.getEmail() + "");
