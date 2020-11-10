@@ -10,6 +10,7 @@ import br.com.torrent.bll.ValidacoesUsuarioBll;
 import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.CategoriasInterfaces;
 import br.com.torrent.interfaces.ContratoInterface;
+import br.com.torrent.interfaces.CupomInterface;
 import br.com.torrent.interfaces.FilmesInterfaces;
 import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.interfaces.UsuarioInterface;

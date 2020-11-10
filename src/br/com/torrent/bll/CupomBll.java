@@ -1,16 +1,16 @@
 package br.com.torrent.bll;
 
 import br.com.torrent.dal.CupomDal;
-import br.com.torrent.interfaces.CuponInterface;
 import br.com.torrent.model.CupomModel;
+import br.com.torrent.interfaces.CupomInterface;
 
 /**
  *
  * @author edivan
  */
-public class CupomBll implements CuponInterface {
+public class CupomBll implements CupomInterface {
 
-    CuponInterface novoCupom;
+    CupomInterface novoCupom;
 
     public CupomBll() throws Exception {
         novoCupom = new CupomDal();

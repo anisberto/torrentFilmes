@@ -1,6 +1,5 @@
 package br.com.torrent.dal;
 
-import br.com.torrent.interfaces.CuponInterface;
 import br.com.torrent.model.CupomModel;
 import br.com.torrent.model.FilmeModel;
 import br.com.torrent.util.Conexao;
@@ -9,12 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import br.com.torrent.interfaces.CupomInterface;
 
 /**
  *
  * @author edivan
  */
-public class CupomDal implements CuponInterface {
+public class CupomDal implements CupomInterface {
 
     private Connection conect;
 

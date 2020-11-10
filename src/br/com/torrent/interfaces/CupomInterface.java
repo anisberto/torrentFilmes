@@ -2,7 +2,7 @@ package br.com.torrent.interfaces;
 
 import br.com.torrent.model.CupomModel;
 
-public interface CuponInterface {
+public interface CupomInterface {
 
     public CupomModel gerarRadon(String cupon);
 }
