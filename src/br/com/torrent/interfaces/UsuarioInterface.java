@@ -8,7 +8,7 @@ public interface UsuarioInterface {
 
     public void adicionarUsuario(UsuarioModel usuario);
 
-    public void deleteUsuario(UsuarioModel usuario);
+    public void deleteUsuario(int usuario);
 
     public void updateUsuario(UsuarioModel usuario);
 
