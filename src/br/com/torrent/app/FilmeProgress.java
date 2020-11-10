@@ -184,12 +184,6 @@ public class FilmeProgress extends javax.swing.JFrame {
         contOld = timer.cont;
         timer.cont = 100;
         visuCompelto = false;
-        System.out.println(contOld);
-        try {
-            incluirVisualiza();
-        } catch (Exception ex) {
-            Logger.getLogger(FilmeProgress.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_btnStop1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -230,7 +224,6 @@ public class FilmeProgress extends javax.swing.JFrame {
         visu.setFime(fil.getFilmesById(idFilme));
         visu.setUsuario(user.getUsuarioById(idUser));
         visu.setVisuCompleto(visuCompelto);
-        System.out.println(visu);
         visualizacao.adicionarVisualizacao(visu);
     }
 
