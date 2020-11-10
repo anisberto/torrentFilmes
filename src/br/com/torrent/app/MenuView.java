@@ -79,6 +79,7 @@ public class MenuView extends javax.swing.JFrame {
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
         novofilme = new FilmesBll();
+        novoUsuario = new UsuarioBll();
     }
 
     @SuppressWarnings("unchecked")
@@ -1870,8 +1871,8 @@ public class MenuView extends javax.swing.JFrame {
 
     private void tabViewUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewUsuarioMouseClicked
         try {
-             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 2).toString());
-            
+             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
+             
             transferirDadosUsuario();    
         } catch (Exception e) {
         }
@@ -2248,10 +2249,12 @@ public class MenuView extends javax.swing.JFrame {
             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
             UsuarioModel deleteUsu = novoUsuario.getUsuarioById(codigo);
             idDeleteUsuario = codigo;
+            System.out.println(deleteUsu);
             txtUsuariosNome.setText(deleteUsu.getNome() + "");
             txtUsuariosCpf.setText(deleteUsu.getCpf()+"");
             txtUsuariosEmail.setText(deleteUsu.getEmail()+"");
             txtUsuariosSenha.setText(deleteUsu.getSenha()+"");
+
         } catch (Exception e) {
         }
 
