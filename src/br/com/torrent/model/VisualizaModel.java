@@ -4,16 +4,23 @@ public class VisualizaModel {
 
     private int id;
     private UsuarioModel usuario;
+    private String dataVisualizacao;
     private FilmeModel fime;
-    private String data_visualizacao;
     private boolean visuCompleto;
 
-    public VisualizaModel(int id, UsuarioModel usuario, FilmeModel fime, String data_visualizacao, boolean visuCompleto) {
+    public VisualizaModel(int id, UsuarioModel usuario, FilmeModel fime, boolean visuCompleto) {
         this.id = id;
         this.usuario = usuario;
         this.fime = fime;
-        this.data_visualizacao = data_visualizacao;
         this.visuCompleto = visuCompleto;
+    }
+
+    public String getDataVisualizacao() {
+        return dataVisualizacao;
+    }
+
+    public void setDataVisualizacao(String dataVisualizacao) {
+        this.dataVisualizacao = dataVisualizacao;
     }
 
     public VisualizaModel() {
@@ -44,14 +51,6 @@ public class VisualizaModel {
         this.fime = fime;
     }
 
-    public String getData_visualizacao() {
-        return data_visualizacao;
-    }
-
-    public void setData_visualizacao(String data_visualizacao) {
-        this.data_visualizacao = data_visualizacao;
-    }
-
     public boolean isVisuCompleto() {
         return visuCompleto;
     }
@@ -62,7 +61,7 @@ public class VisualizaModel {
 
     @Override
     public String toString() {
-        return "VisualizaModel{" + "id=" + id + ", usuario=" + usuario + ", fime=" + fime + ", data_visualizacao=" + data_visualizacao + ", visuCompleto=" + visuCompleto + '}';
+        return "VisualizaModel{" + "id=" + id + ", usuario=" + usuario.getNome() + ", dataVisualizacao=" + dataVisualizacao + ", fime=" + fime.getTitulo() + ", visuCompleto=" + visuCompleto + '}';
     }
 
 }

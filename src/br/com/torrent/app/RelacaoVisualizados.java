@@ -1,11 +1,18 @@
 package br.com.torrent.app;
 
+import br.com.torrent.dal.VisualizaDal;
+import br.com.torrent.util.VisualizaTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class RelacaoVisualizados extends javax.swing.JFrame {
 
     String nomeUser;
-
+    VisualizaTableModel tabela;
     public RelacaoVisualizados() {
         initComponents();
+        tabela = new VisualizaTableModel(new String[]{"Visualização completa","Identificador","Filme","Usuario","Data da Visualização"});
+        tabelaVisualizados.setModel(tabela);
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +30,11 @@ public class RelacaoVisualizados extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Visualizados");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filmes Visualizados"));
 
@@ -136,6 +148,14 @@ public class RelacaoVisualizados extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            tabela.update(new VisualizaDal().getAllVisualizacoes());
+        } catch (Exception ex) {
+            Logger.getLogger(RelacaoVisualizados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
     public void userTransf(String nome) {
         nomeUser = nome;
     }

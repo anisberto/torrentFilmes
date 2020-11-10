@@ -1,12 +1,12 @@
 package br.com.torrent.app;
 
 import br.com.torrent.bll.FilmesBll;
-import br.com.torrent.bll.UsuLoginBll;
 import br.com.torrent.bll.UsuarioBll;
 import br.com.torrent.bll.VisualizaBll;
+import br.com.torrent.dal.FilmesDal;
+import br.com.torrent.dal.UsuarioDal;
 import br.com.torrent.interfaces.VisualizaInterface;
 import br.com.torrent.model.VisualizaModel;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,6 +22,7 @@ public class FilmeProgress extends javax.swing.JFrame {
     int contOld;
     String tituloDoFilme;
     VisualizaInterface visualizacao;
+
     public FilmeProgress() throws Exception {
         initComponents();
         progressBar.setStringPainted(true);
@@ -184,6 +185,11 @@ public class FilmeProgress extends javax.swing.JFrame {
         timer.cont = 100;
         visuCompelto = false;
         System.out.println(contOld);
+        try {
+            incluirVisualiza();
+        } catch (Exception ex) {
+            Logger.getLogger(FilmeProgress.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnStop1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -193,7 +199,6 @@ public class FilmeProgress extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FilmeProgress.class.getName()).log(Level.SEVERE, null, ex);
         }
-        progress.initComponents();
         lblFilmeEscolhido.setText(tituloDoFilme);
     }//GEN-LAST:event_formWindowActivated
 
@@ -218,13 +223,14 @@ public class FilmeProgress extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public void incluirVisualiza() throws Exception {
-        FilmesBll fil = new FilmesBll();
-        UsuarioBll user = new UsuarioBll();
+        FilmesDal fil = new FilmesDal();
+        UsuarioDal user = new UsuarioDal();
         VisualizaModel visu = new VisualizaModel();
-        visu.setData_visualizacao(new Date().toString());
+        
         visu.setFime(fil.getFilmesById(idFilme));
         visu.setUsuario(user.getUsuarioById(idUser));
         visu.setVisuCompleto(visuCompelto);
+        System.out.println(visu);
         visualizacao.adicionarVisualizacao(visu);
     }
 
@@ -300,6 +306,13 @@ public class FilmeProgress extends javax.swing.JFrame {
                 }
             }
             int ok = JOptionPane.showConfirmDialog(null, "O Filme Acabou! Sair? ", "Filme", JOptionPane.OK_OPTION);
+            try {
+                if (ok != -1) {
+                    incluirVisualiza();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(FilmeProgress.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (ok == 0) {
                 try {
                     MenuView menu = new MenuView();
