@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,13 +42,11 @@ public class UsuarioDal implements UsuarioInterface {
     }
 
     @Override
-    public void deleteUsuario(UsuarioModel usuario) {
-
+    public void deleteUsuario(int usuario) {
         try {
-            String sql = "DELETE FROM cup_usuarios WHERE usu_iden=?";
-            PreparedStatement preparedStatement = conect.prepareStatement(sql);
-            preparedStatement.setInt(1, usuario.getIden());
-            preparedStatement.executeUpdate();
+            PreparedStatement prep = conect.prepareStatement("DELETE FROM cup_usuarios WHERE cup_iden=?");
+            prep.setInt(1, usuario);
+            prep.executeUpdate();
         } catch (Exception e) {
         }
     }
@@ -57,22 +54,20 @@ public class UsuarioDal implements UsuarioInterface {
     @Override
     public void updateUsuario(UsuarioModel usuario) {
         try {
-            String sql = "UPDATE cup_usuarios set  usu_nome=?, usu_cpf=?, usu_email=?, usu_senha=?, where usu_cup_iden=?";
-            PreparedStatement preparedStatement = conect.prepareStatement(sql);
-            preparedStatement.setString(1, usuario.getNome());
-            preparedStatement.setInt(2, usuario.getIden());
-            preparedStatement.setString(3, usuario.getEmail());
-            preparedStatement.setString(4, usuario.getSenha());
-            preparedStatement.executeUpdate();
+            PreparedStatement prep = conect.prepareStatement("UPDATE cup_usuarios set  cup_nome=?, cup_cpf=?, cup_email=?, cup_senha=? where cup_iden=?;");
 
-        } catch (SQLException erro) {
+            prep.setString(1, usuario.getNome());
+            prep.setInt(2, usuario.getIden());
+            prep.setString(3, usuario.getEmail());
+            prep.setString(4, usuario.getSenha());
+            prep.executeUpdate();
+        } catch (Exception e) {
         }
     }
 
     @Override
     public ArrayList<UsuarioModel> getAllUsuario() {
-        List<UsuarioModel> usuarios = new ArrayList<UsuarioModel>();
-
+        ArrayList<UsuarioModel> usuarios = new ArrayList<UsuarioModel>();
         try {
             Statement statement = conect.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM cup_usuarios");
@@ -80,17 +75,19 @@ public class UsuarioDal implements UsuarioInterface {
                 UsuarioModel novoUsuario = new UsuarioModel();
                 novoUsuario.setIden(rs.getInt("cup_iden"));
                 novoUsuario.setNome(rs.getString("cup_nome"));
+                novoUsuario.setCpf(rs.getString("cup_cpf"));
                 novoUsuario.setEmail(rs.getString("cup_email"));
                 novoUsuario.setSenha(rs.getString("cup_senha"));
-                novoUsuario.setCpf(rs.getString("cup_cpf"));
                 usuarios.add(novoUsuario);
             }
-            return (ArrayList<UsuarioModel>) usuarios;
+            return usuarios;
         } catch (Exception e) {
             try {
                 throw new Exception("Erro ao Listar todos os usuarios: " + e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoDal.class.getName()).log(Level.SEVERE, null, ex);
+                Conexao conec = Conexao.getInstance();
+                conec.notifyObservers();
+                Logger.getLogger(UsuarioDal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -107,10 +104,11 @@ public class UsuarioDal implements UsuarioInterface {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
+                
                 retUsuario.setIden(rs.getInt("cup_iden"));
                 retUsuario.setNome(rs.getString("cup_nome"));
+                retUsuario.setCpf(rs.getString("cup_cpf"));
                 retUsuario.setEmail(rs.getString("cup_email"));
-                retUsuario.setEmail(rs.getString("cup_cpf"));
                 retUsuario.setSenha(rs.getString("cup_senha"));
             }
         } catch (Exception erro) {
@@ -125,17 +123,17 @@ public class UsuarioDal implements UsuarioInterface {
 
     @Override
     public UsuarioModel findUsuarioName(String nome) {
-        UsuarioModel usuario = new UsuarioModel();
-
+        UsuarioModel retUsuario = new UsuarioModel();
         try {
-            String sql = "SELECT * FROM cup_usuarios WHERE cup_nome=?";
-            PreparedStatement preparedStatement = conect.prepareStatement(sql);
-            preparedStatement.setString(1, nome);
-            ResultSet rs = preparedStatement.executeQuery();
+            PreparedStatement prep = conect.prepareStatement("SELECT * FROM cup_usuarios WHERE cup_nome=?");                      
+            prep.setString(1, nome);
+            ResultSet rs = prep.executeQuery();
             if (rs.next()) {
-                usuario.setIden(rs.getInt("cup_iden"));
-                usuario.setNome(rs.getString("cup_nome"));
-                usuario.setSenha(rs.getString("cup_senha"));
+                retUsuario.setIden(rs.getInt("cup_iden"));
+                retUsuario.setNome(rs.getString("cup_nome"));
+                retUsuario.setCpf(rs.getString("cup_cpf"));
+                retUsuario.setCpf(rs.getString("cup_email"));
+                retUsuario.setSenha(rs.getString("cup_senha"));
             }
         } catch (Exception erro) {
             try {
@@ -144,6 +142,6 @@ public class UsuarioDal implements UsuarioInterface {
                 Logger.getLogger(UsuarioDal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return usuario;
+        return null;
     }
 }
