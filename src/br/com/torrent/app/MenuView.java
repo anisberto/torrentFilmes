@@ -45,7 +45,7 @@ public class MenuView extends javax.swing.JFrame {
     FilmeTableModel tabelaFilmesModel;
     UsuarioTableModel tabelaUsuariosModel;
 
-    UsuarioBll usuarioBll = new UsuarioBll();
+    //UsuarioBll usuarioBll = new UsuarioBll();
     CategoriaTableModel categoriaTabela;
     CategoriasInterfaces novaCategoria;
     FilmesInterfaces novofilme = null;
@@ -1442,7 +1442,7 @@ public class MenuView extends javax.swing.JFrame {
             tabelaFilmesModel.update(novofilme.getAllFilmes());
             tabelaContrato.update(novoContrato.getAllContratos());
             categoriaTabela.update(novaCategoria.getAllCategorias());
-            tabelaUsuariosModel.update(usuarioBll.getAllUsuario());
+            tabelaUsuariosModel.update(novoUsuarioInter.getAllUsuario());
 
         } catch (Exception e) {
         }
@@ -1575,7 +1575,7 @@ public class MenuView extends javax.swing.JFrame {
             ContratoModel newContrato = new ContratoModel();
             newContrato.setFim(txtContratoFim.getText());
             newContrato.setId_plano(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
-            newContrato.setId_usu(usuarioBll.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
+            newContrato.setId_usu(novoUsuarioInter.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
             newContrato.setInicio(txtContratoInicio.getText());
             newContrato.setStatus(jcContratoStatus.getSelectedItem().toString());
             if (incluirContrato) {
@@ -1915,7 +1915,7 @@ public class MenuView extends javax.swing.JFrame {
             if (lblFilmeVer.getText().equalsIgnoreCase("filme") || lblUsuarioVer.getText().equalsIgnoreCase("Usuario")) {
                 JOptionPane.showMessageDialog(null, "Selecione o Usuario e o Filme! ☼ ", "Seção", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                UsuarioModel localUser = usuarioBll.getUsuarioById(Integer.parseInt(tabelaUsuariosVer.getValueAt(tabelaUsuariosVer.getSelectedRow(), 0).toString()));
+                UsuarioModel localUser = novoUsuarioInter.getUsuarioById(Integer.parseInt(tabelaUsuariosVer.getValueAt(tabelaUsuariosVer.getSelectedRow(), 0).toString()));
                 UsuarioModel UserTeste = new UsuarioModel();
                 UserTeste.setIden(1);
                 UserTeste.setNome(lblUsuarioVer.getText());
@@ -2368,7 +2368,6 @@ public class MenuView extends javax.swing.JFrame {
             btnUsuariosAlterar.setEnabled(true);
             btnUsuariosCancelar.setEnabled(true);
             btnUsuariosDeletar.setEnabled(true);
-
             btnUsuariosSalvar.setEnabled(false);
 
             txtUsuariosNome.setEnabled(false);
