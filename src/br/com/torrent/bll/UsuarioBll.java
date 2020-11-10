@@ -28,9 +28,8 @@ public class UsuarioBll implements UsuarioInterface {
             }
         }
     }
-
     @Override
-    public void deleteUsuario(UsuarioModel usuario) {
+    public void deleteUsuario(int usuario) {
         try {
             novoUsuario.deleteUsuario(usuario);
         } catch (Exception e) {
