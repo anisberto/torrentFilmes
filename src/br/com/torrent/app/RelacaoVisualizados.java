@@ -1,7 +1,17 @@
 package br.com.torrent.app;
 
 import br.com.torrent.dal.VisualizaDal;
+import br.com.torrent.model.VisualizaModel;
 import br.com.torrent.util.VisualizaTableModel;
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Table;
+import com.lowagie.text.pdf.PdfDate;
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,9 +19,10 @@ public class RelacaoVisualizados extends javax.swing.JFrame {
 
     String nomeUser;
     VisualizaTableModel tabela;
+
     public RelacaoVisualizados() {
         initComponents();
-        tabela = new VisualizaTableModel(new String[]{"Visualização completa","Identificador","Filme","Usuario","Data da Visualização"});
+        tabela = new VisualizaTableModel(new String[]{"Visualização completa", "Identificador", "Filme", "Usuario", "Data da Visualização"});
         tabelaVisualizados.setModel(tabela);
     }
 
@@ -99,6 +110,11 @@ public class RelacaoVisualizados extends javax.swing.JFrame {
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Imprimir Tabela");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -160,6 +176,28 @@ public class RelacaoVisualizados extends javax.swing.JFrame {
             Logger.getLogger(RelacaoVisualizados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        try {
+            Document documento = new Document();
+            PdfWriter.getInstance(documento, new FileOutputStream("./relatorios/relatorioVisualizados.pdf"));
+            documento.open();
+            documento.add(new Paragraph("                                               <b>Relatorio de Visualização de Filmes</b>"));
+            documento.add(new Paragraph("                                               -----------------------------------------------"));
+            documento.add(new Table(10));
+
+            ArrayList<VisualizaModel> lista = new VisualizaDal().getAllVisualizacoes();
+            for (int i = 0; i < lista.size(); i++) {
+                String stat = lista.get(i).isVisuCompleto()?"SIM":"NÃO";
+                documento.add(new Paragraph("Filme: " + lista.get(i).getFime().getTitulo().toUpperCase() + " - Usuario: " + lista.get(i).getUsuario().getEmail().toUpperCase() + " - Visu Completo: " + stat.toUpperCase()));
+                documento.add(new Paragraph("------------------------------------------------------------------------------------------------------------------------------"));
+            }
+            documento.addCreationDate();
+            documento.close();
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     public void userTransf(String nome) {
         nomeUser = nome;
     }
