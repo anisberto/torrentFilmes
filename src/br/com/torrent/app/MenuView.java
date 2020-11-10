@@ -43,7 +43,7 @@ public class MenuView extends javax.swing.JFrame {
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     FilmeTableModel tabelaFilmesModel;
-    UsuarioTableModel tabelaUsuariosFilmes;
+    UsuarioTableModel tabelaUsuariosModel;
 
     UsuarioBll usuarioBll = new UsuarioBll();
     CategoriaTableModel categoriaTabela;
@@ -64,17 +64,17 @@ public class MenuView extends javax.swing.JFrame {
         super("Sistema Torrent Filmes");
         initComponents();
         tabelaPlano = new PlanoTableModel(new String[]{"Nome do Plano", "Preço", "Identificador", "Possui Acesso Simultaneo"});
-        tabelaUsuariosFilmes = new UsuarioTableModel(new String[]{"ID", "NOME", "CPF", "E-MAIL", "PORC %"});
+        tabelaUsuariosModel = new UsuarioTableModel(new String[]{"ID", "NOME", "CPF", "E-MAIL", "PORC %"});
         tabelaContrato = new ContratoTableModel(new String[]{"Plano", "Usuario", "Preço com Desconto", "Percentual de Desconto", "Vigencia", "Status", "Preço do Plano", "Identificador"});
         categoriaTabela = new CategoriaTableModel(new String[]{"Nome da Categoria", "Identificador"});
         tabelaFilmesModel = new FilmeTableModel(new String[]{"Identificador", "Titulo", "Ano de Lançamento", "Categoria"});
         tabViewFilme.setModel(tabelaFilmesModel);
-        tabelaUsuariosVer.setModel(tabelaUsuariosFilmes);
+        tabelaUsuariosVer.setModel(tabelaUsuariosModel);
         tabelaFilmesVer.setModel(tabelaFilmesModel);
         tabViewCategoria.setModel(categoriaTabela);
         tabViewPlano.setModel(tabelaPlano);
         tabViewContrato.setModel(tabelaContrato);
-        tabViewUsuario.setModel(tabelaUsuariosFilmes);
+        tabViewUsuario.setModel(tabelaUsuariosModel);
         novoPlano = new PlanoBll();
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
@@ -1442,7 +1442,7 @@ public class MenuView extends javax.swing.JFrame {
             tabelaFilmesModel.update(novofilme.getAllFilmes());
             tabelaContrato.update(novoContrato.getAllContratos());
             categoriaTabela.update(novaCategoria.getAllCategorias());
-            tabelaUsuariosFilmes.update(usuarioBll.getAllUsuario());
+            tabelaUsuariosModel.update(usuarioBll.getAllUsuario());
 
         } catch (Exception e) {
         }
@@ -1720,10 +1720,10 @@ public class MenuView extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
             }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos ##");
+        } catch (Exception e) {            
         } finally {
-            UsuariosEnableButtons(false);
+            tabelaUsuariosModel.update(novoUsuarioInter.getAllUsuario());
+            enableBuUsuarios(false);
         }
     }//GEN-LAST:event_btnUsuariosSalvarActionPerformed
 
