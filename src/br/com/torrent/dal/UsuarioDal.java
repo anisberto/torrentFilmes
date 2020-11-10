@@ -135,9 +135,9 @@ public class UsuarioDal implements UsuarioInterface {
                 retUsuario.setCpf(rs.getString("cup_email"));
                 retUsuario.setSenha(rs.getString("cup_senha"));
             }
-        } catch (Exception erro) {
+        } catch (Exception e) {
             try {
-                throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + erro.getMessage());
+                throw new Exception("Erro ao buscar no banco de dados: Alunos!!\n" + e.getMessage());
             } catch (Exception ex) {
                 Logger.getLogger(UsuarioDal.class.getName()).log(Level.SEVERE, null, ex);
             }
