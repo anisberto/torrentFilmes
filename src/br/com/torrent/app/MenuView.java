@@ -2273,10 +2273,10 @@ public class MenuView extends javax.swing.JFrame {
             UsuarioModel deleteUsu = novoUsuarioInter.getUsuarioById(codigo);
             idDeleteUsuario = codigo;
             
-            txtUsuariosNome.setText(deleteUsu.getNome() + "");
+            txtUsuariosNome.setText(deleteUsu.getNome());
             txtUsuariosCpf1.setText(deleteUsu.getCpf());
-            txtUsuariosEmail.setText(deleteUsu.getEmail() + "");
-            txtUsuariosSenha.setText(deleteUsu.getSenha() + "");
+            txtUsuariosEmail.setText(deleteUsu.getEmail());
+            txtUsuariosSenha.setText(deleteUsu.getSenha());
 
         } catch (Exception e) {
         }
