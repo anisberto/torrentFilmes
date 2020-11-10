@@ -15,7 +15,7 @@ import br.com.torrent.interfaces.PlanoInterface;
 import br.com.torrent.interfaces.UsuarioInterface;
 import br.com.torrent.model.CategoriaFilmesModel;
 import br.com.torrent.model.ContratoModel;
-import br.com.torrent.model.Cupon;
+import br.com.torrent.model.CupomModel;
 import br.com.torrent.model.FilmeModel;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuarioModel;
@@ -32,10 +32,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuView extends javax.swing.JFrame {
-
+    CupomModel cupon = new CupomModel();
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
     UsuarioInterface novoUsuarioInter = null;
+    CupomInterface novoCuponInter = null;
     PlanoTableModel tabelaPlano;
     UsuarioTableModel tabelaUsuario;
     //UsuarioInterface novoUsuarioInter;
@@ -1696,7 +1697,7 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
-        Cupon cupon = new Cupon();
+//        CupomModel cupon = new CupomModel();
         try {
             UsuarioModel nUsuario = new UsuarioModel();
             nUsuario.setNome(txtUsuariosNome.getText());
@@ -1709,13 +1710,7 @@ public class MenuView extends javax.swing.JFrame {
             } else {
                 nUsuario.setIden(idDeleteUsuario);
                 novoUsuarioInter.updateUsuario(nUsuario);
-//                usuario.setNome(txtUsuariosNome.getText());
-//                usuario.setCpf(txtUsuariosCpf1.getText());
-//                usuario.setEmail(txtUsuariosEmail.getText());
-//                usuario.setSenha(txtUsuariosSenha.getText());
-
-                //usuarioBll.adicionarUsuario(usuario);
-                System.out.println("cadastro de usuario - ok");
+                System.out.println("Alterado dados de usuario !!!");
                 //limparCamposUsuario();
                 //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
             }
