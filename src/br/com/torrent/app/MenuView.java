@@ -48,7 +48,7 @@ public class MenuView extends javax.swing.JFrame {
     CategoriaTableModel categoriaTabela;
     CategoriasInterfaces novaCategoria;
     FilmesInterfaces novofilme = null;
-    boolean incluirUsuario = true;
+    boolean incluirUsuarios = true;
     boolean incluirPlano = true;
     boolean incluirContrato = true;
     boolean incluirCategoria = true;
@@ -58,7 +58,6 @@ public class MenuView extends javax.swing.JFrame {
     int IdCategoriaTable;
     int idDelete;
     int idDeleteUsuario;
-     
 
     public MenuView() throws Exception {
         super("Sistema Torrent Filmes");
@@ -176,7 +175,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtUsuariosEmail = new javax.swing.JTextField();
         txtUsuariosSenha = new javax.swing.JTextField();
-        txtUsuariosCpf = new javax.swing.JFormattedTextField();
+        txtUsuariosCpf1 = new javax.swing.JFormattedTextField();
         btnUsuariosIncluir = new javax.swing.JButton();
         btnUsuariosDeletar = new javax.swing.JButton();
         btnUsuariosAlterar = new javax.swing.JButton();
@@ -1062,11 +1061,11 @@ public class MenuView extends javax.swing.JFrame {
         txtUsuariosSenha.setEnabled(false);
 
         try {
-            txtUsuariosCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtUsuariosCpf1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtUsuariosCpf.setEnabled(false);
+        txtUsuariosCpf1.setEnabled(false);
 
         btnUsuariosIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/torrent/icons/mais.png"))); // NOI18N
         btnUsuariosIncluir.setText("INCLUIR");
@@ -1136,7 +1135,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(txtUsuariosNome)
                         .addGap(33, 33, 33)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuariosCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuariosCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1180,7 +1179,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuariosNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuariosCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuariosCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
@@ -1420,7 +1419,7 @@ public class MenuView extends javax.swing.JFrame {
 
     public void limparCamposUsuario() {
         txtUsuariosNome.setText("");
-        txtUsuariosCpf.setText("");
+        txtUsuariosCpf1.setText("");
         txtUsuariosEmail.setText("");
         txtUsuariosSenha.setText("");
     }
@@ -1658,7 +1657,8 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnUsuariosIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosIncluirActionPerformed
         try {
-            incluirUsuario = true;
+            limparCamposUsuario();
+            incluirUsuarios = true;
             UsuariosEnableButtons(true);
         } catch (Exception e) {
         }
@@ -1669,36 +1669,47 @@ public class MenuView extends javax.swing.JFrame {
             if (txtUsuariosNome.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Selecione o usuario na Tabela", "Deleção", JOptionPane.ERROR_MESSAGE);
             } else {
-                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Plano: " + txtUsuariosNome.getText(), "Deleção",
+                int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Usuario: " + txtUsuariosNome.getText(), "Deleção",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
                 if (conf == 0) {
-                    novoUsuario.deleteUsuario(usuario);
-                    JOptionPane.showMessageDialog(null, "Plano deletada com sucesso");
+                    novoUsuario.deleteUsuario(idDeleteUsuario);
+                    limparCamposUsuario();
+                    JOptionPane.showMessageDialog(null, "Usuario deletado(o) com sucesso");
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Deleção Cancelada!");
+                    JOptionPane.showMessageDialog(null, "Deletação Cancelada!");
                 }
             }
             tabelaUsuario.update(novoUsuario.getAllUsuario());
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnUsuariosDeletarActionPerformed
 
     private void btnUsuariosAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosAlterarActionPerformed
-        // TODO add your handling code here:
+        try {
+            enableBuUsuarios(true);
+            incluirUsuarios = false;
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
         Cupon cupon = new Cupon();
         try {
-            usuario.setNome(txtUsuariosNome.getText());
-            usuario.setCpf(txtUsuariosCpf.getText());
-            usuario.setEmail(txtUsuariosEmail.getText());
-            usuario.setSenha(txtUsuariosSenha.getText());
+            if (txtUsuariosNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha os campo Nome:", "Usuario em branco", JOptionPane.ERROR_MESSAGE);
+            } else {
+                usuario.setNome(txtUsuariosNome.getText());
+                usuario.setCpf(txtUsuariosCpf1.getText());
+                usuario.setEmail(txtUsuariosEmail.getText());
+                usuario.setSenha(txtUsuariosSenha.getText());
 
-            usuarioBll.adicionarUsuario(usuario);
-            System.out.println("cadastro de usuario - ok");
-            limparCamposUsuario();
-            JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+                usuarioBll.adicionarUsuario(usuario);
+                System.out.println("cadastro de usuario - ok");
+                limparCamposUsuario();
+                JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos ##");
@@ -1708,7 +1719,10 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosSalvarActionPerformed
 
     private void btnUsuariosCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosCancelarActionPerformed
-        // TODO add your handling code here:
+        try {
+            UsuariosEnableButtons(false);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnUsuariosCancelarActionPerformed
 
     private void btnFilmeIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeIncluirActionPerformed
@@ -1871,12 +1885,12 @@ public class MenuView extends javax.swing.JFrame {
 
     private void tabViewUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabViewUsuarioMouseClicked
         try {
-             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
-             
-            transferirDadosUsuario();    
+            int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
+
+            transferirDadosUsuario();
         } catch (Exception e) {
         }
-        
+
     }//GEN-LAST:event_tabViewUsuarioMouseClicked
 
     private void jcFilmeCategoriaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jcFilmeCategoriaAncestorAdded
@@ -2093,7 +2107,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlanoNome;
     private javax.swing.JTextField txtPlanoPreco;
     private javax.swing.JTextArea txtSinopseFilme;
-    private javax.swing.JFormattedTextField txtUsuariosCpf;
+    private javax.swing.JFormattedTextField txtUsuariosCpf1;
     private javax.swing.JTextField txtUsuariosEmail;
     private javax.swing.JTextField txtUsuariosNome;
     private javax.swing.JTextField txtUsuariosSenha;
@@ -2203,7 +2217,7 @@ public class MenuView extends javax.swing.JFrame {
             btnUsuariosDeletar.setEnabled(false);
             btnUsuariosSalvar.setEnabled(true);
             txtUsuariosNome.setEnabled(true);
-            txtUsuariosCpf.setEnabled(true);
+            txtUsuariosCpf1.setEnabled(true);
             txtUsuariosEmail.setEnabled(true);
             txtUsuariosSenha.setEnabled(true);
 
@@ -2215,10 +2229,10 @@ public class MenuView extends javax.swing.JFrame {
 
             btnUsuariosSalvar.setEnabled(false);
             txtUsuariosNome.setEnabled(false);
-            txtUsuariosCpf.setEnabled(false);
+            txtUsuariosCpf1.setEnabled(false);
             txtUsuariosEmail.setEnabled(false);
             txtUsuariosSenha.setEnabled(false);
-            limparCamposUsuario();
+
         }
     }
 
@@ -2251,9 +2265,9 @@ public class MenuView extends javax.swing.JFrame {
             idDeleteUsuario = codigo;
             System.out.println(deleteUsu);
             txtUsuariosNome.setText(deleteUsu.getNome() + "");
-            txtUsuariosCpf.setText(deleteUsu.getCpf()+"");
-            txtUsuariosEmail.setText(deleteUsu.getEmail()+"");
-            txtUsuariosSenha.setText(deleteUsu.getSenha()+"");
+            txtUsuariosCpf1.setText(deleteUsu.getCpf());
+            txtUsuariosEmail.setText(deleteUsu.getEmail() + "");
+            txtUsuariosSenha.setText(deleteUsu.getSenha() + "");
 
         } catch (Exception e) {
         }
@@ -2328,6 +2342,37 @@ public class MenuView extends javax.swing.JFrame {
         }
     }
 
+    private void enableBuUsuarios(boolean butt) {
+        if (butt) {
+            btnUsuariosIncluir.setEnabled(false);
+            btnUsuariosAlterar.setEnabled(false);
+            btnUsuariosCancelar.setEnabled(true);
+            btnUsuariosDeletar.setEnabled(false);
+            btnUsuariosSalvar.setEnabled(true);
+
+            txtUsuariosNome.setEnabled(true);
+            txtUsuariosCpf1.setEnabled(true);
+            txtUsuariosEmail.setEnabled(true);
+            txtUsuariosSenha.setEnabled(true);
+        } else {
+            btnUsuariosIncluir.setEnabled(true);
+            btnUsuariosAlterar.setEnabled(true);
+            btnUsuariosCancelar.setEnabled(true);
+            btnUsuariosDeletar.setEnabled(true);
+            btnUsuariosSalvar.setEnabled(false);
+
+            txtUsuariosNome.setEnabled(false);
+            txtUsuariosCpf1.setEnabled(false);
+            txtUsuariosEmail.setEnabled(false);
+            txtUsuariosSenha.setEnabled(false);
+
+            txtUsuariosNome.setText("");
+            txtUsuariosCpf1.setText("");
+            txtUsuariosEmail.setText("");
+            txtUsuariosSenha.setText("");
+        }
+    }
+
     private void setItemsCombo() {
         jcFilmeCategoria.removeAllItems();
         ArrayList<CategoriaFilmesModel> contraPlanos = (ArrayList<CategoriaFilmesModel>) novaCategoria.getAllCategorias();
@@ -2364,5 +2409,10 @@ public class MenuView extends javax.swing.JFrame {
     public String formatDateStruct(String oldDate) {
         String[] newForm = oldDate.split("-");
         return newForm[2] + "/" + newForm[1] + "/" + newForm[0];
+    }
+
+    public String formatcpfStruct(String oldCpf) {
+        String[] newForm = oldCpf.split("");
+        return newForm[3] + "." + newForm[2] + "." + newForm[1] + "." + newForm[0];
     }
 }
