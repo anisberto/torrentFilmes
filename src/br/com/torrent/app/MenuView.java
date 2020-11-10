@@ -35,15 +35,16 @@ public class MenuView extends javax.swing.JFrame {
 
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
+    UsuarioInterface novoUsuarioInter = null;
     PlanoTableModel tabelaPlano;
     UsuarioTableModel tabelaUsuario;
-    UsuarioInterface novoUsuario;
+    //UsuarioInterface novoUsuarioInter;
 
     ContratoInterface novoContrato;
     ContratoTableModel tabelaContrato;
     FilmeTableModel tabelaFilmesModel;
     UsuarioTableModel tabelaUsuariosFilmes;
-    //UsuarioInterface novoUsuario = null;
+
     UsuarioBll usuarioBll = new UsuarioBll();
     CategoriaTableModel categoriaTabela;
     CategoriasInterfaces novaCategoria;
@@ -78,7 +79,7 @@ public class MenuView extends javax.swing.JFrame {
         novoContrato = new ContratoBll();
         novaCategoria = new CategoriaBll();
         novofilme = new FilmesBll();
-        novoUsuario = new UsuarioBll();
+        novoUsuarioInter = new UsuarioBll();
     }
 
     @SuppressWarnings("unchecked")
@@ -1672,7 +1673,7 @@ public class MenuView extends javax.swing.JFrame {
                 int conf = JOptionPane.showConfirmDialog(null, "Confirmar a deleção do Usuario: " + txtUsuariosNome.getText(), "Deleção",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null);
                 if (conf == 0) {
-                    novoUsuario.deleteUsuario(idDeleteUsuario);
+                    novoUsuarioInter.deleteUsuario(idDeleteUsuario);
                     limparCamposUsuario();
                     JOptionPane.showMessageDialog(null, "Usuario deletado(o) com sucesso");
 
@@ -1680,7 +1681,7 @@ public class MenuView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Deletação Cancelada!");
                 }
             }
-            tabelaUsuario.update(novoUsuario.getAllUsuario());
+            tabelaUsuario.update(novoUsuarioInter.getAllUsuario());
 
         } catch (Exception e) {
         }
@@ -1688,8 +1689,8 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnUsuariosAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosAlterarActionPerformed
         try {
-            enableBuUsuarios(true);
             incluirUsuarios = false;
+            enableBuUsuarios(true);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
@@ -1697,18 +1698,26 @@ public class MenuView extends javax.swing.JFrame {
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
         Cupon cupon = new Cupon();
         try {
-            if (txtUsuariosNome.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha os campo Nome:", "Usuario em branco", JOptionPane.ERROR_MESSAGE);
+            UsuarioModel nUsuario = new UsuarioModel();
+            nUsuario.setNome(txtUsuariosNome.getText());
+            nUsuario.setCpf(txtUsuariosCpf1.getText());
+            nUsuario.setEmail(txtUsuariosEmail.getText());
+            nUsuario.setSenha(txtUsuariosSenha.getText());
+            if (incluirUsuarios) {
+                novoUsuarioInter.adicionarUsuario(nUsuario);
+                JOptionPane.showMessageDialog(null, "usuario(a) incluido com Sucesso!#");
             } else {
-                usuario.setNome(txtUsuariosNome.getText());
-                usuario.setCpf(txtUsuariosCpf1.getText());
-                usuario.setEmail(txtUsuariosEmail.getText());
-                usuario.setSenha(txtUsuariosSenha.getText());
+                nUsuario.setIden(idDeleteUsuario);
+                novoUsuarioInter.updateUsuario(nUsuario);
+//                usuario.setNome(txtUsuariosNome.getText());
+//                usuario.setCpf(txtUsuariosCpf1.getText());
+//                usuario.setEmail(txtUsuariosEmail.getText());
+//                usuario.setSenha(txtUsuariosSenha.getText());
 
-                usuarioBll.adicionarUsuario(usuario);
+                //usuarioBll.adicionarUsuario(usuario);
                 System.out.println("cadastro de usuario - ok");
-                limparCamposUsuario();
-                JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+                //limparCamposUsuario();
+                //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
             }
 
         } catch (Exception e) {
@@ -2261,7 +2270,7 @@ public class MenuView extends javax.swing.JFrame {
     private void transferirDadosUsuario() {
         try {
             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
-            UsuarioModel deleteUsu = novoUsuario.getUsuarioById(codigo);
+            UsuarioModel deleteUsu = novoUsuarioInter.getUsuarioById(codigo);
             idDeleteUsuario = codigo;
             System.out.println(deleteUsu);
             txtUsuariosNome.setText(deleteUsu.getNome() + "");
@@ -2359,6 +2368,7 @@ public class MenuView extends javax.swing.JFrame {
             btnUsuariosAlterar.setEnabled(true);
             btnUsuariosCancelar.setEnabled(true);
             btnUsuariosDeletar.setEnabled(true);
+
             btnUsuariosSalvar.setEnabled(false);
 
             txtUsuariosNome.setEnabled(false);
