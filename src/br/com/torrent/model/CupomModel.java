@@ -24,7 +24,8 @@ public class CupomModel {
     // criar metodo porcentagem
     public static int random() {
         Random rand = new Random();
-        return rand.nextInt(60 - 0 + 1) - 1;
+        return rand.nextInt(61);
+        //return rand.nextInt(60 - 0 + 1) - 1;
     }
 
     public void setPorcentagem(double porcentagem) {
