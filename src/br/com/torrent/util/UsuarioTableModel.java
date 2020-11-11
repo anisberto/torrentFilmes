@@ -23,7 +23,7 @@ public class UsuarioTableModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return colunas[column];
     }
-    
+
     @Override
     public int getRowCount() {
         return dados.size();
@@ -44,11 +44,9 @@ public class UsuarioTableModel extends AbstractTableModel {
             case 2:
                 return dados.get(rowIndex).getCpf() + "";
             case 3:
-                return dados.get(rowIndex).getEmail() + "";           
+                return dados.get(rowIndex).getEmail() + "";
             case 4:
-                return dados.get(rowIndex).getSenha() + "";
-                case 5:
-                return dados.get(rowIndex).getDesconto()+ "";
+                return dados.get(rowIndex).getCupom().getPorcentagem() + "";
             default:
                 throw new AssertionError();
         }
@@ -68,7 +66,7 @@ public class UsuarioTableModel extends AbstractTableModel {
         } catch (Exception e) {
         }
     }
-    
+
     public void update(String[] dadosSV) {
         try {
             ArrayList<UsuarioModel> lista = new ArrayList<>();

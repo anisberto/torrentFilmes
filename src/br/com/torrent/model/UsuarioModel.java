@@ -7,19 +7,18 @@ public class UsuarioModel {
     private String cpf;
     private String email;
     private String senha;
-    private double desconto;
+    private CupomModel cupom;
 
     public UsuarioModel() {
     }
 
-    public UsuarioModel(int iden, String nome, String cpf, String email, String senha, double desconto) {
+    public UsuarioModel(int iden, String nome, String cpf, String email, String senha, CupomModel cupom) {
         this.iden = iden;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
-        this.desconto = desconto;
-
+        this.cupom = cupom;
     }
 
     public int getIden() {
@@ -45,7 +44,6 @@ public class UsuarioModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
 
     public String getEmail() {
         return email;
@@ -63,17 +61,17 @@ public class UsuarioModel {
         this.senha = senha;
     }
 
-    public double getDesconto() {
-        return desconto;
+    public CupomModel getCupom() {
+        return cupom;
     }
 
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
+    public void setCupom(CupomModel cupom) {
+        this.cupom = cupom;
     }
 
     @Override
     public String toString() {
-        return "UsuarioModel{" + "iden=" + iden + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", desconto=" + desconto + '}';
+        return "UsuarioModel{" + "iden=" + iden + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", cupom=" + cupom.getPorcentagem() + '}';
     }
 
 }
