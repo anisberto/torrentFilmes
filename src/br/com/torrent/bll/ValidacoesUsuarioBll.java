@@ -6,8 +6,9 @@ import java.util.logging.Logger;
 
 public class ValidacoesUsuarioBll {
 
-    public static boolean validarCamposUsuarios(UsuarioModel usuario) throws Exception{
+    public static boolean validarCamposUsuarios(UsuarioModel usuario) throws Exception {
 //        return !usuario.getNome().isEmpty() && usuario.getCpf().isEmpty() && usuario.getEmail().isEmpty() && usuario.getSenha().isEmpty();
+
         return !usuario.getNome().isEmpty();
 
     }
@@ -26,6 +27,5 @@ public class ValidacoesUsuarioBll {
             return false;
         }
     }
-   
-    
+
 }
