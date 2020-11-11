@@ -33,6 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuView extends javax.swing.JFrame {
+
     CupomModel cupon = new CupomModel();
     UsuarioModel usuario = new UsuarioModel();
     PlanoInterface novoPlano = null;
@@ -1678,7 +1679,6 @@ public class MenuView extends javax.swing.JFrame {
                     novoUsuarioInter.deleteUsuario(idDeleteUsuario);
                     limparCamposUsuario();
                     JOptionPane.showMessageDialog(null, "Usuario deletado(o) com sucesso");
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Deletação Cancelada!");
                 }
@@ -1698,13 +1698,17 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosAlterarActionPerformed
 
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
-//        CupomModel cupon = new CupomModel();
+        CupomModel cupom = new CupomModel();
+        cupom.setPorcentagem(CupomModel.random());
         try {
             UsuarioModel nUsuario = new UsuarioModel();
             nUsuario.setNome(txtUsuariosNome.getText());
             nUsuario.setCpf(txtUsuariosCpf1.getText());
             nUsuario.setEmail(txtUsuariosEmail.getText());
             nUsuario.setSenha(txtUsuariosSenha.getText());
+            nUsuario.setCupom(cupom);
+            
+            System.out.println(nUsuario);
             if (incluirUsuarios) {
                 novoUsuarioInter.adicionarUsuario(nUsuario);
                 JOptionPane.showMessageDialog(null, "usuario(a) incluido com Sucesso!#");
@@ -1716,7 +1720,7 @@ public class MenuView extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
             }
 
-        } catch (Exception e) {            
+        } catch (Exception e) {
         } finally {
             tabelaUsuariosModel.update(novoUsuarioInter.getAllUsuario());
             enableBuUsuarios(false);
@@ -2268,7 +2272,7 @@ public class MenuView extends javax.swing.JFrame {
             int codigo = Integer.parseInt(tabViewUsuario.getValueAt(tabViewUsuario.getSelectedRow(), 0).toString());
             UsuarioModel deleteUsu = novoUsuarioInter.getUsuarioById(codigo);
             idDeleteUsuario = codigo;
-            
+
             txtUsuariosNome.setText(deleteUsu.getNome());
             txtUsuariosCpf1.setText(deleteUsu.getCpf());
             txtUsuariosEmail.setText(deleteUsu.getEmail());
