@@ -3,6 +3,7 @@ package br.com.torrent.bll;
 import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuLoginModel;
+import br.com.torrent.model.UsuarioModel;
 
 public class ValidacoesBll {
 
@@ -24,7 +25,5 @@ public class ValidacoesBll {
     public static boolean validarAlteracao(PlanoModel plano) {
         return !plano.getNome().isEmpty() && plano.getPreco() > 0 && plano.getNome().length() >= 5 && plano.getNome().length() <= 20;
     }
-
-    
 
 }
