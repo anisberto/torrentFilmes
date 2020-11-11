@@ -44,7 +44,7 @@ public class ContratoTableModel extends AbstractTableModel {
             case 2:
                 return dados.get(rowIndex).getPrecoComDesconto() + "";
             case 3:
-                return dados.get(rowIndex).getId_usu().getIden()+"";
+                return dados.get(rowIndex).getId_usu().getCupom().getPorcentagem() + "%";
             case 4:
                 return dados.get(rowIndex).getInicio().toString() + " - " + dados.get(rowIndex).getFim();
             case 5:

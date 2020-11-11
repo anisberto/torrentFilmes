@@ -24,7 +24,7 @@ public class UsuarioDal implements UsuarioInterface {
     @Override
     public void adicionarUsuario(UsuarioModel usuario) {
 
-        try { // preparando a conexao;
+        try { 
 
             String sql = "INSERT INTO cup_usuarios(\n"
                     + "	cup_porcentagem, cup_nome, cup_cpf, cup_email, cup_senha)\n"
@@ -115,12 +115,14 @@ public class UsuarioDal implements UsuarioInterface {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-
+                CupomModel cupom = new CupomModel();
                 retUsuario.setIden(rs.getInt("cup_iden"));
                 retUsuario.setNome(rs.getString("cup_nome"));
                 retUsuario.setCpf(rs.getString("cup_cpf"));
                 retUsuario.setEmail(rs.getString("cup_email"));
                 retUsuario.setSenha(rs.getString("cup_senha"));
+                cupom.setPorcentagem(rs.getDouble("cup_porcentagem"));
+                retUsuario.setCupom(cupom);
             }
         } catch (Exception erro) {
             try {

@@ -17,7 +17,7 @@ public class ContratoModel {
         this.status = status;
         this.id_plano = id_plano;
         this.id_usu = id_usu;
-        this.precoComDesconto = (getId_usu().getIden() * getId_plano().getPreco() - getId_plano().getPreco());
+        this.precoComDesconto = ((getId_usu().getCupom().getPorcentagem() * getId_plano().getPreco()) - getId_plano().getPreco());
     }
 
     public ContratoModel() {
