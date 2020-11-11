@@ -3,7 +3,6 @@ package br.com.torrent.bll;
 import br.com.torrent.dal.UsuLoginDal;
 import br.com.torrent.model.PlanoModel;
 import br.com.torrent.model.UsuLoginModel;
-import br.com.torrent.model.UsuarioModel;
 
 public class ValidacoesBll {
 
