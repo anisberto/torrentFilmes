@@ -1709,7 +1709,7 @@ public class MenuView extends javax.swing.JFrame {
         // txtUsuariosNome.getText().isEmpty())
 
         try {
-            if (txtUsuariosCpf1.getText().trim().length() < 14 || txtUsuariosNome.getText().equals("")) {
+            if (txtUsuariosCpf1.getText().trim().length() != 14 || txtUsuariosNome.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Campo Nome ou CPF está vazio !!###!");
                 System.out.println("QTD de caractesres CPF: "+txtUsuariosCpf1.getText().length());
                 System.out.println("QTD de remove CPF: "+txtUsuariosCpf1.getText().trim().length());
