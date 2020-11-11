@@ -1579,6 +1579,10 @@ public class MenuView extends javax.swing.JFrame {
             newContrato.setFim(txtContratoFim.getText());
             newContrato.setId_plano(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
             newContrato.setId_usu(novoUsuarioInter.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
+            
+            System.out.println(novoUsuarioInter.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
+            System.out.println(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
+            
             newContrato.setInicio(txtContratoInicio.getText());
             newContrato.setStatus(jcContratoStatus.getSelectedItem().toString());
             if (incluirContrato) {

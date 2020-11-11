@@ -17,7 +17,7 @@ public class ContratoModel {
         this.status = status;
         this.id_plano = id_plano;
         this.id_usu = id_usu;
-        this.precoComDesconto = ((getId_usu().getCupom().getPorcentagem() * getId_plano().getPreco()) - getId_plano().getPreco());
+        this.precoComDesconto = id_plano.getPreco()-((id_usu.getCupom().getPorcentagem() / 100) * id_plano.getPreco());
     }
 
     public ContratoModel() {
@@ -69,12 +69,12 @@ public class ContratoModel {
     }
 
     public double getPrecoComDesconto() {
-        precoComDesconto = (getId_plano().getPreco()-(getId_usu().getIden() * getId_plano().getPreco()));
+        precoComDesconto = id_plano.getPreco()-((id_usu.getCupom().getPorcentagem() / 100) * id_plano.getPreco());
         return precoComDesconto;
     }
 
     public void setPrecoComDesconto(double precoComDesconto) {
-        this.precoComDesconto = precoComDesconto;
+        this.precoComDesconto =  precoComDesconto;
     }
 
     public void setStatus(String status) {

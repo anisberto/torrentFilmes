@@ -28,6 +28,7 @@ public class UsuarioBll implements UsuarioInterface {
             }
         }
     }
+
     @Override
     public void deleteUsuario(int usuario) {
         try {
@@ -88,8 +89,7 @@ public class UsuarioBll implements UsuarioInterface {
         try {
             return novoUsuario.findUsuarioName(nome);
         } catch (Exception e) {
+            return null;
         }
-        return null;
     }
-
 }

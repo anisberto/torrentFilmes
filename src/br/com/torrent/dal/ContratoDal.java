@@ -25,14 +25,15 @@ public class ContratoDal implements ContratoInterface {
     @Override
     public void adicionarContrato(ContratoModel contrato) {
         try {
-            PreparedStatement prep = conect.prepareStatement("INSERT INTO contrata(\n"
-                    + "	con_status, con_fim, con_inicio, con_pla_iden, con_cup_iden)\n"
-                    + "	VALUES (?, ?, ?, ?, ?);");
-            prep.setString(1, contrato.getStatus().toString());
+            PreparedStatement prep = conect.prepareStatement("INSERT INTO public.contrata(\n"
+                    + "	con_status, con_fim, con_inicio, con_pla_iden, con_cup_iden, con_precocomdesconto)\n"
+                    + "	VALUES (?, ?, ?, ?, ?, ?);");
+            prep.setString(1, contrato.getStatus());
             prep.setDate(2, new java.sql.Date(new Date(contrato.getFim()).getTime()));
             prep.setDate(3, new java.sql.Date(new Date(contrato.getInicio()).getTime()));
             prep.setInt(4, contrato.getId_plano().getId());
             prep.setInt(5, contrato.getId_usu().getIden());
+            prep.setDouble(6, contrato.getPrecoComDesconto());
             prep.executeUpdate();
         } catch (Exception e) {
             try {
