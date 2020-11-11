@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -1700,24 +1702,33 @@ public class MenuView extends javax.swing.JFrame {
     private void btnUsuariosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosSalvarActionPerformed
         CupomModel cupom = new CupomModel();
         cupom.setPorcentagem(CupomModel.random());
+        // txtUsuariosNome.getText().isEmpty())
+
         try {
-            UsuarioModel nUsuario = new UsuarioModel();
-            nUsuario.setNome(txtUsuariosNome.getText());
-            nUsuario.setCpf(txtUsuariosCpf1.getText());
-            nUsuario.setEmail(txtUsuariosEmail.getText());
-            nUsuario.setSenha(txtUsuariosSenha.getText());
-            nUsuario.setCupom(cupom);
-            
-            System.out.println(nUsuario);
-            if (incluirUsuarios) {
-                novoUsuarioInter.adicionarUsuario(nUsuario);
-                JOptionPane.showMessageDialog(null, "usuario(a) incluido com Sucesso!#");
+            if (txtUsuariosCpf1.getText().trim().length() < 14 || txtUsuariosNome.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Campo Nome ou CPF está vazio !!###!");
+                System.out.println("QTD de caractesres CPF: "+txtUsuariosCpf1.getText().length());
+                System.out.println("QTD de remove CPF: "+txtUsuariosCpf1.getText().trim().length());
             } else {
-                nUsuario.setIden(idDeleteUsuario);
-                novoUsuarioInter.updateUsuario(nUsuario);
-                System.out.println("Alterado dados de usuario !!!");
-                //limparCamposUsuario();
-                //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+                UsuarioModel nUsuario = new UsuarioModel();
+                nUsuario.setNome(txtUsuariosNome.getText());
+                nUsuario.setCpf(txtUsuariosCpf1.getText());
+                nUsuario.setEmail(txtUsuariosEmail.getText());
+                nUsuario.setSenha(txtUsuariosSenha.getText());
+                nUsuario.setCupom(cupom);
+
+                System.out.println(nUsuario);
+
+                if (incluirUsuarios) {
+                    novoUsuarioInter.adicionarUsuario(nUsuario);
+                    JOptionPane.showMessageDialog(null, "usuario(a) incluido com Sucesso!#");
+                } else {
+                    nUsuario.setIden(idDeleteUsuario);
+                    novoUsuarioInter.updateUsuario(nUsuario);
+                    System.out.println("Alterado dados de usuario !!!");
+                    //limparCamposUsuario();
+                    //JOptionPane.showMessageDialog(null, "Usuário Incluido com Sucesso!");
+                }
             }
 
         } catch (Exception e) {
