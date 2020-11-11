@@ -1,6 +1,7 @@
 package br.com.torrent.dal;
 
 import br.com.torrent.interfaces.UsuarioInterface;
+import br.com.torrent.model.CupomModel;
 import br.com.torrent.model.UsuarioModel;
 import br.com.torrent.util.Conexao;
 import java.sql.Connection;
@@ -25,18 +26,22 @@ public class UsuarioDal implements UsuarioInterface {
 
         try { // preparando a conexao;
 
-            String sql = "INSERT INTO cup_usuarios (cup_nome, cup_cpf, cup_email, cup_senha) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO cup_usuarios(\n"
+                    + "	cup_porcentagem, cup_nome, cup_cpf, cup_email, cup_senha)\n"
+                    + "	VALUES (?, ?, ?, ?, ?);";
             PreparedStatement preparedStatement = conect.prepareStatement(sql);
-            preparedStatement.setObject(1, usuario.getNome());
-            preparedStatement.setObject(2, usuario.getCpf());
-            preparedStatement.setObject(3, usuario.getEmail());
-            preparedStatement.setObject(4, usuario.getSenha());
+            preparedStatement.setString(2, usuario.getNome());
+            preparedStatement.setString(3, usuario.getCpf());
+            preparedStatement.setString(4, usuario.getEmail());
+            preparedStatement.setString(5, usuario.getSenha());
+            preparedStatement.setDouble(1, usuario.getCupom().getPorcentagem());
+
             preparedStatement.executeUpdate(); // executa o comando da String sql;
         } catch (SQLException e) {
             try {
                 throw new Exception("Erro ao incluir novo usuario!" + e.getMessage());
             } catch (Exception ex) {
-                Logger.getLogger(PlanoDal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioDal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -57,9 +62,10 @@ public class UsuarioDal implements UsuarioInterface {
             PreparedStatement prep = conect.prepareStatement("UPDATE cup_usuarios set  cup_nome=?, cup_cpf=?, cup_email=?, cup_senha=? where cup_iden=?;");
 
             prep.setString(1, usuario.getNome());
-            prep.setInt(2, usuario.getIden());
+            prep.setString(2, usuario.getCpf());
             prep.setString(3, usuario.getEmail());
             prep.setString(4, usuario.getSenha());
+            prep.setInt(5, usuario.getIden());
             prep.executeUpdate();
         } catch (Exception e) {
         }
@@ -68,16 +74,21 @@ public class UsuarioDal implements UsuarioInterface {
     @Override
     public ArrayList<UsuarioModel> getAllUsuario() {
         ArrayList<UsuarioModel> usuarios = new ArrayList<UsuarioModel>();
+
         try {
             Statement statement = conect.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM cup_usuarios");
+
             while (rs.next()) {
+                CupomModel cupom = new CupomModel();
                 UsuarioModel novoUsuario = new UsuarioModel();
                 novoUsuario.setIden(rs.getInt("cup_iden"));
                 novoUsuario.setNome(rs.getString("cup_nome"));
                 novoUsuario.setCpf(rs.getString("cup_cpf"));
                 novoUsuario.setEmail(rs.getString("cup_email"));
                 novoUsuario.setSenha(rs.getString("cup_senha"));
+                cupom.setPorcentagem(rs.getDouble("cup_porcentagem"));
+                novoUsuario.setCupom(cupom);
                 usuarios.add(novoUsuario);
             }
             return usuarios;
@@ -104,7 +115,7 @@ public class UsuarioDal implements UsuarioInterface {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                
+
                 retUsuario.setIden(rs.getInt("cup_iden"));
                 retUsuario.setNome(rs.getString("cup_nome"));
                 retUsuario.setCpf(rs.getString("cup_cpf"));
@@ -125,14 +136,14 @@ public class UsuarioDal implements UsuarioInterface {
     public UsuarioModel findUsuarioName(String nome) {
         UsuarioModel retUsuario = new UsuarioModel();
         try {
-            PreparedStatement prep = conect.prepareStatement("SELECT * FROM cup_usuarios WHERE cup_nome=?");                      
+            PreparedStatement prep = conect.prepareStatement("SELECT * FROM cup_usuarios WHERE cup_nome=?");
             prep.setString(1, nome);
             ResultSet rs = prep.executeQuery();
             if (rs.next()) {
                 retUsuario.setIden(rs.getInt("cup_iden"));
                 retUsuario.setNome(rs.getString("cup_nome"));
                 retUsuario.setCpf(rs.getString("cup_cpf"));
-                retUsuario.setCpf(rs.getString("cup_email"));
+                retUsuario.setEmail(rs.getString("cup_email"));
                 retUsuario.setSenha(rs.getString("cup_senha"));
             }
         } catch (Exception e) {
