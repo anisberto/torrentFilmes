@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface CategoriasInterfaces {
 
-    public void adicionarCategorias(CategoriaFilmesModel categoria);
+    public void adicionarCategorias(CategoriaFilmesModel categoria) throws Exception;
 
     public void deleteCategorias(int id);
 
