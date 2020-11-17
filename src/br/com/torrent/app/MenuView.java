@@ -190,6 +190,7 @@ public class MenuView extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tabViewUsuario = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
+        txtUsuarioCpfTeste = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -1210,6 +1211,7 @@ public class MenuView extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 770, 430));
+        jPanel3.add(txtUsuarioCpfTeste, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 170, -1));
 
         jTabbedPane1.addTab("Usuarios", jPanel3);
 
@@ -1589,10 +1591,10 @@ public class MenuView extends javax.swing.JFrame {
             newContrato.setFim(txtContratoFim.getText());
             newContrato.setId_plano(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
             newContrato.setId_usu(novoUsuarioInter.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
-            
+
             System.out.println(novoUsuarioInter.findUsuarioName(jcContratoUsuarios.getSelectedItem().toString()));
             System.out.println(novoPlano.findPlanoName(jcContratoPlanos.getSelectedItem().toString()));
-            
+
             newContrato.setInicio(txtContratoInicio.getText());
             newContrato.setStatus(jcContratoStatus.getSelectedItem().toString());
             if (incluirContrato) {
@@ -1715,16 +1717,24 @@ public class MenuView extends javax.swing.JFrame {
         CupomModel cupom = new CupomModel();
         cupom.setPorcentagem(CupomModel.random());
         // txtUsuariosNome.getText().isEmpty())
-
+        //txtUsuariosCpf1.getText().trim().length() != 14 || 
         try {
-            if (txtUsuariosCpf1.getText().trim().length() != 14 || txtUsuariosNome.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Campo Nome ou CPF está vazio !!###!");
-                System.out.println("QTD de caractesres CPF: "+txtUsuariosCpf1.getText().length());
-                System.out.println("QTD de remove CPF: "+txtUsuariosCpf1.getText().trim().length());
+            if (txtUsuariosNome.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Campo Nome está vazio !!###!");
+            }
+            if (txtUsuariosCpf1.getText().trim().length() != 14) {
+                JOptionPane.showMessageDialog(null, "Campo CPF está vazio !!###!");
+            }
+            if (txtUsuariosEmail.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Campo E-mail está vazio !!###!");
+            }
+            if (txtUsuariosSenha.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Campo Senha está vazio !!###!");
             } else {
                 UsuarioModel nUsuario = new UsuarioModel();
                 nUsuario.setNome(txtUsuariosNome.getText());
-                nUsuario.setCpf(txtUsuariosCpf1.getText());
+                //nUsuario.setCpf(txtUsuariosCpf1.getText());
+                nUsuario.setCpf(txtUsuarioCpfTeste.getText());
                 nUsuario.setEmail(txtUsuariosEmail.getText());
                 nUsuario.setSenha(txtUsuariosSenha.getText());
                 nUsuario.setCupom(cupom);
@@ -1872,6 +1882,7 @@ public class MenuView extends javax.swing.JFrame {
                 novaCategoria.updateCategorias(catFilme);
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
             CategoriasEnableButtons(false);
             categoriaTabela.update(novaCategoria.getAllCategorias());
@@ -2140,6 +2151,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlanoNome;
     private javax.swing.JTextField txtPlanoPreco;
     private javax.swing.JTextArea txtSinopseFilme;
+    private javax.swing.JTextField txtUsuarioCpfTeste;
     private javax.swing.JFormattedTextField txtUsuariosCpf1;
     private javax.swing.JTextField txtUsuariosEmail;
     private javax.swing.JTextField txtUsuariosNome;
