@@ -1659,6 +1659,13 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JTextField" name="txtUsuarioCpfTeste">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="600" y="460" width="170" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel10">
