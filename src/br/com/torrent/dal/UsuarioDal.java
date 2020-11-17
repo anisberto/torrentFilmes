@@ -22,8 +22,7 @@ public class UsuarioDal implements UsuarioInterface {
     }
 
     @Override
-    public void adicionarUsuario(UsuarioModel usuario) {
-
+    public void adicionarUsuario(UsuarioModel usuario)  {
         try { 
 
             String sql = "INSERT INTO cup_usuarios(\n"
