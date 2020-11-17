@@ -6,27 +6,29 @@ import br.com.torrent.model.UsuarioModel;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class UsuarioBll implements UsuarioInterface {
 
     UsuarioInterface novoUsuario;
+    ValidacoesBll valida;
     //private UsuarioDal usuarioDao;
 
     public UsuarioBll() throws Exception {
         novoUsuario = new UsuarioDal();
+        valida = new ValidacoesBll();
     }
 
     @Override
     public void adicionarUsuario(UsuarioModel usuario) {
-        try {
+        
+        if (valida.isCPF(usuario.getCpf())) {
             novoUsuario.adicionarUsuario(usuario);
-        } catch (Exception e) {
-            try {
-                throw new Exception("Erro bll incluir" + e.getMessage());
-            } catch (Exception ex) {
-                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF Inválido !!!");
         }
+
     }
 
     @Override
@@ -36,8 +38,10 @@ public class UsuarioBll implements UsuarioInterface {
         } catch (Exception e) {
             try {
                 throw new Exception(e.getMessage());
+
             } catch (Exception ex) {
-                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -49,8 +53,10 @@ public class UsuarioBll implements UsuarioInterface {
         } catch (Exception e) {
             try {
                 throw new Exception(e.getMessage());
+
             } catch (Exception ex) {
-                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class
+                        .getName()).log(Level.SEVERE, null, ex);
 
             }
         }
@@ -63,8 +69,10 @@ public class UsuarioBll implements UsuarioInterface {
         } catch (Exception e) {
             try {
                 throw new Exception(e.getMessage());
+
             } catch (Exception ex) {
-                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -77,8 +85,10 @@ public class UsuarioBll implements UsuarioInterface {
         } catch (Exception e) {
             try {
                 throw new Exception(e.getMessage());
+
             } catch (Exception ex) {
-                Logger.getLogger(UsuarioBll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioBll.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
