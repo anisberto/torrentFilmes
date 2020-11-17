@@ -10,22 +10,30 @@ import java.util.logging.Logger;
 public class CategoriaBll implements CategoriasInterfaces {
 
     private CategoriaDal categoriaDao;
+    private ValidacoesBll valida;
 
     public CategoriaBll() throws Exception {
         categoriaDao = new CategoriaDal();
+        valida = new ValidacoesBll();
     }
 
     @Override
-    public void adicionarCategorias(CategoriaFilmesModel categoria) {
+    public void adicionarCategorias(CategoriaFilmesModel categoria) throws Exception{
         try {
+            valida.validarCategoria(categoria);
             categoriaDao.adicionarCategorias(categoria);
         } catch (Exception e) {
-            try {
-                throw new Exception("Erro ao incluir: dal.error." + e.getMessage());
-            } catch (Exception ex) {
-                Logger.getLogger(CategoriaBll.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            throw new Exception("Erro ao incluir: dal.error." + e.getMessage());
         }
+        
+        
+//        catch (Exception e) {                                   
+//            try {
+//                throw new Exception("Erro ao incluir: dal.error." + e.getMessage());
+//            } catch (Exception ex) {
+//                Logger.getLogger(CategoriaBll.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
 
     @Override
