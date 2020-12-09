@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-PROJETO Torrent Filmes
+Projeto Torrent Filmes
 </h1>
     <h2 align="center">
     FACULDADE SENAI FATESG
